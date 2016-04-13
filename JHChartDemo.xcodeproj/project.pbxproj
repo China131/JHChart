@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA0031601CBCCFD500F4FDEB /* JHShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA00315F1CBCCFD500F4FDEB /* JHShowController.m */; };
 		AA5E2BB31CBA298F00FC19EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BB21CBA298F00FC19EE /* main.m */; };
 		AA5E2BB61CBA298F00FC19EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BB51CBA298F00FC19EE /* AppDelegate.m */; };
 		AA5E2BB91CBA298F00FC19EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BB81CBA298F00FC19EE /* ViewController.m */; };
@@ -15,6 +16,8 @@
 		AA5E2BC11CBA298F00FC19EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5E2BBF1CBA298F00FC19EE /* LaunchScreen.storyboard */; };
 		AA5E2BCC1CBA298F00FC19EE /* JHChartDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BCB1CBA298F00FC19EE /* JHChartDemoTests.m */; };
 		AA5E2BD71CBA298F00FC19EE /* JHChartDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BD61CBA298F00FC19EE /* JHChartDemoUITests.m */; };
+		AA5E2BE71CBA2B3100FC19EE /* JHLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BE61CBA2B3100FC19EE /* JHLineChart.m */; };
+		AA5E2BEA1CBA2CE700FC19EE /* JHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BE91CBA2CE700FC19EE /* JHChart.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA00315E1CBCCFD500F4FDEB /* JHShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHShowController.h; sourceTree = "<group>"; };
+		AA00315F1CBCCFD500F4FDEB /* JHShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHShowController.m; sourceTree = "<group>"; };
+		AA006FFE1CBB77DC0030F296 /* JHChartHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHChartHeader.h; sourceTree = "<group>"; };
 		AA5E2BAE1CBA298F00FC19EE /* JHChartDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JHChartDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5E2BB21CBA298F00FC19EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AA5E2BB41CBA298F00FC19EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +57,10 @@
 		AA5E2BD21CBA298F00FC19EE /* JHChartDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JHChartDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5E2BD61CBA298F00FC19EE /* JHChartDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHChartDemoUITests.m; sourceTree = "<group>"; };
 		AA5E2BD81CBA298F00FC19EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA5E2BE51CBA2B3100FC19EE /* JHLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHLineChart.h; sourceTree = "<group>"; };
+		AA5E2BE61CBA2B3100FC19EE /* JHLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHLineChart.m; sourceTree = "<group>"; };
+		AA5E2BE81CBA2CE700FC19EE /* JHChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHChart.h; sourceTree = "<group>"; };
+		AA5E2BE91CBA2CE700FC19EE /* JHChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHChart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +111,13 @@
 		AA5E2BB01CBA298F00FC19EE /* JHChartDemo */ = {
 			isa = PBXGroup;
 			children = (
+				AA5E2BE41CBA29CF00FC19EE /* JHChart */,
 				AA5E2BB41CBA298F00FC19EE /* AppDelegate.h */,
 				AA5E2BB51CBA298F00FC19EE /* AppDelegate.m */,
 				AA5E2BB71CBA298F00FC19EE /* ViewController.h */,
 				AA5E2BB81CBA298F00FC19EE /* ViewController.m */,
+				AA00315E1CBCCFD500F4FDEB /* JHShowController.h */,
+				AA00315F1CBCCFD500F4FDEB /* JHShowController.m */,
 				AA5E2BBA1CBA298F00FC19EE /* Main.storyboard */,
 				AA5E2BBD1CBA298F00FC19EE /* Assets.xcassets */,
 				AA5E2BBF1CBA298F00FC19EE /* LaunchScreen.storyboard */,
@@ -138,6 +151,18 @@
 				AA5E2BD81CBA298F00FC19EE /* Info.plist */,
 			);
 			path = JHChartDemoUITests;
+			sourceTree = "<group>";
+		};
+		AA5E2BE41CBA29CF00FC19EE /* JHChart */ = {
+			isa = PBXGroup;
+			children = (
+				AA006FFE1CBB77DC0030F296 /* JHChartHeader.h */,
+				AA5E2BE81CBA2CE700FC19EE /* JHChart.h */,
+				AA5E2BE91CBA2CE700FC19EE /* JHChart.m */,
+				AA5E2BE51CBA2B3100FC19EE /* JHLineChart.h */,
+				AA5E2BE61CBA2B3100FC19EE /* JHLineChart.m */,
+			);
+			path = JHChart;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +295,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0031601CBCCFD500F4FDEB /* JHShowController.m in Sources */,
+				AA5E2BE71CBA2B3100FC19EE /* JHLineChart.m in Sources */,
+				AA5E2BEA1CBA2CE700FC19EE /* JHChart.m in Sources */,
 				AA5E2BB91CBA298F00FC19EE /* ViewController.m in Sources */,
 				AA5E2BB61CBA298F00FC19EE /* AppDelegate.m in Sources */,
 				AA5E2BB31CBA298F00FC19EE /* main.m in Sources */,
@@ -496,6 +524,7 @@
 				AA5E2BDD1CBA298F00FC19EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AA5E2BDE1CBA298F00FC19EE /* Build configuration list for PBXNativeTarget "JHChartDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +533,7 @@
 				AA5E2BE01CBA298F00FC19EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AA5E2BE11CBA298F00FC19EE /* Build configuration list for PBXNativeTarget "JHChartDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +542,7 @@
 				AA5E2BE31CBA298F00FC19EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
