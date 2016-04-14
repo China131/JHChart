@@ -10,3 +10,4 @@
 #import "JHChart.h"
 
 #import "JHLineChart.h"
+#import "JHWaveChart.h"

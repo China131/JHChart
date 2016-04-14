@@ -33,6 +33,11 @@
 @property (assign, nonatomic)  CGPoint chartOrigin;
 
 - (void)showAnimation;
-
 - (void)clear;
+
+- (void)drawLineWithContext:(CGContextRef )context andStarPoint:(CGPoint )start andEndPoint:(CGPoint)end andIsDottedLine:(BOOL)isDotted andColor:(UIColor *)color;
+
+- (void)drawText:(NSString *)text andContext:(CGContextRef )context atPoint:(CGPoint )rect WithColor:(UIColor *)color;
+
+- (CGFloat)getTextWithWhenDrawWithText:(NSString *)text;
 @end

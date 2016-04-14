@@ -18,6 +18,8 @@
 		AA5E2BD71CBA298F00FC19EE /* JHChartDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BD61CBA298F00FC19EE /* JHChartDemoUITests.m */; };
 		AA5E2BE71CBA2B3100FC19EE /* JHLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BE61CBA2B3100FC19EE /* JHLineChart.m */; };
 		AA5E2BEA1CBA2CE700FC19EE /* JHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BE91CBA2CE700FC19EE /* JHChart.m */; };
+		AAE935E81CBE0CCA002517EB /* JHWaveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE935E71CBE0CCA002517EB /* JHWaveChart.m */; };
+		AAF6151A1CBF9E9300E066C3 /* 001.gif in Resources */ = {isa = PBXBuildFile; fileRef = AAF615191CBF9E9300E066C3 /* 001.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,9 @@
 		AA5E2BE61CBA2B3100FC19EE /* JHLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHLineChart.m; sourceTree = "<group>"; };
 		AA5E2BE81CBA2CE700FC19EE /* JHChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHChart.h; sourceTree = "<group>"; };
 		AA5E2BE91CBA2CE700FC19EE /* JHChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHChart.m; sourceTree = "<group>"; };
+		AAE935E61CBE0CCA002517EB /* JHWaveChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHWaveChart.h; sourceTree = "<group>"; };
+		AAE935E71CBE0CCA002517EB /* JHWaveChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHWaveChart.m; sourceTree = "<group>"; };
+		AAF615191CBF9E9300E066C3 /* 001.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 001.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +116,7 @@
 		AA5E2BB01CBA298F00FC19EE /* JHChartDemo */ = {
 			isa = PBXGroup;
 			children = (
+				AAF615181CBF9E7F00E066C3 /* GIFResource */,
 				AA5E2BE41CBA29CF00FC19EE /* JHChart */,
 				AA5E2BB41CBA298F00FC19EE /* AppDelegate.h */,
 				AA5E2BB51CBA298F00FC19EE /* AppDelegate.m */,
@@ -161,8 +167,18 @@
 				AA5E2BE91CBA2CE700FC19EE /* JHChart.m */,
 				AA5E2BE51CBA2B3100FC19EE /* JHLineChart.h */,
 				AA5E2BE61CBA2B3100FC19EE /* JHLineChart.m */,
+				AAE935E61CBE0CCA002517EB /* JHWaveChart.h */,
+				AAE935E71CBE0CCA002517EB /* JHWaveChart.m */,
 			);
 			path = JHChart;
+			sourceTree = "<group>";
+		};
+		AAF615181CBF9E7F00E066C3 /* GIFResource */ = {
+			isa = PBXGroup;
+			children = (
+				AAF615191CBF9E9300E066C3 /* 001.gif */,
+			);
+			path = GIFResource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAF6151A1CBF9E9300E066C3 /* 001.gif in Resources */,
 				AA5E2BC11CBA298F00FC19EE /* LaunchScreen.storyboard in Resources */,
 				AA5E2BBE1CBA298F00FC19EE /* Assets.xcassets in Resources */,
 				AA5E2BBC1CBA298F00FC19EE /* Main.storyboard in Resources */,
@@ -296,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA0031601CBCCFD500F4FDEB /* JHShowController.m in Sources */,
+				AAE935E81CBE0CCA002517EB /* JHWaveChart.m in Sources */,
 				AA5E2BE71CBA2B3100FC19EE /* JHLineChart.m in Sources */,
 				AA5E2BEA1CBA2CE700FC19EE /* JHChart.m in Sources */,
 				AA5E2BB91CBA298F00FC19EE /* ViewController.m in Sources */,

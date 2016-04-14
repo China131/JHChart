@@ -5,7 +5,15 @@
 //  Created by cjatech-简豪 on 16/4/10.
 //  Copyright © 2016年 JH. All rights reserved.
 //
-
+/*******************************************
+ *
+ *
+ *
+ *折线图 按象限分为4种
+ *
+ *
+ *
+ ********************************************/
 #import <UIKit/UIKit.h>
 #import "JHChart.h"
 

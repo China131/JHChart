@@ -42,6 +42,11 @@
             [self showAllQuardrant];
         }
             break;
+        case 4:
+        {
+            [self showWaveChartUpView];
+        }
+            break;
             
         default:
             break;
@@ -63,7 +68,7 @@
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;
     
     /* 数据源 */
-    lineChart.valueArr = @[@[@"5",@"2",@"7",@4,@25,@15,@6,@9],@[@"1",@"2",@"1",@6,@4,@9,@6,@7]];
+    lineChart.valueArr = @[@[@"1",@"2",@"1",@6,@4,@9,@6,@7]];
     
     /* 值折线的折线颜色 默认暗黑色*/
     lineChart.valueLineColorArr =@[ [UIColor purpleColor], [UIColor brownColor]];
@@ -101,8 +106,9 @@
     
     /* XY轴的刻度颜色 m */
     lineChart.xAndYNumberColor = [UIColor blueColor];
-
+ 
     [self.view addSubview:lineChart];
+    
     [lineChart showAnimation];
     
     /* 清除折线图内容 */
@@ -154,7 +160,15 @@
     [lineChart showAnimation];
 }
 
-
+- (void)showWaveChartUpView{
+    
+    JHWaveChart *wave = [[JHWaveChart alloc] initWithFrame:CGRectMake(10, 100, k_MainBoundsWidth-20, 200) andType:JHWaveChartUpType];
+    
+    wave.valueDataArr = @[@[@1,@3,@1,@7,@18,@3,@5]];
+    
+    [self.view addSubview:wave];
+    
+}
 
 
 
