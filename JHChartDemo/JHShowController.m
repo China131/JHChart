@@ -162,12 +162,13 @@
 
 - (void)showWaveChartUpView{
     
-    JHWaveChart *wave = [[JHWaveChart alloc] initWithFrame:CGRectMake(10, 100, k_MainBoundsWidth-20, 200) andType:JHWaveChartUpType];
-    
-    wave.valueDataArr = @[@[@1,@3,@1,@7,@18,@3,@5]];
-    
-    [self.view addSubview:wave];
-    
+
+    JHPieChart *pie = [[JHPieChart alloc] initWithFrame:CGRectMake(0, 100, 321, 321)];
+    pie.center = CGPointMake(CGRectGetMaxX(self.view.frame)/2, CGRectGetMaxY(self.view.frame)/2);
+    pie.valueArr = @[@18,@10,@25,@40];
+    pie.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:pie];
+    [pie showAnimation];
 }
 
 

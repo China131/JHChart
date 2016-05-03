@@ -18,6 +18,9 @@
 		AA5E2BD71CBA298F00FC19EE /* JHChartDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BD61CBA298F00FC19EE /* JHChartDemoUITests.m */; };
 		AA5E2BE71CBA2B3100FC19EE /* JHLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BE61CBA2B3100FC19EE /* JHLineChart.m */; };
 		AA5E2BEA1CBA2CE700FC19EE /* JHChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BE91CBA2CE700FC19EE /* JHChart.m */; };
+		AAA60A8F1CD8A81A0094D6E5 /* JHPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA60A8A1CD8A81A0094D6E5 /* JHPieChart.m */; };
+		AAA60A901CD8A81A0094D6E5 /* JHPieForeBGView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA60A8C1CD8A81A0094D6E5 /* JHPieForeBGView.m */; };
+		AAA60A911CD8A81A0094D6E5 /* JHPieItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA60A8E1CD8A81A0094D6E5 /* JHPieItemsView.m */; };
 		AAE935E81CBE0CCA002517EB /* JHWaveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE935E71CBE0CCA002517EB /* JHWaveChart.m */; };
 		AAF6151A1CBF9E9300E066C3 /* 001.gif in Resources */ = {isa = PBXBuildFile; fileRef = AAF615191CBF9E9300E066C3 /* 001.gif */; };
 /* End PBXBuildFile section */
@@ -63,6 +66,12 @@
 		AA5E2BE61CBA2B3100FC19EE /* JHLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHLineChart.m; sourceTree = "<group>"; };
 		AA5E2BE81CBA2CE700FC19EE /* JHChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHChart.h; sourceTree = "<group>"; };
 		AA5E2BE91CBA2CE700FC19EE /* JHChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHChart.m; sourceTree = "<group>"; };
+		AAA60A891CD8A81A0094D6E5 /* JHPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHPieChart.h; sourceTree = "<group>"; };
+		AAA60A8A1CD8A81A0094D6E5 /* JHPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHPieChart.m; sourceTree = "<group>"; };
+		AAA60A8B1CD8A81A0094D6E5 /* JHPieForeBGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHPieForeBGView.h; sourceTree = "<group>"; };
+		AAA60A8C1CD8A81A0094D6E5 /* JHPieForeBGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHPieForeBGView.m; sourceTree = "<group>"; };
+		AAA60A8D1CD8A81A0094D6E5 /* JHPieItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHPieItemsView.h; sourceTree = "<group>"; };
+		AAA60A8E1CD8A81A0094D6E5 /* JHPieItemsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHPieItemsView.m; sourceTree = "<group>"; };
 		AAE935E61CBE0CCA002517EB /* JHWaveChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHWaveChart.h; sourceTree = "<group>"; };
 		AAE935E71CBE0CCA002517EB /* JHWaveChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHWaveChart.m; sourceTree = "<group>"; };
 		AAF615191CBF9E9300E066C3 /* 001.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 001.gif; sourceTree = "<group>"; };
@@ -162,6 +171,12 @@
 		AA5E2BE41CBA29CF00FC19EE /* JHChart */ = {
 			isa = PBXGroup;
 			children = (
+				AAA60A891CD8A81A0094D6E5 /* JHPieChart.h */,
+				AAA60A8A1CD8A81A0094D6E5 /* JHPieChart.m */,
+				AAA60A8B1CD8A81A0094D6E5 /* JHPieForeBGView.h */,
+				AAA60A8C1CD8A81A0094D6E5 /* JHPieForeBGView.m */,
+				AAA60A8D1CD8A81A0094D6E5 /* JHPieItemsView.h */,
+				AAA60A8E1CD8A81A0094D6E5 /* JHPieItemsView.m */,
 				AA006FFE1CBB77DC0030F296 /* JHChartHeader.h */,
 				AA5E2BE81CBA2CE700FC19EE /* JHChart.h */,
 				AA5E2BE91CBA2CE700FC19EE /* JHChart.m */,
@@ -313,11 +328,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA0031601CBCCFD500F4FDEB /* JHShowController.m in Sources */,
+				AAA60A8F1CD8A81A0094D6E5 /* JHPieChart.m in Sources */,
+				AAA60A911CD8A81A0094D6E5 /* JHPieItemsView.m in Sources */,
 				AAE935E81CBE0CCA002517EB /* JHWaveChart.m in Sources */,
 				AA5E2BE71CBA2B3100FC19EE /* JHLineChart.m in Sources */,
 				AA5E2BEA1CBA2CE700FC19EE /* JHChart.m in Sources */,
 				AA5E2BB91CBA298F00FC19EE /* ViewController.m in Sources */,
 				AA5E2BB61CBA298F00FC19EE /* AppDelegate.m in Sources */,
+				AAA60A901CD8A81A0094D6E5 /* JHPieForeBGView.m in Sources */,
 				AA5E2BB31CBA298F00FC19EE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

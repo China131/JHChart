@@ -29,9 +29,11 @@
 @property (nonatomic,assign) UIEdgeInsets  contentInsets;
 
 
-
+/*         原点          */
 @property (assign, nonatomic)  CGPoint chartOrigin;
 
+/*         表名          */
+@property (copy, nonatomic) NSString * chartTitle;
 - (void)showAnimation;
 - (void)clear;
 

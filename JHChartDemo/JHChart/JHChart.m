@@ -76,12 +76,13 @@
  */
 - (void)drawText:(NSString *)text andContext:(CGContextRef )context atPoint:(CGPoint )rect WithColor:(UIColor *)color{
     //     CGContextSetLineWidth(context, 0.5);
+
     [[NSString stringWithFormat:@"%@",text] drawAtPoint:rect withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"CourierNewPSMT" size:7.f],NSForegroundColorAttributeName:color}];
     //    CGContextSetFontSize(context, 13);
     
     //    [color setStroke];
     [color setFill];
-    CGContextSetTextDrawingMode(context, kCGTextFillStroke);
+//    CGContextSetTextDrawingMode(context, kCGTextFillStroke);
     CGContextDrawPath(context, kCGPathFill);
     
 }
