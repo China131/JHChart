@@ -163,11 +163,13 @@
 - (void)showWaveChartUpView{
     
 
-    JHPieChart *pie = [[JHPieChart alloc] initWithFrame:CGRectMake(0, 100, 321, 321)];
+    JHPieChart *pie = [[JHPieChart alloc] initWithFrame:CGRectMake(0, 100, 321, 421)];
     pie.center = CGPointMake(CGRectGetMaxX(self.view.frame)/2, CGRectGetMaxY(self.view.frame)/2);
-    pie.valueArr = @[@18,@10,@25,@40];
+    pie.valueArr = @[@18,@10,@25,@40,@18,@10,@25,@40,@18,@10,@25,@40,@25,@21];
+    pie.descArr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14"];
     pie.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:pie];
+    pie.positionChangeLengthWhenClick = 15;
     [pie showAnimation];
 }
 

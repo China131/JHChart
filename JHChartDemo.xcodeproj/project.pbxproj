@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA0031601CBCCFD500F4FDEB /* JHShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA00315F1CBCCFD500F4FDEB /* JHShowController.m */; };
+		AA57D8A91CD9C492003EA0A7 /* JHShowInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57D8A81CD9C492003EA0A7 /* JHShowInfoView.m */; };
 		AA5E2BB31CBA298F00FC19EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BB21CBA298F00FC19EE /* main.m */; };
 		AA5E2BB61CBA298F00FC19EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BB51CBA298F00FC19EE /* AppDelegate.m */; };
 		AA5E2BB91CBA298F00FC19EE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5E2BB81CBA298F00FC19EE /* ViewController.m */; };
@@ -46,6 +47,8 @@
 		AA00315E1CBCCFD500F4FDEB /* JHShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHShowController.h; sourceTree = "<group>"; };
 		AA00315F1CBCCFD500F4FDEB /* JHShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHShowController.m; sourceTree = "<group>"; };
 		AA006FFE1CBB77DC0030F296 /* JHChartHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHChartHeader.h; sourceTree = "<group>"; };
+		AA57D8A71CD9C492003EA0A7 /* JHShowInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHShowInfoView.h; sourceTree = "<group>"; };
+		AA57D8A81CD9C492003EA0A7 /* JHShowInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHShowInfoView.m; sourceTree = "<group>"; };
 		AA5E2BAE1CBA298F00FC19EE /* JHChartDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JHChartDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5E2BB21CBA298F00FC19EE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AA5E2BB41CBA298F00FC19EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				AA5E2BE61CBA2B3100FC19EE /* JHLineChart.m */,
 				AAE935E61CBE0CCA002517EB /* JHWaveChart.h */,
 				AAE935E71CBE0CCA002517EB /* JHWaveChart.m */,
+				AA57D8A71CD9C492003EA0A7 /* JHShowInfoView.h */,
+				AA57D8A81CD9C492003EA0A7 /* JHShowInfoView.m */,
 			);
 			path = JHChart;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 			files = (
 				AA0031601CBCCFD500F4FDEB /* JHShowController.m in Sources */,
 				AAA60A8F1CD8A81A0094D6E5 /* JHPieChart.m in Sources */,
+				AA57D8A91CD9C492003EA0A7 /* JHShowInfoView.m in Sources */,
 				AAA60A911CD8A81A0094D6E5 /* JHPieItemsView.m in Sources */,
 				AAE935E81CBE0CCA002517EB /* JHWaveChart.m in Sources */,
 				AA5E2BE71CBA2B3100FC19EE /* JHLineChart.m in Sources */,

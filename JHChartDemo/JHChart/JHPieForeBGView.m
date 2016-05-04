@@ -10,7 +10,10 @@
 
 @implementation JHPieForeBGView
 
-
+-(void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+    [self touchesBegan:touches withEvent:event];
+}
 
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -25,8 +28,8 @@
         return;
     }
     
-//    NSLog(@"%@",NSStringFromCGPoint(self.center));
-//     NSLog(@"%@",NSStringFromCGPoint(p));
+    
+    /* 计算角度并block回调 */
     CGFloat aLen2 = (p.x - self.frame.size.width/2)*(p.x - self.frame.size.width/2) + (p.y - self.frame.size.width/2)*(p.y - self.frame.size.width/2);
     CGFloat aLen = sqrt(aLen2);
     
@@ -34,7 +37,7 @@
     CGFloat cLen = self.frame.size.width/2;
     
     CGFloat bLen2 = (p.x - self.frame.size.width)*(p.x - self.frame.size.width) + (p.y - self.frame.size.width/2)*(p.y - self.frame.size.width/2);
-    CGFloat bLen = sqrt(bLen2);
+
     
     CGFloat angle = acos((aLen2 + cLen2 -bLen2)/2/aLen/cLen);
     
@@ -43,7 +46,7 @@
         
     }
     if (self.select) {
-        self.select(angle);
+        self.select(angle,p);
     }
     
 }

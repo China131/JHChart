@@ -13,7 +13,14 @@
 
 @property (nonatomic,strong) NSArray * valueArr;
 
+@property (nonatomic,strong) NSArray * descArr;
 
-- (void)showAnimation;
+
+@property (nonatomic,strong) NSArray * colorArr;
+
+@property (assign , nonatomic) CGFloat  positionChangeLengthWhenClick ;
+
+
+
 
 @end

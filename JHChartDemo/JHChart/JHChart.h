@@ -42,4 +42,6 @@
 - (void)drawText:(NSString *)text andContext:(CGContextRef )context atPoint:(CGPoint )rect WithColor:(UIColor *)color;
 
 - (CGFloat)getTextWithWhenDrawWithText:(NSString *)text;
+
+- (void)drawQuartWithColor:(UIColor *)color andBeginPoint:(CGPoint)p andContext:(CGContextRef)contex;
 @end

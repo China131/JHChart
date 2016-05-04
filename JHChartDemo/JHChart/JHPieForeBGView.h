@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void(^selectBlock)(CGFloat angle);
+typedef void(^selectBlock)(CGFloat angle,CGPoint p);
 @interface JHPieForeBGView : UIView
 
 

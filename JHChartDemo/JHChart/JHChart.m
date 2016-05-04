@@ -101,4 +101,22 @@
     return size.width;
 }
 
+
+/**
+ *  绘制长方形
+ *
+ *  @param color  填充颜色
+ *  @param p      开始点
+ *  @param contex 图形上下文
+ */
+- (void)drawQuartWithColor:(UIColor *)color andBeginPoint:(CGPoint)p andContext:(CGContextRef)contex{
+    
+    CGContextAddRect(contex, CGRectMake(p.x, p.y, 10, 10));
+    [color setFill];
+    [color setStroke];
+    CGContextDrawPath(contex, kCGPathFillStroke);
+    
+    
+}
+
 @end
