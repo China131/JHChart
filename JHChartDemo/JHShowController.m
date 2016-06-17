@@ -44,7 +44,7 @@
             break;
         case 4:
         {
-            [self showWaveChartUpView];
+            [self showPieChartUpView];
         }
             break;
             
@@ -138,6 +138,9 @@
 }
 
 
+/**
+ *  折线图全象限
+ */
 - (void)showAllQuardrant{
     
     JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 100, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
@@ -160,14 +163,22 @@
     [lineChart showAnimation];
 }
 
-- (void)showWaveChartUpView{
+
+/**
+ *  饼状图
+ */
+- (void)showPieChartUpView{
     
 
     JHPieChart *pie = [[JHPieChart alloc] initWithFrame:CGRectMake(0, 100, 321, 421)];
     pie.center = CGPointMake(CGRectGetMaxX(self.view.frame)/2, CGRectGetMaxY(self.view.frame)/2);
-    pie.valueArr = @[@18,@10,@25,@40,@18,@10,@25,@40,@18,@10,@25,@40,@25,@21];
-    pie.descArr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14"];
-    pie.backgroundColor = [UIColor whiteColor];
+    
+    /* 饼状图数值 会自动根据数值计算百分比 */
+    pie.valueArr = @[@18,@10,@25,@40,@18,@10,@25,@40,@18,@10];
+    
+    /* 每一个扇形区的描述 必须要填 并且数量必须和饼状图数值个数相同 */
+    pie.descArr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"];
+    pie.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:pie];
     pie.positionChangeLengthWhenClick = 15;
     [pie showAnimation];
