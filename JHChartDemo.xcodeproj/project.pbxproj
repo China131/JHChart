@@ -25,6 +25,7 @@
 		AAA60A911CD8A81A0094D6E5 /* JHPieItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA60A8E1CD8A81A0094D6E5 /* JHPieItemsView.m */; };
 		AAA60A931CD8AC580094D6E5 /* 0011.gif in Resources */ = {isa = PBXBuildFile; fileRef = AAA60A921CD8AC580094D6E5 /* 0011.gif */; };
 		AAE935E81CBE0CCA002517EB /* JHWaveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE935E71CBE0CCA002517EB /* JHWaveChart.m */; };
+		E9135FE61D2B810B00ED9F6D /* JHRingChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E9135FE51D2B810B00ED9F6D /* JHRingChart.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		AAA60A921CD8AC580094D6E5 /* 0011.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 0011.gif; sourceTree = "<group>"; };
 		AAE935E61CBE0CCA002517EB /* JHWaveChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHWaveChart.h; sourceTree = "<group>"; };
 		AAE935E71CBE0CCA002517EB /* JHWaveChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHWaveChart.m; sourceTree = "<group>"; };
+		E9135FE41D2B810B00ED9F6D /* JHRingChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHRingChart.h; sourceTree = "<group>"; };
+		E9135FE51D2B810B00ED9F6D /* JHRingChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHRingChart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +197,8 @@
 				AA57D8A81CD9C492003EA0A7 /* JHShowInfoView.m */,
 				AA441C2F1CE1684D0056993D /* JHColumnChart.h */,
 				AA441C301CE1684D0056993D /* JHColumnChart.m */,
+				E9135FE41D2B810B00ED9F6D /* JHRingChart.h */,
+				E9135FE51D2B810B00ED9F6D /* JHRingChart.m */,
 			);
 			path = JHChart;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				TargetAttributes = {
 					AA5E2BAD1CBA298F00FC19EE = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = HRJA43XU8W;
 					};
 					AA5E2BC61CBA298F00FC19EE = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -338,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA0031601CBCCFD500F4FDEB /* JHShowController.m in Sources */,
+				E9135FE61D2B810B00ED9F6D /* JHRingChart.m in Sources */,
 				AAA60A8F1CD8A81A0094D6E5 /* JHPieChart.m in Sources */,
 				AA57D8A91CD9C492003EA0A7 /* JHShowInfoView.m in Sources */,
 				AAA60A911CD8A81A0094D6E5 /* JHPieItemsView.m in Sources */,
@@ -487,10 +494,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = JHChartDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JH.JHChartDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -498,10 +508,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = JHChartDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JH.JHChartDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

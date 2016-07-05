@@ -56,7 +56,7 @@
     [color setStroke];
     
     if (isDotted) {
-        double ss[] = {0.5,2};
+        CGFloat ss[] = {0.5,2};
         
         CGContextSetLineDash(context, 0, ss, 2);
     }
@@ -74,15 +74,13 @@
  *  @param rect    绘制点
  *  @param color   绘制颜色
  */
-- (void)drawText:(NSString *)text andContext:(CGContextRef )context atPoint:(CGPoint )rect WithColor:(UIColor *)color{
-    //     CGContextSetLineWidth(context, 0.5);
+- (void)drawText:(NSString *)text andContext:(CGContextRef )context atPoint:(CGPoint )rect WithColor:(UIColor *)color andFontSize:(CGFloat)fontSize{
 
-    [[NSString stringWithFormat:@"%@",text] drawAtPoint:rect withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"CourierNewPSMT" size:7.f],NSForegroundColorAttributeName:color}];
-    //    CGContextSetFontSize(context, 13);
-    
-    //    [color setStroke];
+
+    [[NSString stringWithFormat:@"%@",text] drawAtPoint:rect withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"CourierNewPSMT" size:fontSize],NSForegroundColorAttributeName:color}];
+
     [color setFill];
-//    CGContextSetTextDrawingMode(context, kCGTextFillStroke);
+
     CGContextDrawPath(context, kCGPathFill);
     
 }
@@ -116,6 +114,15 @@
     [color setStroke];
     CGContextDrawPath(contex, kCGPathFillStroke);
     
+    
+}
+
+
+- (void)drawPointWithRedius:(CGFloat)redius andColor:(UIColor *)color andPoint:(CGPoint)p andContext:(CGContextRef)contex{
+    
+    CGContextAddArc(contex, p.x, p.y, redius, 0, M_PI * 2, YES);
+    [color setFill];
+    CGContextDrawPath(contex, kCGPathFill);
     
 }
 

@@ -92,7 +92,7 @@
         
         [self drawLineWithContext:contex andStarPoint:P_M(i*_perXLength, _originPoint.y) andEndPoint:P_M(i*_perXLength, _originPoint.y-3) andIsDottedLine:NO andColor:_xAndYLineColor];
         CGFloat len = [self getTextWithWhenDrawWithText:_xLineDataArr[i]];
-        [self drawText:_xLineDataArr[i] andContext:contex atPoint:P_M(i*_perXLength-len/2+_originPoint.x, _originPoint.y+5) WithColor:_xAndYLineColor];
+        [self drawText:_xLineDataArr[i] andContext:contex atPoint:P_M(i*_perXLength-len/2+_originPoint.x, _originPoint.y+5) WithColor:_xAndYLineColor andFontSize:8];
         
     }
     

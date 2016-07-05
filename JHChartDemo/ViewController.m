@@ -22,7 +22,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     
-      _itemsArr = @[@"折线图-第一象限",@"折线图-第一二象限",@"折线图第一四象限",@"折线图-全象限",@"饼图"];
+      _itemsArr = @[@"折线图-第一象限",@"折线图-第一二象限",@"折线图第一四象限",@"折线图-全象限",@"饼图",@"环状图"];
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64) style:UITableViewStylePlain];
     _tableView.dataSource = self;

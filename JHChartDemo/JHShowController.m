@@ -47,6 +47,11 @@
             [self showPieChartUpView];
         }
             break;
+        case 5:
+        {
+            [self showRingChartView];
+        }
+            break;
             
         default:
             break;
@@ -170,20 +175,29 @@
 - (void)showPieChartUpView{
     
 
-    JHPieChart *pie = [[JHPieChart alloc] initWithFrame:CGRectMake(0, 100, 321, 421)];
+    JHPieChart *pie = [[JHPieChart alloc] initWithFrame:CGRectMake(100, 100, 321, 421)];
     pie.center = CGPointMake(CGRectGetMaxX(self.view.frame)/2, CGRectGetMaxY(self.view.frame)/2);
     
     /* 饼状图数值 会自动根据数值计算百分比 */
-    pie.valueArr = @[@18,@10,@25,@40,@18,@10,@25,@40,@18,@10];
+    pie.valueArr = @[@18,@10,@25,@40,@18,@10,@25,@40,@18,@10,@15,@12,@30,@18];
     
     /* 每一个扇形区的描述 必须要填 并且数量必须和饼状图数值个数相同 */
-    pie.descArr = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"];
-    pie.backgroundColor = [UIColor lightGrayColor];
+    pie.descArr = @[@"第一个元素",@"第二个元素",@"第三个元素",@"第四个元素",@"5",@"6",@"7",@"8",@"9",@"10",@"23",@"12",@"21",@"30"];
+    pie.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:pie];
     pie.positionChangeLengthWhenClick = 15;
     [pie showAnimation];
 }
 
 
-
+//环状图
+- (void)showRingChartView{
+    
+    JHRingChart *ring = [[JHRingChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth, k_MainBoundsWidth)];
+    ring.backgroundColor = [UIColor blackColor];
+    ring.valueDataArr = @[@"0.5",@"5",@"2",@"10",@"6"];
+    [ring showAnimation];
+    [self.view addSubview:ring];
+    
+}
 @end

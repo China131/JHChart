@@ -12,3 +12,4 @@
 #import "JHLineChart.h"
 #import "JHWaveChart.h"
 #import "JHPieChart.h"
+#import "JHRingChart.h"
