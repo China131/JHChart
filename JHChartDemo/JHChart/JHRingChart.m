@@ -138,7 +138,7 @@
             [self drawText:[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] andContext:contex atPoint:CGPointMake(secondP.x - size.width - 3, secondP.y - size.height/2) WithColor:k_COLOR_STOCK[i] andFontSize:10*k_Width_Scale];
         }
           [self drawLineWithContext:contex andStarPoint:endx andEndPoint:secondP andIsDottedLine:NO andColor:k_COLOR_STOCK[i]];
-        [self drawPointWithRedius:3 andColor:k_COLOR_STOCK[i] andPoint:secondP andContext:contex];
+        [self drawPointWithRedius:3*k_Width_Scale andColor:k_COLOR_STOCK[i] andPoint:secondP andContext:contex];
        
     }
     

@@ -757,13 +757,15 @@
     
     //    _shapeLayer.fillColor = [UIColor yellowColor].CGColor;
     
+    
     shapeLayer.path = firstPath.CGPath;
     
     
-  UIColor *color = (_valueLineColorArr.count==_drawDataArr.count?(_valueLineColorArr[colorIndex]):([UIColor orangeColor]));
+    UIColor *color = (_valueLineColorArr.count==_drawDataArr.count?(_valueLineColorArr[colorIndex]):([UIColor orangeColor]));
     
     shapeLayer.strokeColor = color.CGColor;
     
+    shapeLayer.lineWidth = 5.0;
     
     //第三，动画
     

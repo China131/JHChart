@@ -193,7 +193,7 @@
 //环状图
 - (void)showRingChartView{
     
-    JHRingChart *ring = [[JHRingChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth, k_MainBoundsWidth)];
+    JHRingChart *ring = [[JHRingChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth/3, k_MainBoundsWidth/3)];
     ring.backgroundColor = [UIColor blackColor];
     ring.valueDataArr = @[@"0.5",@"5",@"2",@"10",@"6"];
     [ring showAnimation];
