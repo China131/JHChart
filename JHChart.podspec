@@ -38,12 +38,12 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT"
+  s.license      =  "MIT"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" 
 }
-  s.source	 ={ :git => "https://github.com/China131/JHChart.git", :tag => "0.0.1"
+ # s.source	 ={ :git => "https://github.com/China131/JHChart.git", :tag => "0.0.1"
 }
-s.source_files ="/JHChartDemo/JHChart", "*{h,m}" 
+s.source_files ="JHChartDemo/JHChart *", "*{h,m}" 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  Specify the authors of the library, with email addresses. Email addresses
@@ -80,8 +80,7 @@ s.source_files ="/JHChartDemo/JHChart", "*{h,m}"
   #  Specify the location from where the source should be retrieved.
   #  Supports git, hg, bzr, svn and HTTP.
   #
-
-  s.source       = { :git => "http://EXAMPLE/JHChart.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/China131/JHChart.git", :tag => "0.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -92,7 +91,7 @@ s.source_files ="/JHChartDemo/JHChart", "*{h,m}"
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
+ # s.source_files  = "Classes", "/JHChartDemo/JHChart*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
