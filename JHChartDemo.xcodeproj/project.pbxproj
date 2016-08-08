@@ -25,6 +25,7 @@
 		AAA60A911CD8A81A0094D6E5 /* JHPieItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA60A8E1CD8A81A0094D6E5 /* JHPieItemsView.m */; };
 		AAE935E81CBE0CCA002517EB /* JHWaveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE935E71CBE0CCA002517EB /* JHWaveChart.m */; };
 		E9135FE61D2B810B00ED9F6D /* JHRingChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E9135FE51D2B810B00ED9F6D /* JHRingChart.m */; };
+		E929B8381D587CAC00FAB287 /* 0011.gif in Resources */ = {isa = PBXBuildFile; fileRef = E929B8371D587CAC00FAB287 /* 0011.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		AAE935E71CBE0CCA002517EB /* JHWaveChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHWaveChart.m; sourceTree = "<group>"; };
 		E9135FE41D2B810B00ED9F6D /* JHRingChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHRingChart.h; sourceTree = "<group>"; };
 		E9135FE51D2B810B00ED9F6D /* JHRingChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHRingChart.m; sourceTree = "<group>"; };
+		E929B8371D587CAC00FAB287 /* 0011.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 0011.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 		AAF615181CBF9E7F00E066C3 /* GIFResource */ = {
 			isa = PBXGroup;
 			children = (
+				E929B8371D587CAC00FAB287 /* 0011.gif */,
 			);
 			path = GIFResource;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			files = (
 				AA5E2BC11CBA298F00FC19EE /* LaunchScreen.storyboard in Resources */,
 				AA5E2BBE1CBA298F00FC19EE /* Assets.xcassets in Resources */,
+				E929B8381D587CAC00FAB287 /* 0011.gif in Resources */,
 				AA5E2BBC1CBA298F00FC19EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
