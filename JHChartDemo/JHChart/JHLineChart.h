@@ -76,7 +76,7 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
 @property (assign, nonatomic) JHLineChartQuadrantType  lineChartQuadrantType;
 
 
-/*         线条宽度          */
+/*         线条宽度（非路径动画 仅指X、Y轴刻度线条宽度）          */
 @property (assign, nonatomic) CGFloat lineWidth;
 
 
@@ -107,8 +107,8 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
 @property (assign, nonatomic) BOOL hasPoint;
 
 
-
-
+/*        动画路径线条宽度         */
+@property (nonatomic,assign) CGFloat animationPathWidth;
 /**
  *  重写初始化方法
  *

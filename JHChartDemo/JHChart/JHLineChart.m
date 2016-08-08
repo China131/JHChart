@@ -124,6 +124,8 @@
     
 }
 
+
+
 /**
  *  获取X与Y轴的长度
  */
@@ -765,7 +767,7 @@
     
     shapeLayer.strokeColor = color.CGColor;
     
-    shapeLayer.lineWidth = 5.0;
+    shapeLayer.lineWidth = (_animationPathWidth<=0?2:_animationPathWidth);
     
     //第三，动画
     

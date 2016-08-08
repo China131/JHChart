@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     switch (_index) {
         case 0:
         {
@@ -52,7 +52,10 @@
             [self showRingChartView];
         }
             break;
-            
+        case 6:
+        {
+            [self showColumnView];
+        }
         default:
             break;
     }
@@ -193,11 +196,63 @@
 //环状图
 - (void)showRingChartView{
     
-    JHRingChart *ring = [[JHRingChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth/3, k_MainBoundsWidth/3)];
+    JHRingChart *ring = [[JHRingChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth, k_MainBoundsWidth)];
     ring.backgroundColor = [UIColor blackColor];
     ring.valueDataArr = @[@"0.5",@"5",@"2",@"10",@"6"];
     [ring showAnimation];
     [self.view addSubview:ring];
     
 }
+
+//柱状图
+- (void)showColumnView{
+    
+    JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth, k_MainBoundsWidth)];
+    column.valueArr = @[
+                        @[@12,@15,@20],
+                         @[@22,@15,@20],
+                         @[@12,@5,@40],
+                         @[@2,@15,@20]
+                        
+                        ];
+    column.originSize = CGPointMake(30, 30);
+    column.drawFromOriginX = 10;
+    column.columnWidth = 40;
+    column.columnBGcolorsArr = @[[UIColor redColor],[UIColor greenColor],[UIColor blueColor]];
+    column.xShowInfoText = @[@"第一组",@"第二组",@"第三组",@"第四组"];
+    [column showAnimation];
+    [self.view addSubview:column];
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      =  "MIT"
+ # s.license      = { :type => "MIT", :file => "File_license"}
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" 
 }
  # s.source	 ={ :git => "https://github.com/China131/JHChart.git", :tag => "0.0.1"
@@ -134,5 +134,6 @@ s.source_files ="JHChartDemo/JHChart *", "*{h,m}"
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
+
 
 end

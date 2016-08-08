@@ -13,3 +13,4 @@
 #import "JHWaveChart.h"
 #import "JHPieChart.h"
 #import "JHRingChart.h"
+#import "JHColumnChart.h"
