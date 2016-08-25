@@ -4,5 +4,6 @@
 - 5.3日上传更新版  新增了饼状图初稿
 - 6.5日添加了环状图
 - 8.8日添加了柱状图
+- 8.25日添加了表格图
 
 ![image](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/0011.gif)
