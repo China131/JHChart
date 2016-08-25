@@ -24,8 +24,10 @@
 		AAA60A901CD8A81A0094D6E5 /* JHPieForeBGView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA60A8C1CD8A81A0094D6E5 /* JHPieForeBGView.m */; };
 		AAA60A911CD8A81A0094D6E5 /* JHPieItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA60A8E1CD8A81A0094D6E5 /* JHPieItemsView.m */; };
 		AAE935E81CBE0CCA002517EB /* JHWaveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE935E71CBE0CCA002517EB /* JHWaveChart.m */; };
+		E90C3EB01D6D971A0019BE6A /* JHTableChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C3EAF1D6D971A0019BE6A /* JHTableChart.m */; };
 		E9135FE61D2B810B00ED9F6D /* JHRingChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E9135FE51D2B810B00ED9F6D /* JHRingChart.m */; };
 		E929B8381D587CAC00FAB287 /* 0011.gif in Resources */ = {isa = PBXBuildFile; fileRef = E929B8371D587CAC00FAB287 /* 0011.gif */; };
+		E9DAFF3E1D6EB6E900D4E148 /* JHTableDataRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,9 +83,13 @@
 		AAA60A8E1CD8A81A0094D6E5 /* JHPieItemsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHPieItemsView.m; sourceTree = "<group>"; };
 		AAE935E61CBE0CCA002517EB /* JHWaveChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHWaveChart.h; sourceTree = "<group>"; };
 		AAE935E71CBE0CCA002517EB /* JHWaveChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHWaveChart.m; sourceTree = "<group>"; };
+		E90C3EAE1D6D971A0019BE6A /* JHTableChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTableChart.h; sourceTree = "<group>"; };
+		E90C3EAF1D6D971A0019BE6A /* JHTableChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableChart.m; sourceTree = "<group>"; };
 		E9135FE41D2B810B00ED9F6D /* JHRingChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHRingChart.h; sourceTree = "<group>"; };
 		E9135FE51D2B810B00ED9F6D /* JHRingChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHRingChart.m; sourceTree = "<group>"; };
 		E929B8371D587CAC00FAB287 /* 0011.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 0011.gif; sourceTree = "<group>"; };
+		E9DAFF3C1D6EB6E900D4E148 /* JHTableDataRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTableDataRowModel.h; sourceTree = "<group>"; };
+		E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableDataRowModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +205,10 @@
 				AA441C301CE1684D0056993D /* JHColumnChart.m */,
 				E9135FE41D2B810B00ED9F6D /* JHRingChart.h */,
 				E9135FE51D2B810B00ED9F6D /* JHRingChart.m */,
+				E90C3EAE1D6D971A0019BE6A /* JHTableChart.h */,
+				E90C3EAF1D6D971A0019BE6A /* JHTableChart.m */,
+				E9DAFF3C1D6EB6E900D4E148 /* JHTableDataRowModel.h */,
+				E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */,
 			);
 			path = JHChart;
 			sourceTree = "<group>";
@@ -356,6 +366,8 @@
 				AA5E2BB61CBA298F00FC19EE /* AppDelegate.m in Sources */,
 				AAA60A901CD8A81A0094D6E5 /* JHPieForeBGView.m in Sources */,
 				AA5E2BB31CBA298F00FC19EE /* main.m in Sources */,
+				E9DAFF3E1D6EB6E900D4E148 /* JHTableDataRowModel.m in Sources */,
+				E90C3EB01D6D971A0019BE6A /* JHTableChart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

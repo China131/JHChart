@@ -77,7 +77,7 @@
 - (void)drawText:(NSString *)text andContext:(CGContextRef )context atPoint:(CGPoint )rect WithColor:(UIColor *)color andFontSize:(CGFloat)fontSize{
 
 
-    [[NSString stringWithFormat:@"%@",text] drawAtPoint:rect withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"CourierNewPSMT" size:fontSize],NSForegroundColorAttributeName:color}];
+    [[NSString stringWithFormat:@"%@",text] drawAtPoint:rect withAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize],NSForegroundColorAttributeName:color}];
 
     [color setFill];
 
@@ -85,6 +85,20 @@
     
 }
 
+
+- (void)drawText:(NSString *)text context:(CGContextRef )context atPoint:(CGRect )rect WithColor:(UIColor *)color font:(UIFont*)font{
+    
+    
+//    [[NSString stringWithFormat:@"%@",text] drawAtPoint:rect withAttributes:@{NSFontAttributeName:font,NSForegroundColorAttributeName:color}];
+    
+    [[NSString stringWithFormat:@"%@",text] drawInRect:rect withAttributes:@{NSFontAttributeName:font,NSForegroundColorAttributeName:color}];
+    
+    [color setFill];
+
+    
+    CGContextDrawPath(context, kCGPathFill);
+    
+}
 /**
  *  判断文本宽度
  *
@@ -123,6 +137,22 @@
     CGContextAddArc(contex, p.x, p.y, redius, 0, M_PI * 2, YES);
     [color setFill];
     CGContextDrawPath(contex, kCGPathFill);
+    
+}
+
+/**
+ *  返回字符串的占用尺寸
+ *
+ *  @param maxSize   最大尺寸
+ *  @param fontSize  字号大小
+ *  @param aimString 目标字符串
+ *
+ *  @return 占用尺寸
+ */
+- (CGSize)sizeOfStringWithMaxSize:(CGSize)maxSize textFont:(CGFloat)fontSize aimString:(NSString *)aimString{
+    
+    
+    return [aimString boundingRectWithSize:maxSize options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]} context:nil].size;
     
 }
 

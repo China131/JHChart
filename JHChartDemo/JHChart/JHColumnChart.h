@@ -21,7 +21,8 @@
 @property (nonatomic,strong)NSArray * xShowInfoText;
 
 
-
+/*        背景颜色         */
+@property (nonatomic,strong)UIColor  * bgVewBackgoundColor;
 
 /*        两个柱状图的间距 非连续 默认为5        */
 @property (nonatomic,assign) CGFloat typeSpace;

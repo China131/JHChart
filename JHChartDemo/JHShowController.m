@@ -55,7 +55,11 @@
         case 6:
         {
             [self showColumnView];
-        }
+        }break;
+            case 7:
+        {
+            [self showTableView];
+        }break;
         default:
             break;
     }
@@ -218,6 +222,8 @@
     column.originSize = CGPointMake(30, 30);
     column.drawFromOriginX = 10;
     column.columnWidth = 40;
+    column.drawTextColorForX_Y = [UIColor greenColor];
+    column.colorForXYLine = [UIColor greenColor];
     column.columnBGcolorsArr = @[[UIColor redColor],[UIColor greenColor],[UIColor blueColor]];
     column.xShowInfoText = @[@"第一组",@"第二组",@"第三组",@"第四组"];
     [column showAnimation];
@@ -227,8 +233,30 @@
 
 
 
+/**
+ *  创建表格视图
+ */
+- (void)showTableView{
+    JHTableChart *table = [[JHTableChart alloc] initWithFrame:CGRectMake(10, 64, k_MainBoundsWidth-20, k_MainBoundsHeight)];
+    table.tableTitleString = @"全选jeep自由光";
 
-
+    table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量"];
+    table.colWidthArr = @[@100.0,@120.0,@70,@100];
+    table.bodyTextColor = [UIColor redColor];
+    table.minHeightItems = 40;
+    table.lineColor = [UIColor orangeColor];
+    table.dataArr = @[
+                      @[@"2.4L优越版",@"2016皓白标准漆蓝棕",@[@"鸽子白",@"鹅黄",@"炫彩绿"],@[@"4"]],
+                      @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"]],
+                      @[@"2.4豪华版",@[@"4",@"3",@"2"]],
+                      @[@"2.4旗舰版"]
+                      ];
+    [table showAnimation];
+    [self.view addSubview:table];
+    
+    table.frame = CGRectMake(10, 64, k_MainBoundsWidth-20, [table heightFromThisDataSource]);
+    
+}
 
 
 

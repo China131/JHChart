@@ -60,8 +60,9 @@
     if (!_BGScrollView) {
 
         _BGScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-        _BGScrollView.backgroundColor = [UIColor lightGrayColor];
+//        _BGScrollView.backgroundColor = [UIColor lightGrayColor];
         _BGScrollView.showsHorizontalScrollIndicator = NO;
+        _bgVewBackgoundColor = [UIColor blackColor];
         [self addSubview:_BGScrollView];
         
     }
@@ -143,7 +144,7 @@
     _typeSpace = (_typeSpace<=0?15:_typeSpace);
     _maxWidth = count * _columnWidth + _valueArr.count * _typeSpace + _typeSpace + 40;
     self.BGScrollView.contentSize = CGSizeMake(_maxWidth, 0);
-    
+    self.BGScrollView.backgroundColor = _bgVewBackgoundColor;
     
     
     /*        绘制X、Y轴  可以在此改动X、Y轴字体大小       */
@@ -254,12 +255,7 @@
     
     
     
-    
 
-    
-    
-    
-    
     /*        绘制X轴提示语  不管是否设置了是否绘制X、Y轴 提示语都应有         */
     if (_xShowInfoText.count == _valueArr.count&&_xShowInfoText.count>0) {
         
@@ -290,7 +286,7 @@
             
             textLayer.fontSize = font.pointSize;
             
-            textLayer.foregroundColor = [UIColor blackColor].CGColor;
+            textLayer.foregroundColor = _drawTextColorForX_Y.CGColor;
             
             textLayer.alignmentMode = kCAAlignmentCenter;
             
