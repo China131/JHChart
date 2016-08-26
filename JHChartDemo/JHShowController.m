@@ -151,7 +151,7 @@
 
 
 /**
- *  折线图全象限
+ *  折线图全象限 
  */
 - (void)showAllQuardrant{
     

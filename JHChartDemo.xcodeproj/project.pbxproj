@@ -26,7 +26,7 @@
 		AAE935E81CBE0CCA002517EB /* JHWaveChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE935E71CBE0CCA002517EB /* JHWaveChart.m */; };
 		E90C3EB01D6D971A0019BE6A /* JHTableChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C3EAF1D6D971A0019BE6A /* JHTableChart.m */; };
 		E9135FE61D2B810B00ED9F6D /* JHRingChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E9135FE51D2B810B00ED9F6D /* JHRingChart.m */; };
-		E945C4F21D6EF6030084F996 /* 0011.gif in Resources */ = {isa = PBXBuildFile; fileRef = E945C4F11D6EF6030084F996 /* 0011.gif */; };
+		E991853C1D6FCDC200BC5853 /* 0011.gif in Resources */ = {isa = PBXBuildFile; fileRef = E991853B1D6FCDC200BC5853 /* 0011.gif */; };
 		E9DAFF3E1D6EB6E900D4E148 /* JHTableDataRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */; };
 /* End PBXBuildFile section */
 
@@ -87,7 +87,7 @@
 		E90C3EAF1D6D971A0019BE6A /* JHTableChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableChart.m; sourceTree = "<group>"; };
 		E9135FE41D2B810B00ED9F6D /* JHRingChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHRingChart.h; sourceTree = "<group>"; };
 		E9135FE51D2B810B00ED9F6D /* JHRingChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHRingChart.m; sourceTree = "<group>"; };
-		E945C4F11D6EF6030084F996 /* 0011.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 0011.gif; sourceTree = "<group>"; };
+		E991853B1D6FCDC200BC5853 /* 0011.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 0011.gif; sourceTree = "<group>"; };
 		E9DAFF3C1D6EB6E900D4E148 /* JHTableDataRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTableDataRowModel.h; sourceTree = "<group>"; };
 		E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableDataRowModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,7 +216,7 @@
 		AAF615181CBF9E7F00E066C3 /* GIFResource */ = {
 			isa = PBXGroup;
 			children = (
-				E945C4F11D6EF6030084F996 /* 0011.gif */,
+				E991853B1D6FCDC200BC5853 /* 0011.gif */,
 			);
 			path = GIFResource;
 			sourceTree = "<group>";
@@ -327,7 +327,7 @@
 			files = (
 				AA5E2BC11CBA298F00FC19EE /* LaunchScreen.storyboard in Resources */,
 				AA5E2BBE1CBA298F00FC19EE /* Assets.xcassets in Resources */,
-				E945C4F21D6EF6030084F996 /* 0011.gif in Resources */,
+				E991853C1D6FCDC200BC5853 /* 0011.gif in Resources */,
 				AA5E2BBC1CBA298F00FC19EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
