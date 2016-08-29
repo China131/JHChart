@@ -6,4 +6,7 @@
 - 8.8日添加了柱状图
 - 8.25日添加了表格图
 
+## cocoapods直接导入：
+  pod 'JHChart','~>0.1.0'
+
 ![image](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/0011.gif)
