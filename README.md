@@ -8,7 +8,6 @@
 ## cocoapods直接导入：
 ## pod 'JHChart','~>0.1.0'
 
-
 ###效果图如下：
 
 ![image](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/0011.gif)
