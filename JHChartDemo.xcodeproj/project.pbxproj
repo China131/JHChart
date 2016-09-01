@@ -35,6 +35,7 @@
 		E91828771D785DED00F60BB6 /* table1.png in Resources */ = {isa = PBXBuildFile; fileRef = E918286F1D785DED00F60BB6 /* table1.png */; };
 		E91828781D785DED00F60BB6 /* zhu1.png in Resources */ = {isa = PBXBuildFile; fileRef = E91828701D785DED00F60BB6 /* zhu1.png */; };
 		E918287A1D785E1900F60BB6 /* 0011.gif in Resources */ = {isa = PBXBuildFile; fileRef = E91828791D785E1900F60BB6 /* 0011.gif */; };
+		E918287C1D7860F300F60BB6 /* lines.png in Resources */ = {isa = PBXBuildFile; fileRef = E918287B1D7860F300F60BB6 /* lines.png */; };
 		E9DAFF3E1D6EB6E900D4E148 /* JHTableDataRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		E918286F1D785DED00F60BB6 /* table1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = table1.png; sourceTree = "<group>"; };
 		E91828701D785DED00F60BB6 /* zhu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhu1.png; sourceTree = "<group>"; };
 		E91828791D785E1900F60BB6 /* 0011.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 0011.gif; sourceTree = "<group>"; };
+		E918287B1D7860F300F60BB6 /* lines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lines.png; sourceTree = "<group>"; };
 		E9DAFF3C1D6EB6E900D4E148 /* JHTableDataRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTableDataRowModel.h; sourceTree = "<group>"; };
 		E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableDataRowModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -232,6 +234,7 @@
 		AAF615181CBF9E7F00E066C3 /* GIFResource */ = {
 			isa = PBXGroup;
 			children = (
+				E918287B1D7860F300F60BB6 /* lines.png */,
 				E91828791D785E1900F60BB6 /* 0011.gif */,
 				E91828691D785DED00F60BB6 /* huan1.png */,
 				E918286A1D785DED00F60BB6 /* line1.png */,
@@ -357,6 +360,7 @@
 				AA5E2BBE1CBA298F00FC19EE /* Assets.xcassets in Resources */,
 				AA5E2BBC1CBA298F00FC19EE /* Main.storyboard in Resources */,
 				E91828761D785DED00F60BB6 /* pie1.png in Resources */,
+				E918287C1D7860F300F60BB6 /* lines.png in Resources */,
 				E91828721D785DED00F60BB6 /* line1.png in Resources */,
 				E91828731D785DED00F60BB6 /* line2.png in Resources */,
 				E91828741D785DED00F60BB6 /* line3.png in Resources */,
