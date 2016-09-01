@@ -100,15 +100,34 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
 @property (nonatomic,strong) NSArray * positionLineColorArr;
 
 
+
 /*         坐标点数值颜色          */
 @property (nonatomic,strong) NSArray * pointNumberColorArr;
+
+
 
 /*         是否需要点          */
 @property (assign, nonatomic) BOOL hasPoint;
 
 
+
 /*        动画路径线条宽度         */
 @property (nonatomic,assign) CGFloat animationPathWidth;
+
+
+/*        路径是否为曲线 默认NO        */
+@property (nonatomic,assign) BOOL pathCurve;
+
+
+/*        是否进行路径内容填充  默认NO       */
+@property (nonatomic,assign) BOOL contentFill;
+
+
+/*        填充颜色 默认为灰色        */
+@property (nonatomic,strong)NSArray * contentFillColorArr;
+
+
+
 /**
  *  重写初始化方法
  *

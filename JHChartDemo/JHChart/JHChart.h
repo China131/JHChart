@@ -22,6 +22,8 @@
 
 #define P_M(x,y) CGPointMake(x, y)
 
+#define weakSelf(weakSelf)  __weak typeof(self) weakself = self;
+
 @interface JHChart : UIView
 
 

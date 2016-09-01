@@ -96,6 +96,11 @@
     
     /* 坐标点的虚线颜色 */
     lineChart.positionLineColorArr = @[[UIColor blueColor],[UIColor greenColor]];
+    
+    lineChart.contentFill = YES;
+    
+    lineChart.pathCurve = YES;
+    
     [self.view addSubview:lineChart];
     [lineChart showAnimation];
 }
@@ -121,6 +126,14 @@
  
     [self.view addSubview:lineChart];
     
+    /*        设置是否填充内容         */
+    lineChart.contentFill = YES;
+    
+    /*        设置曲线路径         */
+    lineChart.pathCurve = YES;
+    
+    /*        填充颜色数组         */
+    lineChart.contentFillColorArr = @[[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.386],[UIColor colorWithRed:0.000 green:0.002 blue:0.832 alpha:0.472]];
     [lineChart showAnimation];
     
     /* 清除折线图内容 */
@@ -144,7 +157,12 @@
     
     /* XY轴的刻度颜色 m */
     lineChart.xAndYNumberColor = [UIColor blueColor];
-
+    
+    lineChart.contentFill = YES;
+    
+    lineChart.pathCurve = YES;
+    
+    lineChart.contentFillColorArr = @[[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.386],[UIColor colorWithRed:0.000 green:0.002 blue:0.832 alpha:0.472]];
     [self.view addSubview:lineChart];
     [lineChart showAnimation];
 }
@@ -172,6 +190,7 @@
     lineChart.xAndYNumberColor = [UIColor blueColor];
 
     [self.view addSubview:lineChart];
+    
     [lineChart showAnimation];
 }
 
@@ -230,6 +249,8 @@
     [self.view addSubview:column];
 
 }
+
+
 
 
 

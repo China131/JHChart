@@ -50,6 +50,7 @@
         _xAndYNumberColor = [UIColor darkGrayColor];
         _valueLineColorArr = @[[UIColor redColor]];
         _layerArr = [NSMutableArray array];
+//        _contentFillColorArr = @[[UIColor lightGrayColor]];
         [self configChartXAndYLength];
         [self configChartOrigin];
         [self configPerXAndPerY];
@@ -728,45 +729,82 @@
 }
 
 
+- (CGPoint)centerOfFirstPoint:(CGPoint)p1 andSecondPoint:(CGPoint)p2{
+    
+    
+    return P_M((p1.x + p2.x) / 2.0, (p1.y + p2.y) / 2.0);
+    
+}
+
+
+
 - (void)drawPathWithDataArr:(NSArray *)dataArr andIndex:(NSInteger )colorIndex{
     
     UIBezierPath *firstPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 0, 0)];
+    
+    UIBezierPath *secondPath = [UIBezierPath bezierPath];
+    
     for (NSInteger i = 0; i<dataArr.count; i++) {
         
         NSValue *value = dataArr[i];
         
         CGPoint p = value.CGPointValue;
         
+        if (_pathCurve) {
+            if (i==0) {
+                
+                if (_contentFill) {
 
-        
-        if (i==0) {
-            [firstPath moveToPoint:p];
-            
+                    [secondPath moveToPoint:P_M(p.x, self.chartOrigin.y)];
+                    [secondPath addLineToPoint:p];
+                }
+
+                [firstPath moveToPoint:p];
+            }else{
+                CGPoint nextP = [dataArr[i-1] CGPointValue];
+                CGPoint control1 = P_M(p.x + (nextP.x - p.x) / 2.0, nextP.y );
+                CGPoint control2 = P_M(p.x + (nextP.x - p.x) / 2.0, p.y);
+                 [secondPath addCurveToPoint:p controlPoint1:control1 controlPoint2:control2];
+                [firstPath addCurveToPoint:p controlPoint1:control1 controlPoint2:control2];
+            }
         }else{
-            [firstPath addLineToPoint:p];
+            
+              if (i==0) {
+                  if (_contentFill) {
+                      [secondPath moveToPoint:P_M(p.x, self.chartOrigin.y)];
+                      [secondPath addLineToPoint:p];
+                  }
+                  [firstPath moveToPoint:p];
+//                   [secondPath moveToPoint:p];
+              }else{
+                   [firstPath addLineToPoint:p];
+                   [secondPath addLineToPoint:p];
+            }
+
         }
-        
-        
-        [firstPath moveToPoint:p];
+
+        if (i==dataArr.count-1) {
+            
+            [secondPath addLineToPoint:P_M(p.x, self.chartOrigin.y)];
+            
+        }
     }
     
+    
+    
+    if (_contentFill) {
+        [secondPath closePath];
+    }
     
     //第二、UIBezierPath和CAShapeLayer关联
     
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.frame = self.bounds;
-    
-    //    _shapeLayer.fillColor = [UIColor yellowColor].CGColor;
-    
-    
     shapeLayer.path = firstPath.CGPath;
-    
-    
     UIColor *color = (_valueLineColorArr.count==_drawDataArr.count?(_valueLineColorArr[colorIndex]):([UIColor orangeColor]));
-    
     shapeLayer.strokeColor = color.CGColor;
-    
+    shapeLayer.fillColor = [UIColor clearColor].CGColor;
     shapeLayer.lineWidth = (_animationPathWidth<=0?2:_animationPathWidth);
     
     //第三，动画
@@ -777,7 +815,7 @@
     
     ani.toValue = @1;
     
-    ani.duration = 2;
+    ani.duration = 2.0;
     
     ani.delegate = self;
     
@@ -785,6 +823,25 @@
     
     [self.layer addSublayer:shapeLayer];
     [_layerArr addObject:shapeLayer];
+    
+    weakSelf(weakSelf)
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(ani.duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        CAShapeLayer *shaperLay = [CAShapeLayer layer];
+        shaperLay.frame = weakself.bounds;
+        shaperLay.path = secondPath.CGPath;
+        if (weakself.contentFillColorArr.count == weakself.drawDataArr.count) {
+            
+            shaperLay.fillColor = [weakself.contentFillColorArr[colorIndex] CGColor];
+        }else{
+            shaperLay.fillColor = [UIColor clearColor].CGColor;
+        }
+        
+        [weakself.layer addSublayer:shaperLay];
+        [_layerArr addObject:shaperLay];
+    });
+    
+    
 }
 
 
