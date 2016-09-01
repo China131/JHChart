@@ -71,36 +71,28 @@
 
 //第一象限折线图
 - (void)showFirstQuardrant{
+    /*        创建表对象         */
     JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 100, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
-    
     /* X轴的刻度值 可以传入NSString或NSNumber类型  并且数据结构随折线图类型变化而变化 详情看文档或其他象限X轴数据源示例*/
     lineChart.xLineDataArr = @[@"0",@"1",@"2",@3,@4,@5,@6,@7];
-    
     /* 折线图的不同类型  按照象限划分 不同象限对应不同X轴刻度数据源和不同的值数据源 */
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;
-    
     /* 数据源 */
     lineChart.valueArr = @[@[@"1",@"2",@"1",@6,@4,@9,@6,@7]];
-    
     /* 值折线的折线颜色 默认暗黑色*/
     lineChart.valueLineColorArr =@[ [UIColor purpleColor], [UIColor brownColor]];
-    
     /* 值点的颜色 默认橘黄色*/
     lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
-    
     /* X和Y轴的颜色 默认暗黑色 */
     lineChart.xAndYLineColor = [UIColor greenColor];
-    
     /* XY轴的刻度颜色 m */
     lineChart.xAndYNumberColor = [UIColor blueColor];
-    
     /* 坐标点的虚线颜色 */
     lineChart.positionLineColorArr = @[[UIColor blueColor],[UIColor greenColor]];
-    
+    /*        设置是否填充内容 默认为否         */
     lineChart.contentFill = YES;
-    
+    /*        设置为曲线路径         */
     lineChart.pathCurve = YES;
-    
     [self.view addSubview:lineChart];
     [lineChart showAnimation];
 }
