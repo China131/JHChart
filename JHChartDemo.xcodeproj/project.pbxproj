@@ -36,6 +36,10 @@
 		E918288A1D7864F600F60BB6 /* pie1.png in Resources */ = {isa = PBXBuildFile; fileRef = E91828821D7864F600F60BB6 /* pie1.png */; };
 		E918288B1D7864F600F60BB6 /* table1.png in Resources */ = {isa = PBXBuildFile; fileRef = E91828831D7864F600F60BB6 /* table1.png */; };
 		E918288C1D7864F600F60BB6 /* zhu1.png in Resources */ = {isa = PBXBuildFile; fileRef = E91828841D7864F600F60BB6 /* zhu1.png */; };
+		E99BDEDF1D812F720062F314 /* 饼状图demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = E99BDEDB1D812F720062F314 /* 饼状图demo.gif */; };
+		E99BDEE01D812F720062F314 /* 环状图demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = E99BDEDC1D812F720062F314 /* 环状图demo.gif */; };
+		E99BDEE11D812F720062F314 /* 折线图demo.png in Resources */ = {isa = PBXBuildFile; fileRef = E99BDEDD1D812F720062F314 /* 折线图demo.png */; };
+		E99BDEE21D812F720062F314 /* 柱状图demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = E99BDEDE1D812F720062F314 /* 柱状图demo.gif */; };
 		E9DAFF3E1D6EB6E900D4E148 /* JHTableDataRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +110,10 @@
 		E91828821D7864F600F60BB6 /* pie1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pie1.png; sourceTree = "<group>"; };
 		E91828831D7864F600F60BB6 /* table1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = table1.png; sourceTree = "<group>"; };
 		E91828841D7864F600F60BB6 /* zhu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhu1.png; sourceTree = "<group>"; };
+		E99BDEDB1D812F720062F314 /* 饼状图demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "饼状图demo.gif"; sourceTree = "<group>"; };
+		E99BDEDC1D812F720062F314 /* 环状图demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "环状图demo.gif"; sourceTree = "<group>"; };
+		E99BDEDD1D812F720062F314 /* 折线图demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo.png"; sourceTree = "<group>"; };
+		E99BDEDE1D812F720062F314 /* 柱状图demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "柱状图demo.gif"; sourceTree = "<group>"; };
 		E9DAFF3C1D6EB6E900D4E148 /* JHTableDataRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTableDataRowModel.h; sourceTree = "<group>"; };
 		E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableDataRowModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,6 +242,10 @@
 		AAF615181CBF9E7F00E066C3 /* GIFResource */ = {
 			isa = PBXGroup;
 			children = (
+				E99BDEDB1D812F720062F314 /* 饼状图demo.gif */,
+				E99BDEDC1D812F720062F314 /* 环状图demo.gif */,
+				E99BDEDD1D812F720062F314 /* 折线图demo.png */,
+				E99BDEDE1D812F720062F314 /* 柱状图demo.gif */,
 				E918287D1D7864F600F60BB6 /* huan1.png */,
 				E918287E1D7864F600F60BB6 /* line1.png */,
 				E918287F1D7864F600F60BB6 /* line2.png */,
@@ -354,16 +366,20 @@
 			files = (
 				AA5E2BC11CBA298F00FC19EE /* LaunchScreen.storyboard in Resources */,
 				E91828851D7864F600F60BB6 /* huan1.png in Resources */,
+				E99BDEDF1D812F720062F314 /* 饼状图demo.gif in Resources */,
 				E91828881D7864F600F60BB6 /* line3.png in Resources */,
 				E91828861D7864F600F60BB6 /* line1.png in Resources */,
 				E918287A1D785E1900F60BB6 /* 0011.gif in Resources */,
 				E918288C1D7864F600F60BB6 /* zhu1.png in Resources */,
 				E918288A1D7864F600F60BB6 /* pie1.png in Resources */,
+				E99BDEE11D812F720062F314 /* 折线图demo.png in Resources */,
+				E99BDEE01D812F720062F314 /* 环状图demo.gif in Resources */,
 				AA5E2BBE1CBA298F00FC19EE /* Assets.xcassets in Resources */,
 				AA5E2BBC1CBA298F00FC19EE /* Main.storyboard in Resources */,
 				E91828871D7864F600F60BB6 /* line2.png in Resources */,
 				E91828891D7864F600F60BB6 /* line4.png in Resources */,
 				E918288B1D7864F600F60BB6 /* table1.png in Resources */,
+				E99BDEE21D812F720062F314 /* 柱状图demo.gif in Resources */,
 				E918287C1D7860F300F60BB6 /* lines.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,8 +14,10 @@
 @property (nonatomic,strong)NSArray * valueDataArr;
 
 
+/*        环图的颜色数组         */
+@property (nonatomic,strong)NSArray * fillColorArray;
 
 
-
-
+/*        环的宽度         */
+@property (nonatomic,assign) CGFloat ringWidth;
 @end

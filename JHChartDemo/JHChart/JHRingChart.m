@@ -31,6 +31,7 @@
     if (self = [super initWithFrame:frame]) {
         self.chartOrigin = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame)/2);
         _redius = (CGRectGetHeight(self.frame) -60*k_Width_Scale)/4;
+        _ringWidth = 40;
     }
     return self;
 }
@@ -80,8 +81,12 @@
         UIBezierPath *path = [UIBezierPath bezierPath];
         
         layer.fillColor = [UIColor clearColor].CGColor;
-        layer.strokeColor =[k_COLOR_STOCK[i] CGColor];
-
+        
+        if (i<_fillColorArray.count) {
+            layer.strokeColor =[_fillColorArray[i] CGColor];
+        }else{
+             layer.strokeColor =[k_COLOR_STOCK[i%k_COLOR_STOCK.count] CGColor];
+        }
         CGFloat cuttentpace = [obj floatValue] / _totolCount * (M_PI * 2 - _itemsSpace * _valueDataArr.count);
         totloL += [obj floatValue] / _totolCount;
 
@@ -89,7 +94,7 @@
         
         layer.path = path.CGPath;
         [self.layer addSublayer:layer];
-        layer.lineWidth = 30*k_Width_Scale;
+        layer.lineWidth = _ringWidth;
         CABasicAnimation *basic = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
         basic.fromValue = @(0);
         basic.toValue = @(1);
