@@ -119,7 +119,7 @@
             
             CGPoint cachePoint = CGPointMake(self.chartOrigin.x + cacheLength * sin(j * perAngle) , self.chartOrigin.y - cacheLength * cos(j * perAngle));
             
-            NSLog(@"-----%-----i== %ld     ======%@",j * perAngle,i,NSStringFromCGPoint(cachePoint));
+//            NSLog(@"-----%-----i== %ld     ======%@",j * perAngle,i,NSStringFromCGPoint(cachePoint));
             NSValue *cacheValue = [NSValue valueWithCGPoint:cachePoint];
             [cacheArray addObject:cacheValue];
             
