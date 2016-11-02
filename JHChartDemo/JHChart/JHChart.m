@@ -60,7 +60,7 @@
         
         CGContextSetLineDash(context, 0, ss, 2);
     }
-    
+    CGContextMoveToPoint(context, end.x, end.y);
     
     CGContextDrawPath(context, kCGPathFillStroke);
 }

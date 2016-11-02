@@ -15,3 +15,4 @@
 #import "JHRingChart.h"
 #import "JHColumnChart.h"
 #import "JHTableChart.h"
+#import "JHRadarChart.h"

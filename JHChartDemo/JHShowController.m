@@ -60,6 +60,10 @@
         {
             [self showTableView];
         }break;
+            case 8:
+        {
+            [self showRadarChartView];
+        }break;
         default:
             break;
     }
@@ -216,11 +220,11 @@
     JHRingChart *ring = [[JHRingChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth, k_MainBoundsWidth)];
     /*        背景颜色         */
     ring.backgroundColor = [UIColor blackColor];
-    /*        数据源数组 只需要传入值 相应的比例会自动计算         */
+    /*        数据源数组 只需要传入值 相应的比例会自动计算        */
     ring.valueDataArr = @[@"0.5",@"5",@"2",@"10",@"6"];
     /*        环图的宽度         */
     ring.ringWidth = 35.0;
-    /*        每段环图的填充颜色         */
+    /*        每段环图的填充颜色 注意！如果设置填充颜色 必须与数据源数组的元素个数相同 否则将会报错         */
     ring.fillColorArray = @[[UIColor colorWithRed:1.000 green:0.783 blue:0.371 alpha:1.000], [UIColor colorWithRed:1.000 green:0.562 blue:0.968 alpha:1.000],[UIColor colorWithRed:0.313 green:1.000 blue:0.983 alpha:1.000],[UIColor colorWithRed:0.560 green:1.000 blue:0.276 alpha:1.000],[UIColor colorWithRed:0.239 green:0.651 blue:0.170 alpha:1.000]];
     /*        动画展示         */
     [ring showAnimation];
@@ -298,6 +302,34 @@
 }
 
 
+- (void)showRadarChartView{
+    
+    
+    JHRadarChart *radarChart = [[JHRadarChart alloc] initWithFrame:CGRectMake(10, 74, k_MainBoundsWidth - 20, k_MainBoundsWidth - 20)];
+    radarChart.backgroundColor = [UIColor whiteColor];
+    
+    /*        每个点的描述文字 根据该数组的数量确定基本模块的个数         */
+    radarChart.valueDescArray = @[@"击杀",@"能力",@"生存",@"推塔",@"补兵",@"其他"];
+    
+    /*        基本模块层的个数         */
+    radarChart.layerCount = 5;
+    
+    /*        数据源数组，需要在数组中添加数组         */
+    radarChart.valueDataArray = @[@[@"80",@"40",@"100",@"76",@"75",@"50"],@[@"50",@"80",@"30",@"46",@"35",@"50"]];
+    
+    /*        每一个基本模块层的颜色         */
+    radarChart.layerFillColor = [UIColor colorWithRed:94/ 256.0 green:187/256.0 blue:242 / 256.0 alpha:0.5];
+    
+    /*        值模块的填充颜色 需要给每个值模块指定颜色         */
+    radarChart.valueDrawFillColorArray = @[[UIColor colorWithRed:57/ 256.0 green:137/256.0 blue:21 / 256.0 alpha:0.5],[UIColor colorWithRed:149/ 256.0 green:68/256.0 blue:68 / 256.0 alpha:0.5]];
+    
+    /*        展示视图         */
+    [radarChart showAnimation];
+    
+    [self.view addSubview:radarChart];
+    
+    
+}
 
 
 

@@ -40,7 +40,7 @@
 /*        动画开始         */
 - (void)showAnimation;
 
-/*        清楚当前视图         */
+/*        清除当前视图         */
 - (void)clear;
 
 /*        绘制线条 从start点 到end点 及是否为曲线  线条颜色         */
