@@ -41,6 +41,7 @@
 		E99BDEE01D812F720062F314 /* 环状图demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = E99BDEDC1D812F720062F314 /* 环状图demo.gif */; };
 		E99BDEE11D812F720062F314 /* 折线图demo.png in Resources */ = {isa = PBXBuildFile; fileRef = E99BDEDD1D812F720062F314 /* 折线图demo.png */; };
 		E99BDEE21D812F720062F314 /* 柱状图demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = E99BDEDE1D812F720062F314 /* 柱状图demo.gif */; };
+		E9C0B3C81DCAC33B000068ED /* look.gif in Resources */ = {isa = PBXBuildFile; fileRef = E9C0B3C71DCAC33B000068ED /* look.gif */; };
 		E9C0F36E1DCA026800A87CAF /* 雷达图demo.png in Resources */ = {isa = PBXBuildFile; fileRef = E9C0F36D1DCA026800A87CAF /* 雷达图demo.png */; };
 		E9DAFF3E1D6EB6E900D4E148 /* JHTableDataRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */; };
 /* End PBXBuildFile section */
@@ -118,6 +119,7 @@
 		E99BDEDC1D812F720062F314 /* 环状图demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "环状图demo.gif"; sourceTree = "<group>"; };
 		E99BDEDD1D812F720062F314 /* 折线图demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo.png"; sourceTree = "<group>"; };
 		E99BDEDE1D812F720062F314 /* 柱状图demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "柱状图demo.gif"; sourceTree = "<group>"; };
+		E9C0B3C71DCAC33B000068ED /* look.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = look.gif; sourceTree = "<group>"; };
 		E9C0F36D1DCA026800A87CAF /* 雷达图demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "雷达图demo.png"; sourceTree = "<group>"; };
 		E9DAFF3C1D6EB6E900D4E148 /* JHTableDataRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTableDataRowModel.h; sourceTree = "<group>"; };
 		E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableDataRowModel.m; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 		AAF615181CBF9E7F00E066C3 /* GIFResource */ = {
 			isa = PBXGroup;
 			children = (
+				E9C0B3C71DCAC33B000068ED /* look.gif */,
 				E9C0F36D1DCA026800A87CAF /* 雷达图demo.png */,
 				E99BDEDB1D812F720062F314 /* 饼状图demo.gif */,
 				E99BDEDC1D812F720062F314 /* 环状图demo.gif */,
@@ -374,6 +377,7 @@
 			files = (
 				E9C0F36E1DCA026800A87CAF /* 雷达图demo.png in Resources */,
 				AA5E2BC11CBA298F00FC19EE /* LaunchScreen.storyboard in Resources */,
+				E9C0B3C81DCAC33B000068ED /* look.gif in Resources */,
 				E91828851D7864F600F60BB6 /* huan1.png in Resources */,
 				E99BDEDF1D812F720062F314 /* 饼状图demo.gif in Resources */,
 				E91828881D7864F600F60BB6 /* line3.png in Resources */,
