@@ -28,33 +28,34 @@ pod 'JHChart','~>0.1.1'
 ### JHLineChart
 **Description: JHLineChart can create a variety of data sources linear charts, including broken lines and curves, can be based on the data source to determine whether the multiple linear table. And, according to the needs of the interval fill color. At the same time the table supports the different needs of different quadrant, here is just set the first quadrant of the sample, the other quadrant of the use of the same method.**
   
-  /*     Create object        */
-  JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 100, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
-  /* The scale value of the X axis can be passed into the NSString or NSNumber type and the data structure changes with the change of the line chart type. The details look at the document or other quadrant X axis data source sample.*/
-  lineChart.xLineDataArr = @[@"0",@"1",@"2",@3,@4,@5,@6,@7];
-  /* The different types of the broken line chart, according to the quadrant division, different quadrant correspond to different X axis scale data source and different value data source. */
-  lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;
+    /*     Create object        */
+   JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 100, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
+   /* The scale value of the X axis can be passed into the NSString or NSNumber type and the data structure changes with the change of the line chart type. The details look at the document or other quadrant X axis data source sample.*/
+    lineChart.xLineDataArr = @[@"0",@"1",@"2",@3,@4,@5,@6,@7];
+   /* The different types of the broken line chart, according to the quadrant division, different quadrant correspond to different X axis scale data source and different value data source. */
+    lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;
 
-  lineChart.valueArr = @[@[@"1",@"12",@"1",@6,@4,@9,@6,@7],@[@"3",@"1",@"2",@16,@2,@3,@5,@10]];
-  /* Line Chart colors */
-  lineChart.valueLineColorArr =@[ [UIColor purpleColor], [UIColor brownColor]];
-  /* Colors for every line chart*/
-  lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
-  /* color for XY axis */
-  lineChart.xAndYLineColor = [UIColor blackColor];
-  /* XY axis scale color */
-  lineChart.xAndYNumberColor = [UIColor blueColor];
-  /* Dotted line color of the coordinate point */
-  lineChart.positionLineColorArr = @[[UIColor blueColor],[UIColor greenColor]];
-  /*        Set whether to fill the content, the default is False         */
-  lineChart.contentFill = YES;
-  /*        Set whether the curve path         */
-  lineChart.pathCurve = YES;
-  /*        Set fill color array         */
-  lineChart.contentFillColorArr = @[[UIColor colorWithRed:0.500 green:0.000 blue:0.500 alpha:0.468],[UIColor colorWithRed:0.500 green:0.214 blue:0.098 alpha:0.468]];
-  [self.view addSubview:lineChart];
-  /*       Start animation        */
-  [lineChart showAnimation];
+   lineChart.valueArr = @[@[@"1",@"12",@"1",@6,@4,@9,@6,@7],@[@"3",@"1",@"2",@16,@2,@3,@5,@10]];
+   /* Line Chart colors */
+    lineChart.valueLineColorArr =@[ [UIColor purpleColor], [UIColor brownColor]];
+   /* Colors for every line chart*/
+   lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
+   /* color for XY axis */
+    lineChart.xAndYLineColor = [UIColor blackColor];
+    /* XY axis scale color */
+    lineChart.xAndYNumberColor = [UIColor blueColor];
+    /* Dotted line color of the coordinate point */
+    lineChart.positionLineColorArr = @[[UIColor blueColor],[UIColor greenColor]];
+    /*        Set whether to fill the content, the default is False         */
+    lineChart.contentFill = YES;
+    /*        Set whether the curve path         */
+    lineChart.pathCurve = YES;
+    /*        Set fill color array         */
+   lineChart.contentFillColorArr = @[[UIColor colorWithRed:0.500 green:0.000 blue:0.500 alpha:0.468],[UIColor colorWithRed:0.500 green:0.214 blue:0.098 alpha:0.468]];
+    [self.view addSubview:lineChart];
+   /*       Start animation        */
+    [lineChart showAnimation];
+    
 
 Actual effect chart：
 ![折线图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo.png)     
