@@ -238,7 +238,7 @@
     JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth, k_MainBoundsWidth)];
     /*        创建数据源数组 每个数组即为一个模块数据 例如第一个数组可以表示某个班级的不同科目的平均成绩 下一个数组表示另外一个班级的不同科目的平均成绩         */
     column.valueArr = @[
-                         @[@12,@15,@20],
+                         @[@12,@19,@34],
                          @[@22,@15,@20],
                          @[@12,@5,@40],
                          @[@2,@15,@20]

@@ -27,6 +27,8 @@
 
 //所有的柱状图数组
 @property (nonatomic,strong)NSMutableArray * showViewArr;
+
+@property (nonatomic,assign) CGFloat perHeight;
 @end
 
 @implementation JHColumnChart
@@ -125,9 +127,8 @@
         _maxHeight = max;
     }
     
-    
-   
-    
+    _maxHeight += 4;
+    _perHeight = (CGRectGetHeight(self.frame) - 20 - _originSize.y)/_maxHeight;
     
     
 }
@@ -189,12 +190,13 @@
         
         [self.BGScrollView.layer addSublayer:layer];
         
+//        _maxHeight += 4;
         
         /*        设置虚线辅助线         */
         UIBezierPath *second = [UIBezierPath bezierPath];
         for (NSInteger i = 0; i<5; i++) {
-
-            CGFloat height = (CGRectGetHeight(self.frame) - _originSize.y - 30)/5 * (i+1);
+            NSInteger pace = (_maxHeight) / 5;
+            CGFloat height = _perHeight * (i+1)*pace;
             [second moveToPoint:P_M(_originSize.x, CGRectGetHeight(self.frame) - _originSize.y -height)];
             [second addLineToPoint:P_M(_maxWidth, CGRectGetHeight(self.frame) - _originSize.y - height)];
             
@@ -202,7 +204,7 @@
             
             CATextLayer *textLayer = [CATextLayer layer];
             
-            NSInteger pace = _maxHeight / 5;
+            
             NSString *text =[NSString stringWithFormat:@"%ld",(i + 1) * pace];
             CGFloat be = [self getTextWithWhenDrawWithText:text];
             textLayer.frame = CGRectMake(self.originSize.x - be - 3, CGRectGetHeight(self.frame) - _originSize.y -height - 5, be, 15);
@@ -278,11 +280,7 @@
             
             UIFont *font = [UIFont systemFontOfSize:9];
             
-//            CFStringRef string = (__bridge CFStringRef)font.fontName;
-            
-//            CGFontRef fontRef = CGFontCreateWithFontName(string);
-            
-//            textLayer.font = fontRef;
+
             
             textLayer.fontSize = font.pointSize;
             
@@ -292,7 +290,6 @@
             
             [_BGScrollView.layer addSublayer:textLayer];
             
-//            CGFontRelease(fontRef);
             [self.layerArr addObject:textLayer];
             
             
@@ -315,7 +312,7 @@
         for (NSInteger j = 0; j<arr.count; j++) {
             
 
-            CGFloat height = [NSString stringWithFormat:@"%@",arr[j]].floatValue/_maxHeight * (CGRectGetHeight(self.frame) - 30 -   _originSize.y-1);
+            CGFloat height =[arr[j] floatValue] *_perHeight;
             
 
             UIView *itemsView = [UIView new];
