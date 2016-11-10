@@ -10,14 +10,21 @@
 
 @interface JHRingChart : JHChart
 #define k_Width_Scale  (self.frame.size.width / [UIScreen mainScreen].bounds.size.width)
-/*        值数组         */
-@property (nonatomic,strong)NSArray * valueDataArr;
+
+/**
+ *  Data source Array
+ */
+@property (nonatomic, strong) NSArray * valueDataArr;
 
 
-/*        环图的颜色数组         */
-@property (nonatomic,strong)NSArray * fillColorArray;
+/**
+ *  An array of colors in the loop graph
+ */
+@property (nonatomic, strong) NSArray * fillColorArray;
 
 
-/*        环的宽度         */
-@property (nonatomic,assign) CGFloat ringWidth;
+/**
+ *  Ring Chart width
+ */
+@property (nonatomic, assign) CGFloat ringWidth;
 @end

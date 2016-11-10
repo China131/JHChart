@@ -17,55 +17,75 @@
 #import "JHChart.h"
 
 @interface JHTableChart : JHChart
+/**
+ *  Table name, if it is empty, does not display a table name
+ */
+@property (nonatomic, copy) NSString * tableTitleString;
+
+/**
+ *  Table header row height, default 50
+ */
+@property (nonatomic, assign) CGFloat tableChartTitleItemsHeight;
 
 
-/*--------------------      表格头相关       -----------------------*/
-
-/*        表格名称 如果为空则不显示表格名称         */
-@property (nonatomic,copy)NSString * tableTitleString;
-
-/*        表格头的行高 默认50         */
-@property (nonatomic,assign) CGFloat tableChartTitleItemsHeight;
+/**
+ *  Table header text font size (default 15), color (default depth)
+ */
+@property (nonatomic, strong) UIFont * tableTitleFont;
+@property (nonatomic, strong) UIColor * tableTitleColor;
 
 
-/*        表格头字号(默认15) 颜色（默认深度灰）         */
-@property (nonatomic,strong)UIFont * tableTitleFont;
+
+/**
+ *  Table line color
+ */
+@property (nonatomic, strong) UIColor  * lineColor;
 
 
-@property (nonatomic,strong)UIColor * tableTitleColor;
+/**
+ *  Data Source Arrays
+ */
+@property (nonatomic, strong) NSArray * dataArr;
 
 
-/*--------------------      <#表格头相关#>       -----------------------*/
+/**
+ *  Width of each column
+ */
+@property (nonatomic, strong) NSArray * colWidthArr;
 
-/*        表格线条颜色         */
-@property (nonatomic,strong)UIColor  * lineColor;
-
-/*        数据源         */
-@property (nonatomic,strong)NSArray * dataArr;
-
-
-/*        每列的宽度         */
-@property (nonatomic,strong)NSArray * colWidthArr;
-
-/*        最小的行高 默认为50         */
-@property (nonatomic,assign) CGFloat minHeightItems;
-
-/*        表格数据显示颜色         */
-@property (nonatomic,strong)UIColor * bodyTextColor;
+/**
+ *  The smallest line is high, the default is 50
+ */
+@property (nonatomic, assign) CGFloat minHeightItems;
 
 
-/*        列头名称 第一个为横竖列声明 需要用|分割        */
-@property (nonatomic,strong)NSArray * colTitleArr;
-
-/*        横竖行列名声明 如果需要则填写一到两个数据        */
-@property (nonatomic,strong)NSArray * rowAndColTitleArr;
-
-
-/*        起始点的偏移值         */
-@property (nonatomic,assign) CGFloat beginSpace;
+/**
+ *  Table data display color
+ */
+@property (nonatomic, strong) UIColor * bodyTextColor;
 
 
-/*        根据当前数据源所需要的表格视图高度         */
+/**
+ *  The column header name, the first column horizontal statement, need to use | segmentation
+ */
+@property (nonatomic, strong) NSArray * colTitleArr;
+
+/**
+ *  Anyway, the ranks of name statement, if it is necessary to fill out a two data
+ */
+@property (nonatomic, strong) NSArray * rowAndColTitleArr;
+
+
+/**
+ *  Offset value of start point
+ */
+@property (nonatomic, assign) CGFloat beginSpace;
+
+
+
+/**
+ *  According to the current data source to determine the desired table view
+ */
 - (CGFloat)heightFromThisDataSource;
 
 @end

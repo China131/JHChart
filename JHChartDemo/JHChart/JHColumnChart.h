@@ -11,41 +11,66 @@
 @interface JHColumnChart : JHChart
 
 
-/*        每种柱状图的背景颜色 如果不设置默认值为绿色 设置必须保证数量和数据源数组的类型的个数相同 否则默认为未设置         */
-@property (nonatomic,strong) NSArray<NSArray *> * columnBGcolorsArr;
+/**
+ *  Each histogram of the background color, if you do not set the default value for green. Setup must ensure that the number and type of the data source array are the same, otherwise the default is not set.
+ */
+@property (nonatomic, strong) NSArray<NSArray *> * columnBGcolorsArr;
 
-/*        数据源数组 样式参考demo         */
-@property (nonatomic,strong) NSArray<NSArray *> * valueArr;
+/**
+ *  Data source array
+ */
+@property (nonatomic, strong) NSArray<NSArray *> * valueArr;
 
-/*        每项图标的X轴分类显示语         */
-@property (nonatomic,strong)NSArray * xShowInfoText;
+/**
+ *  X axis classification of each icon
+ */
+@property (nonatomic, strong) NSArray * xShowInfoText;
 
 
-/*        背景颜色         */
-@property (nonatomic,strong)UIColor  * bgVewBackgoundColor;
+/**
+ *  The background color of the content view
+ */
+@property (nonatomic, strong) UIColor  * bgVewBackgoundColor;
 
-/*        两个柱状图的间距 非连续 默认为5        */
-@property (nonatomic,assign) CGFloat typeSpace;
 
-/*        柱状图的宽度 默认为40        */
-@property (nonatomic,assign) CGFloat columnWidth;
+/**
+ *  Column spacing, non continuous, default is 5
+ */
+@property (nonatomic, assign) CGFloat typeSpace;
 
-/*        是否需要X、Y轴 默认YES         */
-@property (nonatomic,assign) BOOL needXandYLine;
+/**
+ *  The width of the column, the default is 40
+ */
+@property (nonatomic, assign) CGFloat columnWidth;
 
-/*        X、Y轴颜色         */
-@property (nonatomic,strong)UIColor * colorForXYLine;
+/**
+ *  Whether the need for Y, X axis, the default YES
+ */
+@property (nonatomic, assign) BOOL needXandYLine;
 
-/*        X、Y轴字符颜色         */
-@property (nonatomic,strong)UIColor * drawTextColorForX_Y;
+/**
+ *  Y, X axis line color
+ */
+@property (nonatomic, strong) UIColor * colorForXYLine;
 
-/*        虚线颜色         */
-@property (nonatomic,strong)UIColor * dashColor;
+/**
+ *  X, Y axis text description color
+ */
+@property (nonatomic, strong) UIColor * drawTextColorForX_Y;
 
-/*        起点  可以理解为原点左边距和下边距         */
-@property (nonatomic,assign) CGPoint originSize;
+/**
+ *  Dotted line guide color
+ */
+@property (nonatomic, strong) UIColor * dashColor;
 
-/*        柱状图起点距原点水平距离         */
-@property (nonatomic,assign) CGFloat drawFromOriginX;
+/**
+ *  The starting point, can be understood as the origin of the left and bottom margins
+ */
+@property (nonatomic, assign) CGPoint originSize;
+
+/**
+ *  Starting from the origin of the horizontal distance histogram
+ */
+@property (nonatomic, assign) CGFloat drawFromOriginX;
 
 @end

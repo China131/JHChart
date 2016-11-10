@@ -5,44 +5,44 @@
 //  Created by cjatech-简豪 on 16/4/10.
 //  Copyright © 2016年 JH. All rights reserved.
 //
-/*******************************************
- *
- *
- *
- *折线图 按象限分为4种
- *
- *
- *
- ********************************************/
+
 #import <UIKit/UIKit.h>
 #import "JHChart.h"
 
-/*         折线图数值类型          */
+/**
+ *  Line chart type, has been abandoned
+ */
 typedef  NS_ENUM(NSInteger,JHLineChartType){
-    /*     每一个存在的X点都有一个y坐标对应   此时valueArr的对象类型为数值   只有一个象限   */
-    JHChartLineEveryValueForEveryX=0,
-    
-    /*     点的坐标不一定和坐标轴上的X数值一一对应   此时valueArr的对象类型为点       */
-    JHChartLineValueNotForEveryX
-    
 
+    JHChartLineEveryValueForEveryX=0, /*        Default         */
+    JHChartLineValueNotForEveryX
 };
 
 
 
-/*        折线图象限分布类型           */
+/**
+ *  Distribution type of line graph
+ */
 typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
     
-    /*         折线图分布于第一象限          */
+    /**
+     *  The line chart is distributed in the first quadrant.
+     */
     JHLineChartQuadrantTypeFirstQuardrant,
     
-    /*         折线图分布于第一二象限          */
+    /**
+     *  The line chart is distributed in the first two quadrant
+     */
     JHLineChartQuadrantTypeFirstAndSecondQuardrant,
     
-    /*         折线图分布于第一四象限          */
+    /**
+     *  The line chart is distributed in the first four quadrant
+     */
     JHLineChartQuadrantTypeFirstAndFouthQuardrant,
     
-    /*         折线图分布于全局四个象限          */
+    /**
+     *  The line graph is distributed in the whole quadrant
+     */
     JHLineChartQuadrantTypeAllQuardrant
     
     
@@ -56,87 +56,121 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
 
 @interface JHLineChart :JHChart
 
-/*         折线图的X轴刻度数据 建议使用NSNumber或数字的字符串化                */
-@property (nonatomic,strong) NSArray * xLineDataArr;
+/**
+ *  X axis scale data of a broken line graph, the proposed use of NSNumber or the number of strings
+ */
+@property (nonatomic, strong) NSArray * xLineDataArr;
 
 
-/*         折线图的Y轴刻度数据 同上                */
-@property (nonatomic,strong) NSArray * yLineDataArr;
+/**
+ *  Y axis scale data of a broken line graph, the proposed use of NSNumber or the number of strings
+ */
+@property (nonatomic, strong) NSArray * yLineDataArr;
 
 
-/*         折线图的点坐标数组 不同类型对应不同数据源  参考上面JHLineChartType       */
-@property (nonatomic,strong) NSArray * valueArr;
+/**
+ *  An array of values that are about to be drawn.
+ */
+@property (nonatomic, strong) NSArray * valueArr;
 
 
-/*         折线图类型          */
+/**
+ *  The type of broken line graph has been abandoned.
+ */
 @property (assign , nonatomic) JHLineChartType  lineType ;
 
 
-/*         折线图象限类型          */
+/**
+ *  The quadrant of the specified line chart
+ */
 @property (assign, nonatomic) JHLineChartQuadrantType  lineChartQuadrantType;
 
 
-/*         线条宽度（非路径动画 仅指X、Y轴刻度线条宽度）          */
+/**
+ *  Line width (the value of non drawn path width, only refers to the X, Y axis scale line width)
+ */
 @property (assign, nonatomic) CGFloat lineWidth;
 
 
-/*         数值线条颜色          */
-@property (nonatomic,strong) NSArray * valueLineColorArr;
+/**
+ *  To draw the line color of the target
+ */
+@property (nonatomic, strong) NSArray * valueLineColorArr;
 
 
-/*         x y轴线条颜色          */
-@property (nonatomic,strong) UIColor * xAndYLineColor;
+/**
+ *  X, Y axis line color
+ */
+@property (nonatomic, strong) UIColor * xAndYLineColor;
 
 
-/*         点的颜色          */
-@property (nonatomic,strong) NSArray * pointColorArr;
+/**
+ *  Color for each value draw point
+ */
+@property (nonatomic, strong) NSArray * pointColorArr;
 
 
-/*         x,y轴刻度值颜色          */
-@property (nonatomic,strong) UIColor * xAndYNumberColor;
+/**
+ *  Y, X axis scale numerical color
+ */
+@property (nonatomic, strong) UIColor * xAndYNumberColor;
 
 
-/*         点的引导虚线颜色          */
-@property (nonatomic,strong) NSArray * positionLineColorArr;
-
-
-
-/*         坐标点数值颜色          */
-@property (nonatomic,strong) NSArray * pointNumberColorArr;
-
-
-
-/*         是否需要点          */
-@property (assign, nonatomic) BOOL hasPoint;
-
-
-
-/*        动画路径线条宽度         */
-@property (nonatomic,assign) CGFloat animationPathWidth;
-
-
-/*        路径是否为曲线 默认NO        */
-@property (nonatomic,assign) BOOL pathCurve;
-
-
-/*        是否进行路径内容填充  默认NO       */
-@property (nonatomic,assign) BOOL contentFill;
-
-
-/*        填充颜色 默认为灰色        */
-@property (nonatomic,strong)NSArray * contentFillColorArr;
+/**
+ *  Draw dotted line color
+ */
+@property (nonatomic, strong) NSArray * positionLineColorArr;
 
 
 
 /**
- *  重写初始化方法
+ *  Draw the text color of the information.
+ */
+@property (nonatomic, strong) NSArray * pointNumberColorArr;
+
+
+
+/**
+ *  Value path is required to draw points
+ */
+@property (assign,  nonatomic) BOOL hasPoint;
+
+
+
+/**
+ *  Draw path line width
+ */
+@property (nonatomic, assign) CGFloat animationPathWidth;
+
+
+/**
+ *  Drawing path is the curve, the default NO
+ */
+@property (nonatomic, assign) BOOL pathCurve;
+
+
+/**
+ *  Whether to fill the contents of the drawing path, the default NO
+ */
+@property (nonatomic, assign) BOOL contentFill;
+
+
+/**
+ *  Draw path fill color, default is grey
+ */
+@property (nonatomic, strong) NSArray * contentFillColorArr;
+
+
+
+/**
+ *  Custom initialization method
  *
  *  @param frame         frame
- *  @param lineChartType 折线图类型
+ *  @param lineChartType Abandoned
  *
- *  @return 自定义折线图
  */
--(instancetype)initWithFrame:(CGRect)frame andLineChartType:(JHLineChartType)lineChartType;
+-(instancetype)initWithFrame:(CGRect)frame
+            andLineChartType:(JHLineChartType)lineChartType;
 
 
 

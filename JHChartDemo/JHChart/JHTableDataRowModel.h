@@ -10,12 +10,16 @@
 #import <UIKit/UIKit.h>
 @interface JHTableDataRowModel : NSObject
 
-/*        该模型中最多的一列数量         */
-@property (nonatomic,assign) NSInteger maxCount;
+/**
+ *  The maximum number of columns in the model.
+ */
+@property (nonatomic, assign) NSInteger maxCount;
 
 
-/*        数据源         */
-@property (nonatomic,strong) NSArray * dataArr;
+/**
+ *  Data Source Array
+ */
+@property (nonatomic, strong) NSArray * dataArr;
 
 
 
