@@ -272,11 +272,12 @@
 - (void)showTableView{
     JHTableChart *table = [[JHTableChart alloc] initWithFrame:CGRectMake(10, 64, k_MainBoundsWidth-20, k_MainBoundsHeight)];
     /*       Table name         */
-    table.tableTitleString = @"全选jeep自由光";
+//    table.tableTitleString = @"全选jeep自由光";
     /*        Each column of the statement, one of the first to show if the rows and columns that can use the vertical segmentation of rows and columns         */
     table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量"];
     /*        The width of the column array, starting with the first column         */
-    table.colWidthArr = @[@100.0,@120.0,@70,@100];
+    table.colWidthArr = @[@80.0,@120.0,@70,@100];
+    table.beginSpace = 30;
     /*        Text color of the table body         */
     table.bodyTextColor = [UIColor redColor];
     /*        Minimum grid height         */

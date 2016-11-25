@@ -38,6 +38,13 @@
     return self;
 }
 
+-(void)setBeginSpace:(CGFloat)beginSpace{
+    
+    _beginSpace = beginSpace;
+    _lastY = beginSpace;
+    
+}
+
 
 -(void)setDataArr:(NSArray *)dataArr{
     
