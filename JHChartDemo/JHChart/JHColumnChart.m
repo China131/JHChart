@@ -62,15 +62,22 @@
     if (!_BGScrollView) {
 
         _BGScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-//        _BGScrollView.backgroundColor = [UIColor lightGrayColor];
         _BGScrollView.showsHorizontalScrollIndicator = NO;
-        _bgVewBackgoundColor = [UIColor blackColor];
+        _bgVewBackgoundColor = _bgVewBackgoundColor;
         [self addSubview:_BGScrollView];
         
     }
     
     return _BGScrollView;
     
+    
+}
+
+
+-(void)setBgVewBackgoundColor:(UIColor *)bgVewBackgoundColor{
+    
+    _bgVewBackgoundColor = bgVewBackgoundColor;
+    self.BGScrollView.backgroundColor = _bgVewBackgoundColor;
     
 }
 
@@ -204,7 +211,7 @@
             
             CATextLayer *textLayer = [CATextLayer layer];
             
-            
+            textLayer.contentsScale = [UIScreen mainScreen].scale;
             NSString *text =[NSString stringWithFormat:@"%ld",(i + 1) * pace];
             CGFloat be = [self getTextWithWhenDrawWithText:text];
             textLayer.frame = CGRectMake(self.originSize.x - be - 3, CGRectGetHeight(self.frame) - _originSize.y -height - 5, be, 15);
@@ -277,7 +284,7 @@
             
             textLayer.frame = CGRectMake( i * (count * _columnWidth + _typeSpace) + _typeSpace + _originSize.x, CGRectGetHeight(self.frame) - _originSize.y+5,wid, size.height);
             textLayer.string = _xShowInfoText[i];
-            
+            textLayer.contentsScale = [UIScreen mainScreen].scale;
             UIFont *font = [UIFont systemFontOfSize:9];
             
 
@@ -341,7 +348,7 @@
                     textLayer.fontSize = 9.0;
                     
                     textLayer.alignmentMode = kCAAlignmentCenter;
-                    
+                    textLayer.contentsScale = [UIScreen mainScreen].scale;
                     textLayer.foregroundColor = itemsView.backgroundColor.CGColor;
                     
                     [_BGScrollView.layer addSublayer:textLayer];

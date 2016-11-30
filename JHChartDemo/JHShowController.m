@@ -223,11 +223,11 @@
     /*        background color         */
     ring.backgroundColor = [UIColor blackColor];
     /*        Data source array, only the incoming value, the corresponding ratio will be automatically calculated         */
-    ring.valueDataArr = @[@"0.5",@"5",@"2",@"10",@"6"];
+    ring.valueDataArr = @[@"0.5",@"5",@"2",@"10",@"6",@"6"];
     /*         Width of ring graph        */
     ring.ringWidth = 35.0;
     /*        Fill color for each section of the ring diagram         */
-    ring.fillColorArray = @[[UIColor colorWithRed:1.000 green:0.783 blue:0.371 alpha:1.000], [UIColor colorWithRed:1.000 green:0.562 blue:0.968 alpha:1.000],[UIColor colorWithRed:0.313 green:1.000 blue:0.983 alpha:1.000],[UIColor colorWithRed:0.560 green:1.000 blue:0.276 alpha:1.000],[UIColor colorWithRed:0.239 green:0.651 blue:0.170 alpha:1.000]];
+    ring.fillColorArray = @[[UIColor colorWithRed:1.000 green:0.783 blue:0.371 alpha:1.000], [UIColor colorWithRed:1.000 green:0.562 blue:0.968 alpha:1.000],[UIColor colorWithRed:0.313 green:1.000 blue:0.983 alpha:1.000],[UIColor colorWithRed:0.560 green:1.000 blue:0.276 alpha:1.000],[UIColor colorWithRed:0.239 green:0.651 blue:0.170 alpha:1.000],[UIColor colorWithRed:0.239 green:0.651 blue:0.170 alpha:1.000]];
     /*        Start animation             */
     [ring showAnimation];
     [self.view addSubview:ring];
@@ -249,6 +249,8 @@
     column.drawFromOriginX = 10;
     /*        Column width         */
     column.columnWidth = 40;
+    /*        Column backgroundColor         */
+    column.bgVewBackgoundColor = [UIColor blackColor];
     /*        X, Y axis font color         */
     column.drawTextColorForX_Y = [UIColor greenColor];
     /*        X, Y axis line color         */

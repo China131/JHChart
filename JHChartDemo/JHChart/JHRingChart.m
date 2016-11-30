@@ -129,7 +129,17 @@
         NSLog(@"%@%@",NSStringFromCGPoint(begin),NSStringFromCGPoint(endx));
         lastBegin += _itemsSpace + currentSpace;
         
-        [self drawLineWithContext:contex andStarPoint:begin andEndPoint:endx andIsDottedLine:NO andColor:k_COLOR_STOCK[i]];
+        UIColor *color;
+        
+        if (_fillColorArray.count<_valueDataArr.count) {
+            color = k_COLOR_STOCK[i%k_COLOR_STOCK.count];
+        }else{
+            color = _fillColorArray[i];
+        }
+        
+        [self drawLineWithContext:contex andStarPoint:begin andEndPoint:endx andIsDottedLine:NO andColor:color];
+        
+        
         CGPoint secondP = CGPointZero;
         
         CGSize size = [[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] boundingRectWithSize:CGSizeMake(200, 100) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10*k_Width_Scale]} context:nil].size;
@@ -140,10 +150,10 @@
 
         }else{
              secondP =CGPointMake(endx.x - 20*k_Width_Scale, endx.y);
-            [self drawText:[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] andContext:contex atPoint:CGPointMake(secondP.x - size.width - 3, secondP.y - size.height/2) WithColor:k_COLOR_STOCK[i] andFontSize:10*k_Width_Scale];
+            [self drawText:[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] andContext:contex atPoint:CGPointMake(secondP.x - size.width - 3, secondP.y - size.height/2) WithColor:color andFontSize:10*k_Width_Scale];
         }
-          [self drawLineWithContext:contex andStarPoint:endx andEndPoint:secondP andIsDottedLine:NO andColor:k_COLOR_STOCK[i]];
-        [self drawPointWithRedius:3*k_Width_Scale andColor:k_COLOR_STOCK[i] andPoint:secondP andContext:contex];
+          [self drawLineWithContext:contex andStarPoint:endx andEndPoint:secondP andIsDottedLine:NO andColor:color];
+        [self drawPointWithRedius:3*k_Width_Scale andColor:color andPoint:secondP andContext:contex];
        
     }
     
