@@ -172,9 +172,6 @@
                 }
                 
             }
-
-
-            
             
          min = labs(min);
          max = (min<max?(max):(min));
@@ -202,14 +199,25 @@
 
                 }
                 
-            }else if(max>10){
-                
-                for (NSInteger i = 0; i<max/5; i++) {
-                    [arr addObject:[NSString stringWithFormat:@"%ld",(i+1)*5]];
-                    [minArr addObject:[NSString stringWithFormat:@"-%ld",(i+1)*5]];
-                }
-                
+        }else if(max>10&&max<=100){
+            
+            
+            for (NSInteger i = 0; i<max/5; i++) {
+                [arr addObject:[NSString stringWithFormat:@"%ld",(i+1)*5]];
+                [minArr addObject:[NSString stringWithFormat:@"-%ld",(i+1)*5]];
             }
+            
+        }else{
+            
+            NSInteger count = max / 10;
+            
+            for (NSInteger i = 0; i<11; i++) {
+                [arr addObject:[NSString stringWithFormat:@"%ld",(i+1)*count]];
+                [minArr addObject:[NSString stringWithFormat:@"-%ld",(i+1)*count]];
+            }
+            
+        }
+
         
             
             _yLineDataArr = @[[arr copy],[minArr copy]];
@@ -265,14 +273,25 @@
                     
                 }
                 
-            }else if(max>10){
+            }else if(max>10&&max<=100){
+                
                 
                 for (NSInteger i = 0; i<max/5; i++) {
                     [arr addObject:[NSString stringWithFormat:@"%ld",(i+1)*5]];
                     [minArr addObject:[NSString stringWithFormat:@"-%ld",(i+1)*5]];
                 }
                 
+            }else{
+                
+                NSInteger count = max / 10;
+                
+                for (NSInteger i = 0; i<11; i++) {
+                    [arr addObject:[NSString stringWithFormat:@"%ld",(i+1)*count]];
+                    [minArr addObject:[NSString stringWithFormat:@"-%ld",(i+1)*count]];
+                }
+                
             }
+
             _yLineDataArr = @[[arr copy],[minArr copy]];
             
             [self setNeedsDisplay];
@@ -317,15 +336,32 @@
                         
                     }
                     
-                }else if(max>10){
+                }else if(max>10&&max<=50){
                     
-                    for (NSInteger i = 0; i<max/5; i++) {
+                    for (NSInteger i = 0; i<max/5+1; i++) {
                         [arr addObject:[NSString stringWithFormat:@"%ld",(i+1)*5]];
                         
                         
                     }
                     
+                }else if(max<=100){
+                    
+                    for (NSInteger i = 0; i<max/10; i++) {
+                        [arr addObject:[NSString stringWithFormat:@"%ld",(i+1)*10]];
+                        
+                        
+                    }
+                    
+                }else if(max > 100){
+                    
+                    NSInteger count = max / 10;
+                    
+                    for (NSInteger i = 0; i<10+1; i++) {
+                        [arr addObject:[NSString stringWithFormat:@"%ld",(i+1)*count]];
+                        
+                    }
                 }
+
                 
                 _yLineDataArr = [arr copy];
                 

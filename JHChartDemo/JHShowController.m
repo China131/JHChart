@@ -181,7 +181,7 @@
     
     lineChart.xLineDataArr = @[@[@"-3",@"-2",@"-1"],@[@0,@1,@2,@3]];
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeAllQuardrant;
-      lineChart.valueArr = @[@[@"5",@"-22",@"7",@(-4),@25,@15,@6,@9],@[@"1",@"-12",@"1",@6,@4,@(-8),@6,@7]];    /* 值折线的折线颜色 默认暗黑色*/
+      lineChart.valueArr = @[@[@"5",@"-22",@"70",@(-4),@25,@15,@6,@9],@[@"1",@"-12",@"1",@6,@4,@(-8),@6,@7]];    /* 值折线的折线颜色 默认暗黑色*/
     lineChart.valueLineColorArr =@[ [UIColor purpleColor], [UIColor brownColor]];
     
     /* 值点的颜色 默认橘黄色*/
