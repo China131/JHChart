@@ -1,11 +1,12 @@
-#JHChart
+#JHChart(最新版本1.0.3)
 
 Well, I admit that there are a lot of other graphics libraries on the GitHub. But, because of my project needs, most of the library can not fully meet my needs. So I took out a little free time, I wrote a chart library. Initial plan to write only a few lines (my project needs), did not expect the release to GitHub after a number of friends told me that they need more styles.I don't want to tell them I just intend to do it here, so it's a bit of a development to the present 0.1.1 version, basically meet the needs of users before. Of course, the follow-up will continue to update, add more features.
 
 
-## Introduction
+## Introduction  
+
 A simple, feature rich and customizable iOS development chart library.
-[Click here](http://www.jianshu.com/p/a6a14fb2f567) if you want to see the usage of the Chinese description.
+[Click here](http://www.jianshu.com/p/299066102982) if you want to see the usage of the Chinese description.
 
 ![some nice chart](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/look.gif) 
 
@@ -20,7 +21,7 @@ There are two ways to use the JHChart library.
 Download the current Demo directly, and then add the JHChart folder to your project
 * 
 Use CocoaPod import, only need to add the following statement in your Podfile:
-pod 'JHChart','~>0.1.1'
+pod 'JHChart','~>1.0.3'
 
 **(If you don't know about [cocoapods](https://guides.cocoapods.org/), [click here](https://guides.cocoapods.org/) to go to the official website.)**
 ## Detailed usage
