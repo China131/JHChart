@@ -92,6 +92,10 @@
     /*        下         */
     [self drawLineWithContext:context andStarPoint:P_M(_beginSpace, _beginSpace + _tableHeight) andEndPoint:P_M(CGRectGetWidth(self.frame) - _beginSpace ,_beginSpace + _tableHeight) andIsDottedLine:NO andColor:_lineColor];
     
+    
+    NSLog(@"视图大小%@\n",NSStringFromCGRect(self.frame));
+    NSLog(@"起始点：%f\n",_beginSpace);
+    
     /*        左         */
     [self drawLineWithContext:context andStarPoint:P_M(_beginSpace, _beginSpace) andEndPoint:P_M(_beginSpace,  _beginSpace + _tableHeight) andIsDottedLine:NO andColor:_lineColor];
     
@@ -128,17 +132,16 @@
             
             CGFloat wid = (hasSetColWidth?[_colWidthArr[i] floatValue]:_tableWidth / _colTitleArr.count);
             
-
+            NSLog(@"第%d列 宽度 为 %f\n",i,wid);
+            
             CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, _minHeightItems) textFont:14 aimString:_colTitleArr[i]];
             
             
             if (i==0) {
-                
-                [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY) andEndPoint:P_M(lastX + wid, _lastY + _minHeightItems) andIsDottedLine:NO andColor:_lineColor];
-                
+
                 NSArray *firArr = [_colTitleArr[0] componentsSeparatedByString:@"|"];
-                
                 if (firArr.count>=2) {
+                    [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY) andEndPoint:P_M(lastX + wid, _lastY + _minHeightItems) andIsDottedLine:NO andColor:_lineColor];
                     size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, _minHeightItems) textFont:14 aimString:firArr[0]];
 
                     [self drawText:firArr[0] context:context atPoint:CGRectMake(lastX + wid / 2.0 + wid / 4.0 - size.width / 2, _lastY + _minHeightItems / 4.0 -size.height / 2.0, wid, _minHeightItems / 2.0) WithColor:_bodyTextColor font:_tableTitleFont];
