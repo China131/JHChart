@@ -1,11 +1,12 @@
-#JHChart
+#JHChart(最新版本1.0.3)
 
 Well, I admit that there are a lot of other graphics libraries on the GitHub. But, because of my project needs, most of the library can not fully meet my needs. So I took out a little free time, I wrote a chart library. Initial plan to write only a few lines (my project needs), did not expect the release to GitHub after a number of friends told me that they need more styles.I don't want to tell them I just intend to do it here, so it's a bit of a development to the present 0.1.1 version, basically meet the needs of users before. Of course, the follow-up will continue to update, add more features.
 
 
-## Introduction
+## Introduction  
+
 A simple, feature rich and customizable iOS development chart library.
-[Click here](http://www.jianshu.com/p/a6a14fb2f567) if you want to see the usage of the Chinese description.
+[Click here](http://www.jianshu.com/p/299066102982) if you want to see the usage of the Chinese description.
 
 ![some nice chart](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/look.gif) 
 
@@ -20,7 +21,7 @@ There are two ways to use the JHChart library.
 Download the current Demo directly, and then add the JHChart folder to your project
 * 
 Use CocoaPod import, only need to add the following statement in your Podfile:
-pod 'JHChart','~>0.1.1'
+pod 'JHChart','~>1.0.3'
 
 **(If you don't know about [cocoapods](https://guides.cocoapods.org/), [click here](https://guides.cocoapods.org/) to go to the official website.)**
 ## Detailed usage
@@ -28,26 +29,25 @@ pod 'JHChart','~>0.1.1'
 ### JHLineChart
 **Description: JHLineChart can create a variety of data sources linear charts, including broken lines and curves, can be based on the data source to determine whether the multiple linear table. And, according to the needs of the interval fill color. At the same time the table supports the different needs of different quadrant, here is just set the first quadrant of the sample, the other quadrant of the use of the same method.**
 
-
     /*     Create object        */
     JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 100, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
-   
+
     /* The scale value of the X axis can be passed into the NSString or NSNumber type and the data structure changes with the change of the line chart type. The details look at the document or other quadrant X axis data source sample.*/
-   
+
     lineChart.xLineDataArr = @[@"0",@"1",@"2",@3,@4,@5,@6,@7];
-    
+
     /* The different types of the broken line chart, according to the quadrant division, different quadrant correspond to different X axis scale data source and different value data source. */
-   
+
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;
 
     lineChart.valueArr = @[@[@"1",@"12",@"1",@6,@4,@9,@6,@7],@[@"3",@"1",@"2",@16,@2,@3,@5,@10]];
-    
+
     /* Line Chart colors */
     lineChart.valueLineColorArr =@[ [UIColor purpleColor], [UIColor brownColor]];
-     /* Colors for every line chart*/
-     lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
-     /* color for XY axis */
-      lineChart.xAndYLineColor = [UIColor blackColor];
+    /* Colors for every line chart*/
+    lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
+    /* color for XY axis */
+    lineChart.xAndYLineColor = [UIColor blackColor];
     /* XY axis scale color */
     lineChart.xAndYNumberColor = [UIColor blueColor];
     /* Dotted line color of the coordinate point */
@@ -57,10 +57,10 @@ pod 'JHChart','~>0.1.1'
     /*        Set whether the curve path         */
     lineChart.pathCurve = YES;
     /*        Set fill color array         */
-     lineChart.contentFillColorArr = @[[UIColor colorWithRed:0.500 green:0.000 blue:0.500 alpha:0.468],[UIColor colorWithRed:0.500 green:0.214 blue:0.098 alpha:0.468]];
+    lineChart.contentFillColorArr = @[[UIColor colorWithRed:0.500 green:0.000 blue:0.500 alpha:0.468],[UIColor colorWithRed:0.500 green:0.214 blue:0.098 alpha:0.468]];
     [self.view addSubview:lineChart];
     /*       Start animation        */
-     [lineChart showAnimation];
+    [lineChart showAnimation];
 
 
 
@@ -204,3 +204,8 @@ Actual effect chart：
 Actual effect chart：
 
 ![some nice chart](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/雷达图demo.png) 
+
+### 联系方式
+* 邮箱：JHSilktree@foxmail.com
+* 简书：[不睡觉的鸟](http://www.jianshu.com/users/f9333c379b76/latest_articles)
+* 博客：[Silktree](http://www.cnblogs.com/ToBeTheOne/)

@@ -76,7 +76,7 @@
 //第一象限折线图
 - (void)showFirstQuardrant{
     /*     Create object        */
-    JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 100, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
+    JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 40, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
     
     /* The scale value of the X axis can be passed into the NSString or NSNumber type and the data structure changes with the change of the line chart type. The details look at the document or other quadrant X axis data source sample.*/
     
@@ -87,7 +87,8 @@
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;
     
     lineChart.valueArr = @[@[@"1",@"12",@"1",@6,@4,@9,@6,@7],@[@"3",@"1",@"2",@16,@2,@3,@5,@10]];
-    
+//    lineChart.showYLevelLine = YES;
+    lineChart.showValueLeadingLine = NO;
     /* Line Chart colors */
     lineChart.valueLineColorArr =@[ [UIColor purpleColor], [UIColor brownColor]];
     /* Colors for every line chart*/
@@ -125,6 +126,7 @@
     /* X和Y轴的颜色 默认暗黑色 */
     lineChart.xAndYLineColor = [UIColor greenColor];
     
+    lineChart.showYLevelLine = YES;
     /* XY轴的刻度颜色 m */
     lineChart.xAndYNumberColor = [UIColor blueColor];
  
@@ -155,6 +157,9 @@
     
     /* 值点的颜色 默认橘黄色*/
     lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
+   
+    /*        是否展示Y轴分层线条 默认否        */
+    lineChart.showYLevelLine = NO;
     
     /* X和Y轴的颜色 默认暗黑色 */
     lineChart.xAndYLineColor = [UIColor greenColor];
@@ -181,7 +186,7 @@
     
     lineChart.xLineDataArr = @[@[@"-3",@"-2",@"-1"],@[@0,@1,@2,@3]];
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeAllQuardrant;
-      lineChart.valueArr = @[@[@"5",@"-22",@"7",@(-4),@25,@15,@6,@9],@[@"1",@"-12",@"1",@6,@4,@(-8),@6,@7]];    /* 值折线的折线颜色 默认暗黑色*/
+      lineChart.valueArr = @[@[@"5",@"-22",@"70",@(-4),@25,@15,@6,@9],@[@"1",@"-12",@"1",@6,@4,@(-8),@6,@7]];    /* 值折线的折线颜色 默认暗黑色*/
     lineChart.valueLineColorArr =@[ [UIColor purpleColor], [UIColor brownColor]];
     
     /* 值点的颜色 默认橘黄色*/
@@ -276,10 +281,12 @@
     /*       Table name         */
 //    table.tableTitleString = @"全选jeep自由光";
     /*        Each column of the statement, one of the first to show if the rows and columns that can use the vertical segmentation of rows and columns         */
+//    table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量",@"",@"",@"",@"",@"",@""];
     table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量"];
     /*        The width of the column array, starting with the first column         */
     table.colWidthArr = @[@80.0,@120.0,@70,@100];
-    table.beginSpace = 30;
+//    table.colWidthArr = @[@80.0,@30.0,@70,@50,@50,@50,@50,@50,@50,@50];
+//    table.beginSpace = 30;
     /*        Text color of the table body         */
     table.bodyTextColor = [UIColor redColor];
     /*        Minimum grid height         */

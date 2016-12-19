@@ -161,6 +161,21 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
 @property (nonatomic, strong) NSArray * contentFillColorArr;
 
 
+/**
+ *  whether this chart shows the Y line or not.Default is YES
+ */
+@property (nonatomic,assign) BOOL showYLine;
+
+
+/**
+ *  whether this chart shows the Y level lines or not.Default is NO
+ */
+@property (nonatomic,assign) BOOL showYLevelLine;
+
+/**
+ *  whether this chart shows leading lines for value point or not,default is YES
+ */
+@property (nonatomic,assign) BOOL showValueLeadingLine;
 
 /**
  *  Custom initialization method
