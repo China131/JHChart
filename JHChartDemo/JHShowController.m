@@ -226,7 +226,7 @@
 - (void)showRingChartView{
     JHRingChart *ring = [[JHRingChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth, k_MainBoundsWidth)];
     /*        background color         */
-    ring.backgroundColor = [UIColor blackColor];
+    ring.backgroundColor = [UIColor whiteColor];
     /*        Data source array, only the incoming value, the corresponding ratio will be automatically calculated         */
     ring.valueDataArr = @[@"0.5",@"5",@"2",@"10",@"6",@"6"];
     /*         Width of ring graph        */

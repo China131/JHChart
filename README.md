@@ -130,7 +130,7 @@ Actual effect chart：
 
     JHRingChart *ring = [[JHRingChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth, k_MainBoundsWidth)];
     /*        background color         */
-    ring.backgroundColor = [UIColor blackColor];
+    ring.backgroundColor = [UIColor whiteColor];
     /*        Data source array, only the incoming value, the corresponding ratio will be automatically calculated         */
     ring.valueDataArr = @[@"0.5",@"5",@"2",@"10",@"6"];
     /*         Width of ring graph        */
@@ -143,7 +143,7 @@ Actual effect chart：
 
 Actual effect chart：
 
-![环形图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/环状图demo.gif)
+![环形图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/环状图demo1.png)
 ***
 ## JHTableChart
 **Description: JHTableChart for static drawing style changing table view, all the cell display style depends on the data source, do not need a special treatment of a cell, is very flexible and easy to use**
