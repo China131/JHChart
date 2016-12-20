@@ -134,7 +134,7 @@
     }
     
     _maxHeight += 4;
-    _perHeight = (CGRectGetHeight(self.frame) - 20 - _originSize.y)/_maxHeight;
+    _perHeight = (CGRectGetHeight(self.frame) - 30 - _originSize.y)/_maxHeight;
     
     
 }
@@ -232,7 +232,7 @@
         
         shapeLayer.path = second.CGPath;
         
-        shapeLayer.strokeColor = (_dashColor==nil?([UIColor greenColor].CGColor):_dashColor.CGColor);
+        shapeLayer.strokeColor = (_dashColor==nil?([UIColor darkGrayColor].CGColor):_dashColor.CGColor);
         
         shapeLayer.lineWidth = 0.5;
         
@@ -323,6 +323,7 @@
             UIView *itemsView = [UIView new];
             [self.showViewArr addObject:itemsView];
             itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace, CGRectGetHeight(self.frame) - _originSize.y-1, _columnWidth, 0);
+            NSLog(@"%@",NSStringFromCGRect(itemsView.frame));
             itemsView.backgroundColor = (UIColor *)(_columnBGcolorsArr.count<arr.count?[UIColor greenColor]:_columnBGcolorsArr[j]);
             [UIView animateWithDuration:1 animations:^{
                 
@@ -339,7 +340,7 @@
                     
                     CGSize size = [str boundingRectWithSize:CGSizeMake(_columnWidth, MAXFLOAT) options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:9]} context:nil].size;
                     
-                    textLayer.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace, CGRectGetHeight(self.frame) - height - _originSize.y -3 - size.width, _columnWidth, size.height);
+                    textLayer.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace, CGRectGetHeight(self.frame) - height - _originSize.y -3 - size.height, _columnWidth, size.height);
                     
                     textLayer.string = str;
                     

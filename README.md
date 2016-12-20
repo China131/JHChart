@@ -15,7 +15,6 @@ Well, I admit that there are a lot of other graphics libraries on the GitHub. Bu
 A simple, feature rich and customizable iOS development chart library.
 [Click here](http://www.jianshu.com/p/299066102982) if you want to see the usage of the Chinese description.
 
-<center>![some nice chart](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/look.gif)</center> 
 
 ##Requirement
 * Xcode 7.0+
@@ -72,9 +71,11 @@ pod 'JHChart','~>1.0.3'
 
 
 Actual effect chart：
-
-![折线图1](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo1.png)     
-![折线图2](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo2.png)  
+- first quardrant.
+![折线图1](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo1.png)    
+- first and second quardrant.
+![折线图2](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo2.png)
+- first and fouth quardrant.
 ![折线图2](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo3.png)  
 
 ***
@@ -111,7 +112,10 @@ Actual effect chart：
 
 Actual effect chart：
 
+- ColumnChart for group
 ![柱状图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/柱状图demo1.png)
+- Nomal ColumnChart
+![柱状图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/柱状图demo2.png)
 ***
 ## JHPieChart
 **Description: JHPieChart can be based on your data source and view size settings, automatically generate the appropriate size, and there is a hint of animation pie chart. When you click on a piece of pie chart, the animation shows the current cake block information.**
