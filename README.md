@@ -8,7 +8,7 @@ Well, I admit that there are a lot of other graphics libraries on the GitHub. Bu
 A simple, feature rich and customizable iOS development chart library.
 [Click here](http://www.jianshu.com/p/299066102982) if you want to see the usage of the Chinese description.
 
-![some nice chart](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/look.gif) 
+<center>![some nice chart](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/look.gif)</center> 
 
 ##Requirement
 * Xcode 7.0+
