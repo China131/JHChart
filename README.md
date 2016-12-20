@@ -205,7 +205,7 @@ Actual effect chart：
 
 Actual effect chart：
 
-![some nice chart](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/雷达图demo.png) 
+![some nice chart](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/雷达图demo1.png) 
 
 ### 联系方式
 * 邮箱：JHSilktree@foxmail.com
