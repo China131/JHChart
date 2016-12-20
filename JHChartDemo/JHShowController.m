@@ -148,7 +148,7 @@
 
 //第一四象限
 - (void)showFirstAndFouthQuardrant{
-    JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 100, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
+    JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 54, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
     lineChart.xLineDataArr = @[@"0",@"1",@"2",@3,@4,@5,@6,@7];
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstAndFouthQuardrant;
     lineChart.valueArr = @[@[@"5",@"-22",@"7",@(-4),@25,@15,@6,@9],@[@"1",@"-12",@"1",@6,@4,@(-8),@6,@7]];
@@ -240,30 +240,31 @@
 
 //柱状图
 - (void)showColumnView{
-    JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth, k_MainBoundsWidth)];
+    JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 40, k_MainBoundsWidth, 300)];
     /*        Create an array of data sources, each array is a module data. For example, the first array can represent the average score of a class of different subjects, the next array represents the average score of different subjects in another class        */
     column.valueArr = @[
                         @[@12,@15,@20],
                         @[@22,@15,@20],
                         @[@12,@5,@40],
-                        @[@2,@15,@20]
+                        @[@2,@15,@20],
+                        @[@20,@15,@26],
                         ];
     /*       This point represents the distance from the lower left corner of the origin.         */
     column.originSize = CGPointMake(30, 30);
     /*    The first column of the distance from the starting point     */
-    column.drawFromOriginX = 10;
+    column.drawFromOriginX = 20;
     /*        Column width         */
-    column.columnWidth = 40;
+    column.columnWidth = 30;
     /*        Column backgroundColor         */
-    column.bgVewBackgoundColor = [UIColor blackColor];
+    column.bgVewBackgoundColor = [UIColor whiteColor];
     /*        X, Y axis font color         */
-    column.drawTextColorForX_Y = [UIColor greenColor];
+    column.drawTextColorForX_Y = [UIColor blackColor];
     /*        X, Y axis line color         */
     column.colorForXYLine = [UIColor greenColor];
     /*    Each module of the color array, such as the A class of the language performance of the color is red, the color of the math achievement is green     */
     column.columnBGcolorsArr = @[[UIColor redColor],[UIColor greenColor],[UIColor orangeColor]];
     /*        Module prompt         */
-    column.xShowInfoText = @[@"A班级",@"B班级",@"C班级",@"D班级"];
+    column.xShowInfoText = @[@"A班级",@"B班级",@"C班级",@"D班级",@"E班级"];
     /*       Start animation        */
     [column showAnimation];
     [self.view addSubview:column];

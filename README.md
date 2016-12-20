@@ -66,7 +66,8 @@ pod 'JHChart','~>1.0.3'
 
 Actual effect chart：
 
-![折线图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo.png)     
+![折线图1](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo1.png)     
+![折线图2](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo2.png)  
 
 ***
 ### JHColumnChart
@@ -79,7 +80,8 @@ Actual effect chart：
     @[@12,@15,@20],
     @[@22,@15,@20],
     @[@12,@5,@40],
-    @[@2,@15,@20]
+    @[@2,@15,@20],
+    @[@20,@15,@26]
     ];
     /*       This point represents the distance from the lower left corner of the origin.         */
     column.originSize = CGPointMake(30, 30);
@@ -88,20 +90,20 @@ Actual effect chart：
     /*        Column width         */
     column.columnWidth = 40;
     /*        X, Y axis font color         */
-    column.drawTextColorForX_Y = [UIColor greenColor];
+    column.drawTextColorForX_Y = [UIColor whiteColor];
     /*        X, Y axis line color         */
-    column.colorForXYLine = [UIColor greenColor];
+    column.colorForXYLine = [UIColor blackColor];
     /*    Each module of the color array, such as the A class of the language performance of the color is red, the color of the math achievement is green     */
     column.columnBGcolorsArr = @[[UIColor redColor],[UIColor greenColor],[UIColor orangeColor]];
     /*        Module prompt         */
-    column.xShowInfoText = @[@"A班级",@"B班级",@"C班级",@"D班级"];
+    column.xShowInfoText = @[@"A班级",@"B班级",@"C班级",@"D班级",@"E班级"];
     /*       Start animation        */
     [column showAnimation];
     [self.view addSubview:column];
 
 Actual effect chart：
 
-![柱状图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/柱状图demo.gif)
+![柱状图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/柱状图demo1.png)
 ***
 ## JHPieChart
 **Description: JHPieChart can be based on your data source and view size settings, automatically generate the appropriate size, and there is a hint of animation pie chart. When you click on a piece of pie chart, the animation shows the current cake block information.**
