@@ -222,9 +222,9 @@
     JHPieChart *pie = [[JHPieChart alloc] initWithFrame:CGRectMake(100, 100, 321, 421)];
     pie.center = CGPointMake(CGRectGetMaxX(self.view.frame)/2, CGRectGetMaxY(self.view.frame)/2);
     /* Pie chart value, will automatically according to the percentage of numerical calculation */
-    pie.valueArr = @[@18,@10,@25,@40,@18,@10,@25,@40,@18,@10,@15,@12,@30,@18];
+    pie.valueArr = @[@18,@14,@25,@40,@18,@18,@25,@40];
     /* The description of each sector must be filled, and the number must be the same as the pie chart. */
-    pie.descArr = @[@"第一个元素",@"第二个元素",@"第三个元素",@"第四个元素",@"5",@"6",@"7",@"8",@"9",@"10",@"23",@"12",@"21",@"30"];
+    pie.descArr = @[@"第一个元素",@"第二个元素",@"第三个元素",@"第四个元素",@"5",@"6",@"7",@"8"];
     pie.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:pie];
     /*    When touching a pie chart, the animation offset value     */

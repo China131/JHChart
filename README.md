@@ -118,7 +118,7 @@ Actual effect chart：
 ![柱状图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/柱状图demo2.png)
 ***
 ## JHPieChart
-**Description: JHPieChart can be based on your data source and view size settings, automatically generate the appropriate size, and there is a hint of animation pie chart. When you click on a piece of pie chart, the animation shows the current cake block information.**
+**Description: JHPieChart can be based on your data source and view size settings, automatically generate the appropriate size, and there is a hint of animation pie chart. When you click on a piece of pie chart, the animation shows the current cake block information.** 
 
     JHPieChart *pie = [[JHPieChart alloc] initWithFrame:CGRectMake(100, 100, 321, 421)];
     pie.center = CGPointMake(CGRectGetMaxX(self.view.frame)/2, CGRectGetMaxY(self.view.frame)/2);
@@ -133,9 +133,8 @@ Actual effect chart：
     /*        Start animation         */
     [pie showAnimation];
 
-Actual effect chart：
-
-![饼状图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/饼状图demo.gif)
+Actual effect chart： 
+![饼状图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/饼状图demo1.png)
 ***
 ## JHRingChart
 **Description: JHRingChart according to your data source, automatically calculate the proportion of relevant data, the animation shows a ring graph, and from each loop to elicit relevant information tips**

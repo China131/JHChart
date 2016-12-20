@@ -52,6 +52,7 @@
 		E9D49A161E091EAD000453F0 /* 折线图demo2.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D49A131E091EAD000453F0 /* 折线图demo2.png */; };
 		E9D49A171E091EAD000453F0 /* 折线图demo3.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D49A141E091EAD000453F0 /* 折线图demo3.png */; };
 		E9D49A191E0927EC000453F0 /* 柱状图demo2.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D49A181E0927EC000453F0 /* 柱状图demo2.png */; };
+		E9D49A1B1E092D21000453F0 /* 饼状图demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D49A1A1E092D21000453F0 /* 饼状图demo1.png */; };
 		E9DAFF3E1D6EB6E900D4E148 /* JHTableDataRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +140,7 @@
 		E9D49A131E091EAD000453F0 /* 折线图demo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo2.png"; sourceTree = "<group>"; };
 		E9D49A141E091EAD000453F0 /* 折线图demo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo3.png"; sourceTree = "<group>"; };
 		E9D49A181E0927EC000453F0 /* 柱状图demo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "柱状图demo2.png"; sourceTree = "<group>"; };
+		E9D49A1A1E092D21000453F0 /* 饼状图demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "饼状图demo1.png"; sourceTree = "<group>"; };
 		E9DAFF3C1D6EB6E900D4E148 /* JHTableDataRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTableDataRowModel.h; sourceTree = "<group>"; };
 		E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableDataRowModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -269,6 +271,7 @@
 		AAF615181CBF9E7F00E066C3 /* GIFResource */ = {
 			isa = PBXGroup;
 			children = (
+				E9D49A1A1E092D21000453F0 /* 饼状图demo1.png */,
 				E9C0B3C71DCAC33B000068ED /* look.gif */,
 				E9D49A121E091EAD000453F0 /* 折线图demo1.png */,
 				E9D49A131E091EAD000453F0 /* 折线图demo2.png */,
@@ -421,6 +424,7 @@
 				E918288A1D7864F600F60BB6 /* pie1.png in Resources */,
 				E9D49A161E091EAD000453F0 /* 折线图demo2.png in Resources */,
 				E99BDEE11D812F720062F314 /* 折线图demo.png in Resources */,
+				E9D49A1B1E092D21000453F0 /* 饼状图demo1.png in Resources */,
 				E99BDEE01D812F720062F314 /* 环状图demo.gif in Resources */,
 				E9D49A151E091EAD000453F0 /* 折线图demo1.png in Resources */,
 				AA5E2BBE1CBA298F00FC19EE /* Assets.xcassets in Resources */,
