@@ -13,7 +13,7 @@
 #define P_M(x,y) CGPointMake(x, y)
 
 #define weakSelf(weakSelf)  __weak typeof(self) weakself = self;
-
+#define XORYLINEMAXSIZE CGSizeMake(CGFLOAT_MAX,30)
 @interface JHChart : UIView
 
 
@@ -34,6 +34,20 @@
  *  Name of chart. The name is generally not displayed, just reserved fields
  */
 @property (copy, nonatomic) NSString * chartTitle;
+
+
+/**
+ *  The fontsize of Y line text.Default id 8;
+ */
+@property (nonatomic,assign) CGFloat yDescTextFontSize;
+
+
+
+/**
+ *  The fontsize of X line text.Default id 8;
+ */
+@property (nonatomic,assign) CGFloat xDescTextFontSize;
+
 
 
 /**

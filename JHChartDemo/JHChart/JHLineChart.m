@@ -434,10 +434,10 @@
                 
                 for (NSInteger i = 0; i<_xLineDataArr.count;i++ ) {
                     CGPoint p = P_M(i*xPace+self.chartOrigin.x, self.chartOrigin.y);
-                    CGFloat len = [self getTextWithWhenDrawWithText:_xLineDataArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.xDescTextFontSize aimString:_xLineDataArr[i]].width;
                     [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x, p.y-3) andIsDottedLine:NO andColor:_xAndYLineColor];
                     
-                    [self drawText:[NSString stringWithFormat:@"%@",_xLineDataArr[i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",_xLineDataArr[i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:self.xDescTextFontSize];
                 }
               
                 
@@ -448,14 +448,14 @@
                 CGFloat yPace = (_yLength - kXandYSpaceForSuperView)/(_yLineDataArr.count);
                 for (NSInteger i = 0; i<_yLineDataArr.count; i++) {
                     CGPoint p = P_M(self.chartOrigin.x, self.chartOrigin.y - (i+1)*yPace);
-                    CGFloat len = [self getTextWithWhenDrawWithText:_yLineDataArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.yDescTextFontSize aimString:_yLineDataArr[i]].width;
                     if (_showYLevelLine) {
                          [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:NO andColor:_xAndYLineColor];
                         
                     }else{
                         [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x+3, p.y) andIsDottedLine:NO andColor:_xAndYLineColor];
                     }
-                    [self drawText:[NSString stringWithFormat:@"%@",_yLineDataArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",_yLineDataArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:self.yDescTextFontSize];
                 }
             }
             
@@ -477,22 +477,22 @@
                 
                 for (NSInteger i = 0; i<rightArr.count;i++ ) {
                     CGPoint p = P_M(i*xPace+self.chartOrigin.x, self.chartOrigin.y);
-                    CGFloat len = [self getTextWithWhenDrawWithText:rightArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.xDescTextFontSize aimString:rightArr[i]].width;
                     [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x, p.y-3) andIsDottedLine:NO andColor:_xAndYLineColor];
                     
-                    [self drawText:[NSString stringWithFormat:@"%@",rightArr[i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",rightArr[i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:self.xDescTextFontSize];
                 }
                 
                 for (NSInteger i = 0; i<leftArr.count;i++ ) {
                     CGPoint p = P_M(self.chartOrigin.x-(i+1)*xPace, self.chartOrigin.y);
-                    CGFloat len = [self getTextWithWhenDrawWithText:leftArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.xDescTextFontSize aimString:leftArr[i]].width;
                     
 
                         
                     [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x, p.y-3) andIsDottedLine:NO andColor:_xAndYLineColor];
                         
 
-                    [self drawText:[NSString stringWithFormat:@"%@",leftArr[leftArr.count-1-i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",leftArr[leftArr.count-1-i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:self.xDescTextFontSize];
                 }
                 
             }
@@ -500,12 +500,12 @@
                 CGFloat yPace = (_yLength - kXandYSpaceForSuperView)/(_yLineDataArr.count);
                 for (NSInteger i = 0; i<_yLineDataArr.count; i++) {
                     CGPoint p = P_M(self.chartOrigin.x, self.chartOrigin.y - (i+1)*yPace);
-                    CGFloat len = [self getTextWithWhenDrawWithText:_yLineDataArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.yDescTextFontSize aimString:_yLineDataArr[i]].width;
                     if (_showYLevelLine) {
                          [self drawLineWithContext:context andStarPoint:P_M(self.contentInsets.left, p.y) andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:NO andColor:_xAndYLineColor];
                     }else
                         [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x+3, p.y) andIsDottedLine:NO andColor:_xAndYLineColor];
-                    [self drawText:[NSString stringWithFormat:@"%@",_yLineDataArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",_yLineDataArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:self.yDescTextFontSize];
                 }
             }
 
@@ -522,14 +522,14 @@
                 
                 for (NSInteger i = 0; i<_xLineDataArr.count;i++ ) {
                     CGPoint p = P_M(i*xPace+self.chartOrigin.x, self.chartOrigin.y);
-                    CGFloat len = [self getTextWithWhenDrawWithText:_xLineDataArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.xDescTextFontSize aimString:_xLineDataArr[i]].width;
                     [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x, p.y-3) andIsDottedLine:NO andColor:_xAndYLineColor];
                     
                     if (i==0) {
                         len = -2;
                     }
                     
-                    [self drawText:[NSString stringWithFormat:@"%@",_xLineDataArr[i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",_xLineDataArr[i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:self.xDescTextFontSize];
                 }
             }
             
@@ -541,19 +541,19 @@
                 _perYlen = yPace;
                 for (NSInteger i = 0; i<topArr.count; i++) {
                     CGPoint p = P_M(self.chartOrigin.x, self.chartOrigin.y - (i+1)*yPace);
-                    CGFloat len = [self getTextWithWhenDrawWithText:topArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yDescTextFontSize aimString:topArr[i]].width;
                     if (_showYLevelLine) {
                          [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:NO andColor:_xAndYLineColor];
                     }else
                         [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x+3, p.y) andIsDottedLine:NO andColor:_xAndYLineColor];
-                    [self drawText:[NSString stringWithFormat:@"%@",topArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",topArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:self.yDescTextFontSize];
                     
                 }
                 
                 
                 for (NSInteger i = 0; i<bottomArr.count; i++) {
                     CGPoint p = P_M(self.chartOrigin.x, self.chartOrigin.y + (i+1)*yPace);
-                    CGFloat len = [self getTextWithWhenDrawWithText:bottomArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yDescTextFontSize aimString:bottomArr[i]].width;
                     
                     if (_showYLevelLine) {
                          [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:NO andColor:_xAndYLineColor];
@@ -561,7 +561,7 @@
                     
                         [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x+3, p.y) andIsDottedLine:NO andColor:_xAndYLineColor];
                     }
-                    [self drawText:[NSString stringWithFormat:@"%@",bottomArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",bottomArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:self.yDescTextFontSize];
                 }
                 
                 
@@ -585,17 +585,17 @@
                 
                 for (NSInteger i = 0; i<rightArr.count;i++ ) {
                     CGPoint p = P_M(i*xPace+self.chartOrigin.x, self.chartOrigin.y);
-                    CGFloat len = [self getTextWithWhenDrawWithText:rightArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.xDescTextFontSize aimString:rightArr[i]].width;
                     [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x, p.y-3) andIsDottedLine:NO andColor:_xAndYLineColor];
                     
-                    [self drawText:[NSString stringWithFormat:@"%@",rightArr[i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",rightArr[i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:self.xDescTextFontSize];
                 }
                 for (NSInteger i = 0; i<leftArr.count;i++ ) {
                     CGPoint p = P_M(self.chartOrigin.x-(i+1)*xPace, self.chartOrigin.y);
-                    CGFloat len = [self getTextWithWhenDrawWithText:leftArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.xDescTextFontSize aimString:leftArr[i]].width;
                     [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x, p.y-3) andIsDottedLine:NO andColor:_xAndYLineColor];
                     
-                    [self drawText:[NSString stringWithFormat:@"%@",leftArr[leftArr.count-1-i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",leftArr[leftArr.count-1-i]] andContext:context atPoint:P_M(p.x-len/2, p.y+2) WithColor:_xAndYNumberColor andFontSize:self.xDescTextFontSize];
                 }
                 
             }
@@ -609,18 +609,18 @@
                 _perYlen = yPace;
                 for (NSInteger i = 0; i<topArr.count; i++) {
                     CGPoint p = P_M(self.chartOrigin.x, self.chartOrigin.y - (i+1)*yPace);
-                    CGFloat len = [self getTextWithWhenDrawWithText:topArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yDescTextFontSize aimString:topArr[i]].width;
                     [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x+3, p.y) andIsDottedLine:NO andColor:_xAndYLineColor];
-                    [self drawText:[NSString stringWithFormat:@"%@",topArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",topArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:self.yDescTextFontSize];
                     
                 }
                 
                 
                 for (NSInteger i = 0; i<bottomArr.count; i++) {
                     CGPoint p = P_M(self.chartOrigin.x, self.chartOrigin.y + (i+1)*yPace);
-                    CGFloat len = [self getTextWithWhenDrawWithText:bottomArr[i]];
+                    CGFloat len = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yDescTextFontSize aimString:bottomArr[i]].width;
                     [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x+3, p.y) andIsDottedLine:NO andColor:_xAndYLineColor];
-                    [self drawText:[NSString stringWithFormat:@"%@",bottomArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:7.0];
+                    [self drawText:[NSString stringWithFormat:@"%@",bottomArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-3) WithColor:_xAndYNumberColor andFontSize:self.yDescTextFontSize];
                 }
                 
                 

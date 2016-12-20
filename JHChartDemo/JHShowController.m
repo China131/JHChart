@@ -240,7 +240,7 @@
 
 //柱状图
 - (void)showColumnView{
-    JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 40, k_MainBoundsWidth, 300)];
+    JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 300)];
     /*        Create an array of data sources, each array is a module data. For example, the first array can represent the average score of a class of different subjects, the next array represents the average score of different subjects in another class        */
     column.valueArr = @[
                         @[@12,@15,@20],
@@ -253,6 +253,8 @@
     column.originSize = CGPointMake(30, 30);
     /*    The first column of the distance from the starting point     */
     column.drawFromOriginX = 20;
+    
+    column.isShowYLine = NO;
     /*        Column width         */
     column.columnWidth = 30;
     /*        Column backgroundColor         */

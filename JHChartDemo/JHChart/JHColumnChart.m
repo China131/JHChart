@@ -99,8 +99,7 @@
     if (self = [super initWithFrame:frame]) {
 
         _needXandYLine = YES;
-       
-        
+        _isShowYLine = YES;
     }
     return self;
     
@@ -142,9 +141,7 @@
 
 
 -(void)showAnimation{
-    
-    
-    
+
     [self clear];
     
     _columnWidth = (_columnWidth<=0?30:_columnWidth);
@@ -164,9 +161,15 @@
         
         UIBezierPath *bezier = [UIBezierPath bezierPath];
         
-        [bezier moveToPoint:CGPointMake(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
         
-        [bezier addLineToPoint:P_M(self.originSize.x, 20)];
+        
+        
+        
+        if (self.isShowYLine) {
+            [bezier moveToPoint:CGPointMake(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
+             [bezier addLineToPoint:P_M(self.originSize.x, 20)];
+        }
+       
         
         
         [bezier moveToPoint:CGPointMake(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
@@ -182,7 +185,7 @@
         CABasicAnimation *basic = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
         
         
-        basic.duration = 1.5;
+        basic.duration = self.isShowYLine?1.5:0.75;
         
         basic.fromValue = @(0);
         
@@ -213,10 +216,10 @@
             
             textLayer.contentsScale = [UIScreen mainScreen].scale;
             NSString *text =[NSString stringWithFormat:@"%ld",(i + 1) * pace];
-            CGFloat be = [self getTextWithWhenDrawWithText:text];
+            CGFloat be = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yDescTextFontSize aimString:text].width;
             textLayer.frame = CGRectMake(self.originSize.x - be - 3, CGRectGetHeight(self.frame) - _originSize.y -height - 5, be, 15);
             
-            UIFont *font = [UIFont systemFontOfSize:7];
+            UIFont *font = [UIFont systemFontOfSize:self.yDescTextFontSize];
             CFStringRef fontName = (__bridge CFStringRef)font.fontName;
             CGFontRef fontRef = CGFontCreateWithFontName(fontName);
             textLayer.font = fontRef;
@@ -224,6 +227,7 @@
             CGFontRelease(fontRef);
             
             textLayer.string = text;
+            
             textLayer.foregroundColor = (_drawTextColorForX_Y==nil?[UIColor blackColor].CGColor:_drawTextColorForX_Y.CGColor);
             [_BGScrollView.layer addSublayer:textLayer];
             [self.layerArr addObject:textLayer];
@@ -280,12 +284,12 @@
             
             
             
-            CGSize size = [_xShowInfoText[i] boundingRectWithSize:CGSizeMake(wid, MAXFLOAT) options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:9]} context:nil].size;
+            CGSize size = [_xShowInfoText[i] boundingRectWithSize:CGSizeMake(wid, MAXFLOAT) options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:self.xDescTextFontSize]} context:nil].size;
             
             textLayer.frame = CGRectMake( i * (count * _columnWidth + _typeSpace) + _typeSpace + _originSize.x, CGRectGetHeight(self.frame) - _originSize.y+5,wid, size.height);
             textLayer.string = _xShowInfoText[i];
             textLayer.contentsScale = [UIScreen mainScreen].scale;
-            UIFont *font = [UIFont systemFontOfSize:9];
+            UIFont *font = [UIFont systemFontOfSize:self.xDescTextFontSize];
             
 
             

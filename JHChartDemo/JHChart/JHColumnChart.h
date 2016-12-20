@@ -73,4 +73,9 @@
  */
 @property (nonatomic, assign) CGFloat drawFromOriginX;
 
+/**
+ *  Whether this chart show Y line or not .Default is Yes
+ */
+@property (nonatomic,assign) BOOL isShowYLine;
+
 @end
