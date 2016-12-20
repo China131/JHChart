@@ -1,5 +1,10 @@
 #JHChart(最新版本1.0.3)
 
+[![CI Status](http://img.shields.io/travis/简豪/JHChart.svg?style=flat)](https://travis-ci.org/简豪/JHChart)
+[![Version](https://img.shields.io/cocoapods/v/JHChart.svg?style=flat)](http://cocoapods.org/pods/JHChart)
+[![License](https://img.shields.io/cocoapods/l/JHChart.svg?style=flat)](http://cocoapods.org/pods/JHChart)
+[![Platform](https://img.shields.io/cocoapods/p/JHChart.svg?style=flat)](http://cocoapods.org/pods/JHChart)
+
 ![some nice chart](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/JHChart.png)
 
 Well, I admit that there are a lot of other graphics libraries on the GitHub. But, because of my project needs, most of the library can not fully meet my needs. So I took out a little free time, I wrote a chart library. Initial plan to write only a few lines (my project needs), did not expect the release to GitHub after a number of friends told me that they need more styles.I don't want to tell them I just intend to do it here, so it's a bit of a development to the present 0.1.1 version, basically meet the needs of users before. Of course, the follow-up will continue to update, add more features.
