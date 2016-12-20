@@ -49,13 +49,13 @@
     CGContextAddLineToPoint(context, end.x, end.y);
     
     
-    CGContextSetLineWidth(context, 0.5);
+    CGContextSetLineWidth(context, 0.3);
     
     
     [color setStroke];
     
     if (isDotted) {
-        CGFloat ss[] = {0.5,2};
+        CGFloat ss[] = {1.5,2};
         
         CGContextSetLineDash(context, 0, ss, 2);
     }

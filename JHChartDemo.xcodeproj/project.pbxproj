@@ -43,13 +43,14 @@
 		E99BDEE21D812F720062F314 /* 柱状图demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = E99BDEDE1D812F720062F314 /* 柱状图demo.gif */; };
 		E9C0B3C81DCAC33B000068ED /* look.gif in Resources */ = {isa = PBXBuildFile; fileRef = E9C0B3C71DCAC33B000068ED /* look.gif */; };
 		E9C0F36E1DCA026800A87CAF /* 雷达图demo.png in Resources */ = {isa = PBXBuildFile; fileRef = E9C0F36D1DCA026800A87CAF /* 雷达图demo.png */; };
-		E9D46C251E08DF020054364A /* 折线图demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D46C221E08DF020054364A /* 折线图demo1.png */; };
-		E9D46C261E08DF020054364A /* 折线图demo2.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D46C231E08DF020054364A /* 折线图demo2.png */; };
 		E9D46C271E08DF020054364A /* 柱状图demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D46C241E08DF020054364A /* 柱状图demo1.png */; };
 		E9D46C291E08E1420054364A /* 环状图demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D46C281E08E1420054364A /* 环状图demo1.png */; };
 		E9D46C2B1E08E48D0054364A /* 表格demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D46C2A1E08E48D0054364A /* 表格demo1.png */; };
 		E9D46C2D1E08EABC0054364A /* 雷达图demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D46C2C1E08EABC0054364A /* 雷达图demo1.png */; };
 		E9D46C2F1E08F0E80054364A /* JHChart.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D46C2E1E08F0E80054364A /* JHChart.png */; };
+		E9D49A151E091EAD000453F0 /* 折线图demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D49A121E091EAD000453F0 /* 折线图demo1.png */; };
+		E9D49A161E091EAD000453F0 /* 折线图demo2.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D49A131E091EAD000453F0 /* 折线图demo2.png */; };
+		E9D49A171E091EAD000453F0 /* 折线图demo3.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D49A141E091EAD000453F0 /* 折线图demo3.png */; };
 		E9DAFF3E1D6EB6E900D4E148 /* JHTableDataRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */; };
 /* End PBXBuildFile section */
 
@@ -128,13 +129,14 @@
 		E99BDEDE1D812F720062F314 /* 柱状图demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "柱状图demo.gif"; sourceTree = "<group>"; };
 		E9C0B3C71DCAC33B000068ED /* look.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = look.gif; sourceTree = "<group>"; };
 		E9C0F36D1DCA026800A87CAF /* 雷达图demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "雷达图demo.png"; sourceTree = "<group>"; };
-		E9D46C221E08DF020054364A /* 折线图demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo1.png"; sourceTree = "<group>"; };
-		E9D46C231E08DF020054364A /* 折线图demo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo2.png"; sourceTree = "<group>"; };
 		E9D46C241E08DF020054364A /* 柱状图demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "柱状图demo1.png"; sourceTree = "<group>"; };
 		E9D46C281E08E1420054364A /* 环状图demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "环状图demo1.png"; sourceTree = "<group>"; };
 		E9D46C2A1E08E48D0054364A /* 表格demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "表格demo1.png"; sourceTree = "<group>"; };
 		E9D46C2C1E08EABC0054364A /* 雷达图demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "雷达图demo1.png"; sourceTree = "<group>"; };
 		E9D46C2E1E08F0E80054364A /* JHChart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JHChart.png; sourceTree = "<group>"; };
+		E9D49A121E091EAD000453F0 /* 折线图demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo1.png"; sourceTree = "<group>"; };
+		E9D49A131E091EAD000453F0 /* 折线图demo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo2.png"; sourceTree = "<group>"; };
+		E9D49A141E091EAD000453F0 /* 折线图demo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo3.png"; sourceTree = "<group>"; };
 		E9DAFF3C1D6EB6E900D4E148 /* JHTableDataRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTableDataRowModel.h; sourceTree = "<group>"; };
 		E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableDataRowModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -266,12 +268,13 @@
 			isa = PBXGroup;
 			children = (
 				E9C0B3C71DCAC33B000068ED /* look.gif */,
+				E9D49A121E091EAD000453F0 /* 折线图demo1.png */,
+				E9D49A131E091EAD000453F0 /* 折线图demo2.png */,
+				E9D49A141E091EAD000453F0 /* 折线图demo3.png */,
 				E9D46C2E1E08F0E80054364A /* JHChart.png */,
 				E9D46C2C1E08EABC0054364A /* 雷达图demo1.png */,
 				E9D46C2A1E08E48D0054364A /* 表格demo1.png */,
 				E9D46C281E08E1420054364A /* 环状图demo1.png */,
-				E9D46C221E08DF020054364A /* 折线图demo1.png */,
-				E9D46C231E08DF020054364A /* 折线图demo2.png */,
 				E9D46C241E08DF020054364A /* 柱状图demo1.png */,
 				E9C0F36D1DCA026800A87CAF /* 雷达图demo.png */,
 				E99BDEDB1D812F720062F314 /* 饼状图demo.gif */,
@@ -398,13 +401,12 @@
 			files = (
 				E9C0F36E1DCA026800A87CAF /* 雷达图demo.png in Resources */,
 				AA5E2BC11CBA298F00FC19EE /* LaunchScreen.storyboard in Resources */,
-				E9D46C251E08DF020054364A /* 折线图demo1.png in Resources */,
 				E9C0B3C81DCAC33B000068ED /* look.gif in Resources */,
+				E9D49A171E091EAD000453F0 /* 折线图demo3.png in Resources */,
 				E9D46C271E08DF020054364A /* 柱状图demo1.png in Resources */,
 				E91828851D7864F600F60BB6 /* huan1.png in Resources */,
 				E9D46C2F1E08F0E80054364A /* JHChart.png in Resources */,
 				E99BDEDF1D812F720062F314 /* 饼状图demo.gif in Resources */,
-				E9D46C261E08DF020054364A /* 折线图demo2.png in Resources */,
 				E9D46C2D1E08EABC0054364A /* 雷达图demo1.png in Resources */,
 				E9D46C2B1E08E48D0054364A /* 表格demo1.png in Resources */,
 				E91828881D7864F600F60BB6 /* line3.png in Resources */,
@@ -413,8 +415,10 @@
 				E918287A1D785E1900F60BB6 /* 0011.gif in Resources */,
 				E918288C1D7864F600F60BB6 /* zhu1.png in Resources */,
 				E918288A1D7864F600F60BB6 /* pie1.png in Resources */,
+				E9D49A161E091EAD000453F0 /* 折线图demo2.png in Resources */,
 				E99BDEE11D812F720062F314 /* 折线图demo.png in Resources */,
 				E99BDEE01D812F720062F314 /* 环状图demo.gif in Resources */,
+				E9D49A151E091EAD000453F0 /* 折线图demo1.png in Resources */,
 				AA5E2BBE1CBA298F00FC19EE /* Assets.xcassets in Resources */,
 				AA5E2BBC1CBA298F00FC19EE /* Main.storyboard in Resources */,
 				E91828871D7864F600F60BB6 /* line2.png in Resources */,

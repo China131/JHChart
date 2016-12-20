@@ -95,7 +95,6 @@
     
     
     [color setFill];
-    
     CGContextDrawPath(context, kCGPathFill);
     
 }

@@ -80,23 +80,26 @@
     
     /* The scale value of the X axis can be passed into the NSString or NSNumber type and the data structure changes with the change of the line chart type. The details look at the document or other quadrant X axis data source sample.*/
     
-    lineChart.xLineDataArr = @[@"0",@"1",@"2",@3,@4,@5,@6,@7];
-    
+    lineChart.xLineDataArr = @[@"一月份",@"二月份",@"三月份",@"四月份",@"五月份",@"六月份",@"七月份",@"八月份"];
+    lineChart.contentInsets = UIEdgeInsetsMake(0, 25, 20, 10);
     /* The different types of the broken line chart, according to the quadrant division, different quadrant correspond to different X axis scale data source and different value data source. */
     
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;
     
-    lineChart.valueArr = @[@[@"1",@"12",@"1",@6,@4,@9,@6,@7],@[@"3",@"1",@"2",@16,@2,@3,@5,@10]];
-//    lineChart.showYLevelLine = YES;
+    lineChart.valueArr = @[@[@"1",@"12",@"1",@6,@4,@9,@6,@7],@[@"3",@"1",@"2",@16,@2,@3,@25,@10]];
+    lineChart.showYLevelLine = YES;
+    lineChart.showYLine = NO;
     lineChart.showValueLeadingLine = NO;
+    lineChart.valueFontSize = 9.0;
+    lineChart.backgroundColor = [UIColor whiteColor];
     /* Line Chart colors */
-    lineChart.valueLineColorArr =@[ [UIColor purpleColor], [UIColor brownColor]];
+    lineChart.valueLineColorArr =@[ [UIColor greenColor], [UIColor orangeColor]];
     /* Colors for every line chart*/
     lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
     /* color for XY axis */
     lineChart.xAndYLineColor = [UIColor blackColor];
     /* XY axis scale color */
-    lineChart.xAndYNumberColor = [UIColor blueColor];
+    lineChart.xAndYNumberColor = [UIColor darkGrayColor];
     /* Dotted line color of the coordinate point */
     lineChart.positionLineColorArr = @[[UIColor blueColor],[UIColor greenColor]];
     /*        Set whether to fill the content, the default is False         */
@@ -104,7 +107,7 @@
     /*        Set whether the curve path         */
     lineChart.pathCurve = YES;
     /*        Set fill color array         */
-    lineChart.contentFillColorArr = @[[UIColor colorWithRed:0.500 green:0.000 blue:0.500 alpha:0.468],[UIColor colorWithRed:0.500 green:0.214 blue:0.098 alpha:0.468]];
+    lineChart.contentFillColorArr = @[[UIColor colorWithRed:0 green:1 blue:0 alpha:0.468],[UIColor colorWithRed:1 green:0 blue:0 alpha:0.468]];
     [self.view addSubview:lineChart];
     /*       Start animation        */
     [lineChart showAnimation];
@@ -113,22 +116,25 @@
 
 //第一二象限
 - (void)showFirstAndSecondQuardrant{
-    JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 100, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
+    JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 50, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
     lineChart.xLineDataArr = @[@[@"-3",@"-2",@"-1"],@[@0,@1,@2,@3]];
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstAndSecondQuardrant;
     lineChart.valueArr = @[@[@"5",@"2",@"7",@4,@25,@15,@6],@[@"1",@"2",@"1",@6,@4,@9,@7]];
     /* 值折线的折线颜色 默认暗黑色*/
-    lineChart.valueLineColorArr =@[ [UIColor purpleColor], [UIColor brownColor]];
+    lineChart.valueLineColorArr =@[ [UIColor redColor], [UIColor greenColor]];
     
     /* 值点的颜色 默认橘黄色*/
     lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
     
     /* X和Y轴的颜色 默认暗黑色 */
-    lineChart.xAndYLineColor = [UIColor greenColor];
+    lineChart.xAndYLineColor = [UIColor darkGrayColor];
+    lineChart.showYLevelLine = YES;
+    lineChart.showValueLeadingLine = NO;
+    lineChart.xAndYNumberColor = [UIColor darkGrayColor];
+    lineChart.valueFontSize = 9.0;
     
     lineChart.showYLevelLine = YES;
-    /* XY轴的刻度颜色 m */
-    lineChart.xAndYNumberColor = [UIColor blueColor];
+
  
     [self.view addSubview:lineChart];
     
@@ -139,7 +145,7 @@
     lineChart.pathCurve = YES;
     
     /*        填充颜色数组         */
-    lineChart.contentFillColorArr = @[[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.386],[UIColor colorWithRed:0.000 green:0.002 blue:0.832 alpha:0.472]];
+    lineChart.contentFillColorArr = @[[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.386],[UIColor colorWithRed:0.000 green:1 blue:0 alpha:0.472]];
     [lineChart showAnimation];
     
     /* 清除折线图内容 */
@@ -149,29 +155,34 @@
 //第一四象限
 - (void)showFirstAndFouthQuardrant{
     JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 54, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
-    lineChart.xLineDataArr = @[@"0",@"1",@"2",@3,@4,@5,@6,@7];
+    lineChart.xLineDataArr = @[@"一月份",@"二月份",@"三月份",@"四月份",@"五月份",@"六月份",@"七月份",@"八月份"];
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstAndFouthQuardrant;
-    lineChart.valueArr = @[@[@"5",@"-22",@"7",@(-4),@25,@15,@6,@9],@[@"1",@"-12",@"1",@6,@4,@(-8),@6,@7]];
+    lineChart.valueArr = @[@[@"5",@"-22",@"17",@(-4),@25,@5,@6,@9],@[@"1",@"-12",@"1",@6,@4,@(-8),@6,@7]];
+    lineChart.yDescTextFontSize = lineChart.xDescTextFontSize = 9.0;
+    lineChart.valueFontSize = 9.0;
     /* 值折线的折线颜色 默认暗黑色*/
-    lineChart.valueLineColorArr =@[ [UIColor purpleColor], [UIColor brownColor]];
+    lineChart.valueLineColorArr =@[ [UIColor redColor], [UIColor greenColor]];
     
     /* 值点的颜色 默认橘黄色*/
     lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
    
     /*        是否展示Y轴分层线条 默认否        */
     lineChart.showYLevelLine = NO;
+    lineChart.showValueLeadingLine = NO;
+    lineChart.showYLevelLine = YES;
+    lineChart.showYLine = YES;
     
     /* X和Y轴的颜色 默认暗黑色 */
-    lineChart.xAndYLineColor = [UIColor greenColor];
-    
+    lineChart.xAndYLineColor = [UIColor darkGrayColor];
+    lineChart.backgroundColor = [UIColor whiteColor];
     /* XY轴的刻度颜色 m */
-    lineChart.xAndYNumberColor = [UIColor blueColor];
+    lineChart.xAndYNumberColor = [UIColor darkGrayColor];
     
     lineChart.contentFill = YES;
     
     lineChart.pathCurve = YES;
     
-    lineChart.contentFillColorArr = @[[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.386],[UIColor colorWithRed:0.000 green:0.002 blue:0.832 alpha:0.472]];
+    lineChart.contentFillColorArr = @[[UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.386],[UIColor colorWithRed:0.000 green:1 blue:0 alpha:0.472]];
     [self.view addSubview:lineChart];
     [lineChart showAnimation];
 }

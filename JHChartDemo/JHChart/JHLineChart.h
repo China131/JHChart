@@ -149,16 +149,23 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
 @property (nonatomic, assign) BOOL pathCurve;
 
 
+
+
+
 /**
  *  Whether to fill the contents of the drawing path, the default NO
  */
 @property (nonatomic, assign) BOOL contentFill;
 
 
+
+
 /**
  *  Draw path fill color, default is grey
  */
 @property (nonatomic, strong) NSArray * contentFillColorArr;
+
+
 
 
 /**
@@ -176,6 +183,13 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
  *  whether this chart shows leading lines for value point or not,default is YES
  */
 @property (nonatomic,assign) BOOL showValueLeadingLine;
+
+
+/**
+ *  fontsize of value point.Default 8.0;
+ */
+@property (nonatomic,assign) CGFloat valueFontSize;
+
 
 /**
  *  Custom initialization method

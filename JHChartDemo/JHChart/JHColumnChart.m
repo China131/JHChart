@@ -161,16 +161,10 @@
         
         UIBezierPath *bezier = [UIBezierPath bezierPath];
         
-        
-        
-        
-        
         if (self.isShowYLine) {
             [bezier moveToPoint:CGPointMake(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
              [bezier addLineToPoint:P_M(self.originSize.x, 20)];
         }
-       
-        
         
         [bezier moveToPoint:CGPointMake(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
     
