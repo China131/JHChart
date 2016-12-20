@@ -158,15 +158,15 @@ Actual effect chart：
     /*        Text color of the table body         */
     table.bodyTextColor = [UIColor redColor];
     /*        Minimum grid height         */
-    table.minHeightItems = 40;
+    table.minHeightItems = 35;
     /*        Table line color         */
     table.lineColor = [UIColor orangeColor];
+    
+    table.backgroundColor = [UIColor whiteColor];
     /*       Data source array, in accordance with the data from top to bottom that each line of data, if one of the rows of a column in a number of cells, can be stored in an array of         */
     table.dataArr = @[
     @[@"2.4L优越版",@"2016皓白标准漆蓝棕",@[@"鸽子白",@"鹅黄",@"炫彩绿"],@[@"4"]],
-    @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"]],
-    @[@"2.4豪华版",@[@"4",@"3",@"2"]],
-    @[@"2.4旗舰版"]
+    @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"]]
     ];
     /*        show                            */
     [table showAnimation];
@@ -176,7 +176,7 @@ Actual effect chart：
 
 Actual effect chart：
 
-![表格图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/table1.png)
+![表格图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/表格demo1.png)
 ***
 ### JHRadarChart
 **Description: JHRadarChart can according to your incoming data description and calculation of drawing data, and pruning, the advantages and disadvantages of each attribute can reflect the image of the**

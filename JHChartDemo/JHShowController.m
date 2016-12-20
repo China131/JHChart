@@ -283,29 +283,28 @@
 //    table.tableTitleString = @"全选jeep自由光";
     /*        Each column of the statement, one of the first to show if the rows and columns that can use the vertical segmentation of rows and columns         */
 //    table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量",@"",@"",@"",@"",@"",@""];
-    table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量"];
+    table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量",@"专业评价"];
     /*        The width of the column array, starting with the first column         */
-    table.colWidthArr = @[@80.0,@120.0,@70,@100];
+    table.colWidthArr = @[@80.0,@160.0,@70,@40,@100];
 //    table.colWidthArr = @[@80.0,@30.0,@70,@50,@50,@50,@50,@50,@50,@50];
 //    table.beginSpace = 30;
     /*        Text color of the table body         */
     table.bodyTextColor = [UIColor redColor];
     /*        Minimum grid height         */
-    table.minHeightItems = 40;
+    table.minHeightItems = 35;
     /*        Table line color         */
     table.lineColor = [UIColor orangeColor];
+    
+    table.backgroundColor = [UIColor whiteColor];
     /*       Data source array, in accordance with the data from top to bottom that each line of data, if one of the rows of a column in a number of cells, can be stored in an array of         */
     table.dataArr = @[
-                      @[@"2.4L优越版",@"2016皓白标准漆蓝棕",@[@"鸽子白",@"鹅黄",@"炫彩绿"],@[@"4"]],
-                      @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"]],
-                      @[@"2.4豪华版",@[@"4",@"3",@"2"]],
-                      @[@"2.4旗舰版"]
-                      ];
+                      @[@"2.4L优越版",@"2016皓白标准漆蓝棕",@[@"鸽子白",@"鹅黄",@"炫彩绿"],@[@"4"],@"价格十分优惠，相信市场会非常好"],
+                      @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"],@"性价比还不错，内部配置较为不错，值得入手"]                      ];
     /*        show                            */
     [table showAnimation];
     [self.view addSubview:table];
     /*        Automatic calculation table height        */
-    table.frame = CGRectMake(10, 64, k_MainBoundsWidth-20, [table heightFromThisDataSource]);
+    table.frame = CGRectMake(10, 40, k_MainBoundsWidth-20, [table heightFromThisDataSource]);
 }
 
 
