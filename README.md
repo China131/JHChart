@@ -117,6 +117,7 @@ Actual effect chart：
 - Nomal ColumnChart
 ![柱状图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/柱状图demo2.png)
 ***
+
 ## JHPieChart
 **Description: JHPieChart can be based on your data source and view size settings, automatically generate the appropriate size, and there is a hint of animation pie chart. When you click on a piece of pie chart, the animation shows the current cake block information.** 
 
