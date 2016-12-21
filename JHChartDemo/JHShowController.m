@@ -283,9 +283,26 @@
     /*        X, Y axis line color         */
     column.colorForXYLine = [UIColor darkGrayColor];
     /*    Each module of the color array, such as the A class of the language performance of the color is red, the color of the math achievement is green     */
-    column.columnBGcolorsArr = @[[UIColor greenColor],[UIColor greenColor],[UIColor orangeColor]];
+    column.columnBGcolorsArr = @[[UIColor colorWithRed:72/256.0 green:200.0/256 blue:255.0/256 alpha:1],[UIColor greenColor],[UIColor orangeColor]];
     /*        Module prompt         */
     column.xShowInfoText = @[@"A班级",@"B班级",@"C班级",@"D班级",@"E班级",@"F班级",@"G班级",@"H班级",@"i班级",@"J班级",@"L班级",@"M班级",@"N班级"];
+    column.isShowLineChart = YES;
+    column.lineValueArray =  @[
+                               @6,
+                               @12,
+                               @10,
+                               @1,
+                               @9,
+                               @5,
+                               @9,
+                               @9,
+                               @5,
+                               @6,
+                               @4,
+                               @8,
+                               @11
+                               ];
+
     /*       Start animation        */
     [column showAnimation];
     [self.view addSubview:column];

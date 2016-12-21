@@ -37,6 +37,7 @@
 		E918288B1D7864F600F60BB6 /* table1.png in Resources */ = {isa = PBXBuildFile; fileRef = E91828831D7864F600F60BB6 /* table1.png */; };
 		E918288C1D7864F600F60BB6 /* zhu1.png in Resources */ = {isa = PBXBuildFile; fileRef = E91828841D7864F600F60BB6 /* zhu1.png */; };
 		E922F8051D82A8B0000C7C77 /* JHRadarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E922F8041D82A8B0000C7C77 /* JHRadarChart.m */; };
+		E95A73C21E0A67CC0016F307 /* 柱状图demo3.png in Resources */ = {isa = PBXBuildFile; fileRef = E95A73C11E0A67CC0016F307 /* 柱状图demo3.png */; };
 		E99BDEDF1D812F720062F314 /* 饼状图demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = E99BDEDB1D812F720062F314 /* 饼状图demo.gif */; };
 		E99BDEE01D812F720062F314 /* 环状图demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = E99BDEDC1D812F720062F314 /* 环状图demo.gif */; };
 		E99BDEE11D812F720062F314 /* 折线图demo.png in Resources */ = {isa = PBXBuildFile; fileRef = E99BDEDD1D812F720062F314 /* 折线图demo.png */; };
@@ -125,6 +126,7 @@
 		E91828841D7864F600F60BB6 /* zhu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhu1.png; sourceTree = "<group>"; };
 		E922F8031D82A8B0000C7C77 /* JHRadarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHRadarChart.h; sourceTree = "<group>"; };
 		E922F8041D82A8B0000C7C77 /* JHRadarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHRadarChart.m; sourceTree = "<group>"; };
+		E95A73C11E0A67CC0016F307 /* 柱状图demo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "柱状图demo3.png"; sourceTree = "<group>"; };
 		E99BDEDB1D812F720062F314 /* 饼状图demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "饼状图demo.gif"; sourceTree = "<group>"; };
 		E99BDEDC1D812F720062F314 /* 环状图demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "环状图demo.gif"; sourceTree = "<group>"; };
 		E99BDEDD1D812F720062F314 /* 折线图demo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo.png"; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				E9D46C281E08E1420054364A /* 环状图demo1.png */,
 				E9D46C241E08DF020054364A /* 柱状图demo1.png */,
 				E9D49A181E0927EC000453F0 /* 柱状图demo2.png */,
+				E95A73C11E0A67CC0016F307 /* 柱状图demo3.png */,
 				E9C0F36D1DCA026800A87CAF /* 雷达图demo.png */,
 				E99BDEDB1D812F720062F314 /* 饼状图demo.gif */,
 				E99BDEDC1D812F720062F314 /* 环状图demo.gif */,
@@ -433,6 +436,7 @@
 				E91828891D7864F600F60BB6 /* line4.png in Resources */,
 				E918288B1D7864F600F60BB6 /* table1.png in Resources */,
 				E99BDEE21D812F720062F314 /* 柱状图demo.gif in Resources */,
+				E95A73C21E0A67CC0016F307 /* 柱状图demo3.png in Resources */,
 				E918287C1D7860F300F60BB6 /* lines.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

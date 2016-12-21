@@ -8,7 +8,7 @@
 
 #import "JHColumnChart.h"
 
-@interface JHColumnChart ()
+@interface JHColumnChart ()<CAAnimationDelegate>
 
 //背景图
 @property (nonatomic,strong)UIScrollView *BGScrollView;
@@ -29,10 +29,18 @@
 @property (nonatomic,strong)NSMutableArray * showViewArr;
 
 @property (nonatomic,assign) CGFloat perHeight;
+
+@property (nonatomic , strong) NSMutableArray * drawLineValue;
 @end
 
 @implementation JHColumnChart
 
+-(NSMutableArray *)drawLineValue{
+    if (!_drawLineValue) {
+        _drawLineValue = [NSMutableArray array];
+    }
+    return _drawLineValue;
+}
 
 -(NSMutableArray *)showViewArr{
     
@@ -100,11 +108,43 @@
 
         _needXandYLine = YES;
         _isShowYLine = YES;
+        _lineChartPathColor = [UIColor blueColor];
+        _lineChartValuePointColor = [UIColor yellowColor];
     }
     return self;
     
 }
 
+-(void)setLineValueArray:(NSArray *)lineValueArray{
+    
+    if (!_isShowLineChart) {
+        return;
+    }
+    
+    _lineValueArray = lineValueArray;
+    CGFloat max = _maxHeight;
+    
+    for (id number in _lineValueArray) {
+        
+        CGFloat currentNumber = [NSString stringWithFormat:@"%@",number].floatValue;
+        if (currentNumber>max) {
+            max = currentNumber;
+        }
+        
+    }
+    if (max<5.0) {
+        _maxHeight = 5.0;
+    }else if(max<10){
+        _maxHeight = 10;
+    }else{
+        _maxHeight = max;
+    }
+    
+    _maxHeight += 4;
+    _perHeight = (CGRectGetHeight(self.frame) - 30 - _originSize.y)/_maxHeight;
+    
+    
+}
 
 -(void)setValueArr:(NSArray<NSArray *> *)valueArr{
     
@@ -323,7 +363,15 @@
             UIView *itemsView = [UIView new];
             [self.showViewArr addObject:itemsView];
             itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace, CGRectGetHeight(self.frame) - _originSize.y-1, _columnWidth, 0);
-            NSLog(@"%@",NSStringFromCGRect(itemsView.frame));
+            
+            if (_isShowLineChart) {
+                NSString *value = [NSString stringWithFormat:@"%@",_lineValueArray[i]];
+                float valueFloat =[value floatValue];
+                NSValue *lineValue = [NSValue valueWithCGPoint:P_M(CGRectGetMaxX(itemsView.frame) - _columnWidth / 2, CGRectGetHeight(self.frame) - valueFloat * _perHeight - _originSize.y -1)];
+                [self.drawLineValue addObject:lineValue];
+            }
+            
+            
             itemsView.backgroundColor = (UIColor *)(_columnBGcolorsArr.count<arr.count?[UIColor greenColor]:_columnBGcolorsArr[j]);
             [UIView animateWithDuration:1 animations:^{
                 
@@ -351,6 +399,44 @@
                     textLayer.foregroundColor = itemsView.backgroundColor.CGColor;
                     
                     [_BGScrollView.layer addSublayer:textLayer];
+                 
+                    
+                    //添加折线图
+                    if (i==_valueArr.count - 1&&j == arr.count-1 && _isShowLineChart) {
+                        
+                        UIBezierPath *path = [UIBezierPath bezierPath];
+                        
+                        for (int32_t m=0;m<_lineValueArray.count;m++) {
+                            NSLog(@"%@",_drawLineValue[m]);
+                            if (m==0) {
+                                [path moveToPoint:[_drawLineValue[m] CGPointValue]];
+                                
+                            }else{
+                                [path addLineToPoint:[_drawLineValue[m] CGPointValue]];
+                                [path moveToPoint:[_drawLineValue[m] CGPointValue]];
+                            }
+                            
+                        }
+                        
+                        CAShapeLayer *shaper = [CAShapeLayer layer];
+                        shaper.path = path.CGPath;
+                        shaper.frame = self.bounds;
+                        shaper.lineWidth = 2.5;
+                        shaper.strokeColor = _lineChartPathColor.CGColor;
+                        
+                        [self.layerArr addObject:shaper];
+                        
+                        CABasicAnimation *basic = [CABasicAnimation animationWithKeyPath:NSStringFromSelector(@selector(strokeEnd))];
+
+                        basic.fromValue = @0;
+                        basic.toValue = @1;
+                        basic.duration = 1;
+                        basic.delegate = self;
+                        [shaper addAnimation:basic forKey:@"stokentoend"];
+                        [self.BGScrollView.layer addSublayer:shaper];
+                    }
+                    
+                    
                     
                 }
                 
@@ -384,7 +470,38 @@
     
 }
 
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    
+    
+    if (flag) {
+        
+        if (_isShowLineChart) {
+            
 
+                for (int32_t m=0;m<_lineValueArray.count;m++) {
+                    NSLog(@"%@",_drawLineValue[m]);
+
+
+                        
+                        CAShapeLayer *roundLayer = [CAShapeLayer layer];
+                        UIBezierPath *roundPath = [UIBezierPath bezierPathWithArcCenter:[_drawLineValue[m] CGPointValue] radius:4.5 startAngle:M_PI_2 endAngle:M_PI_2 + M_PI * 2 clockwise:YES];
+                        roundLayer.path = roundPath.CGPath;
+                        roundLayer.fillColor = _lineChartValuePointColor.CGColor;
+                    [self.layerArr addObject:roundLayer];
+                        [self.BGScrollView.layer addSublayer:roundLayer];
+                        
+
+                    
+                }
+                
+
+            
+        }
+        
+    }
+    
+    
+}
 
 
 

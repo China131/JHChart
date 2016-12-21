@@ -78,4 +78,29 @@
  */
 @property (nonatomic,assign) BOOL isShowYLine;
 
+/**
+ *  Whether this chart show line or not.Default is NO;
+ */
+@property (nonatomic,assign) BOOL isShowLineChart;
+
+
+/**
+ *  If isShowLineChart proprety is YES,we need this value array to draw chart
+ */
+@property (nonatomic,strong)NSArray * lineValueArray;
+
+
+/**
+ *  If isShowLineChart proprety is Yes,we will draw path of this linechart with this color
+ *  Default is blue
+ */
+@property (nonatomic,strong)UIColor * lineChartPathColor;
+
+/**
+ *  if isShowLineChart proprety is Yes,we will draw this linechart valuepoint with this color
+ *  Default is yellow
+ */
+@property (nonatomic,strong)UIColor * lineChartValuePointColor;
+
+
 @end
