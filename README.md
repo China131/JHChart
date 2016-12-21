@@ -117,7 +117,7 @@ Actual effect chart：
 - Nomal ColumnChart
 ![柱状图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/柱状图demo2.png)
 - ColumnChart with lineChart
-![柱状图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/柱状图demo2.png)
+![柱状图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/柱状图demo3.png)
 ***
 
 ## JHPieChart
