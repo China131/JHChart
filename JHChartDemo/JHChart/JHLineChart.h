@@ -98,10 +98,6 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
 @property (nonatomic, strong) NSArray * valueLineColorArr;
 
 
-/**
- *  X, Y axis line color
- */
-@property (nonatomic, strong) UIColor * xAndYLineColor;
 
 
 /**

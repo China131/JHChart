@@ -29,7 +29,7 @@
         self.backgroundColor = [UIColor whiteColor];
         _waveChartType = waveChartType;
         _xLineDataArr = @[@0,@1,@2,@3,@4,@5,@6,@7];
-        _xAndYLineColor = [UIColor darkGrayColor];
+        self.xAndYLineColor = [UIColor darkGrayColor];
         self.contentInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     }
     
@@ -86,13 +86,13 @@
  */
 - (void)drawXLineWithContext:(CGContextRef)contex{
     
-    [self drawLineWithContext:contex andStarPoint:P_M(self.contentInsets.left, CGRectGetHeight(self.frame)-self.contentInsets.bottom) andEndPoint:P_M(CGRectGetWidth(self.frame)-self.contentInsets.right, CGRectGetHeight(self.frame)-self.contentInsets.bottom) andIsDottedLine:NO andColor:_xAndYLineColor];
+    [self drawLineWithContext:contex andStarPoint:P_M(self.contentInsets.left, CGRectGetHeight(self.frame)-self.contentInsets.bottom) andEndPoint:P_M(CGRectGetWidth(self.frame)-self.contentInsets.right, CGRectGetHeight(self.frame)-self.contentInsets.bottom) andIsDottedLine:NO andColor:self.xAndYLineColor];
     
     for (NSInteger i =0 ; i<_xLineDataArr.count ; i++) {
         
-        [self drawLineWithContext:contex andStarPoint:P_M(i*_perXLength, _originPoint.y) andEndPoint:P_M(i*_perXLength, _originPoint.y-3) andIsDottedLine:NO andColor:_xAndYLineColor];
+        [self drawLineWithContext:contex andStarPoint:P_M(i*_perXLength, _originPoint.y) andEndPoint:P_M(i*_perXLength, _originPoint.y-3) andIsDottedLine:NO andColor:self.xAndYLineColor];
         CGFloat len = [self getTextWithWhenDrawWithText:_xLineDataArr[i]];
-        [self drawText:_xLineDataArr[i] andContext:contex atPoint:P_M(i*_perXLength-len/2+_originPoint.x, _originPoint.y+5) WithColor:_xAndYLineColor andFontSize:8];
+        [self drawText:_xLineDataArr[i] andContext:contex atPoint:P_M(i*_perXLength-len/2+_originPoint.x, _originPoint.y+5) WithColor:self.xAndYLineColor andFontSize:8];
         
     }
     

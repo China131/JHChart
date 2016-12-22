@@ -64,6 +64,10 @@
         {
             [self showRadarChartView];
         }break;
+            case 9:
+        {
+            [self showScatterChart];
+        }break;
         default:
             break;
     }
@@ -377,7 +381,101 @@
 
 
 
-
+- (void)showScatterChart{
+    
+    /*        创建对象         */
+    JHScatterChart *scatterChart = [[JHScatterChart alloc] initWithFrame:CGRectMake(0, 40, k_MainBoundsWidth, 320)];
+    
+    /*        X轴刻度值         */
+    scatterChart.xLineDataArray = @[@0,@1,@2,@3,@4,@5];
+    
+    /*        点的数组         */
+    scatterChart.valueDataArray = @[
+                                    [NSValue valueWithCGPoint:P_M(0, 1)],
+                                    [NSValue valueWithCGPoint:P_M(0.5, 5.7)],
+                                    [NSValue valueWithCGPoint:P_M(0.6, 5)],
+                                    [NSValue valueWithCGPoint:P_M(0.7, 5)],
+                                    [NSValue valueWithCGPoint:P_M(1, 3)],
+                                    [NSValue valueWithCGPoint:P_M(0.2, 9)],
+                                    [NSValue valueWithCGPoint:P_M(3.3, 5.9)],
+                                    [NSValue valueWithCGPoint:P_M(4.5, 7.5)],
+                                    [NSValue valueWithCGPoint:P_M(2, 3.5)],
+                                    [NSValue valueWithCGPoint:P_M(4.9, 8.6)],
+                                    [NSValue valueWithCGPoint:P_M(1.5,4)],
+                                    [NSValue valueWithCGPoint:P_M(2.2, 2)],
+                                    [NSValue valueWithCGPoint:P_M(4.1, 5.9)],
+                                    [NSValue valueWithCGPoint:P_M(4.3, 3)],
+                                    [NSValue valueWithCGPoint:P_M(3.2, 8.3)],
+                                    [NSValue valueWithCGPoint:P_M(3.3, 5)],
+                                    [NSValue valueWithCGPoint:P_M(2.5, 5.3)],
+                                    [NSValue valueWithCGPoint:P_M(2, 3)],
+                                    [NSValue valueWithCGPoint:P_M(5.9, 5.6)],
+                                    [NSValue valueWithCGPoint:P_M(1.1, 5)],
+                                    [NSValue valueWithCGPoint:P_M(2, 11)],
+                                    [NSValue valueWithCGPoint:P_M(6, 15)],
+                                    [NSValue valueWithCGPoint:P_M(1, 3)],
+                                    [NSValue valueWithCGPoint:P_M(1, 1)],
+                                    [NSValue valueWithCGPoint:P_M(2.3, 5)],
+                                    [NSValue valueWithCGPoint:P_M(3.5, 8)],
+                                    [NSValue valueWithCGPoint:P_M(4, 3.5)],
+                                    [NSValue valueWithCGPoint:P_M(1.9, 8.6)],
+                                    [NSValue valueWithCGPoint:P_M(1.5, 6.5)],
+                                    [NSValue valueWithCGPoint:P_M(2.2,4)],
+                                    [NSValue valueWithCGPoint:P_M(1.1, 5.9)],
+                                    [NSValue valueWithCGPoint:P_M(4.3, 3)],
+                                    [NSValue valueWithCGPoint:P_M(1.2, 9.8)],
+                                    [NSValue valueWithCGPoint:P_M(3.3, 5)],
+                                    [NSValue valueWithCGPoint:P_M(2.5, 8)],
+                                    [NSValue valueWithCGPoint:P_M(2, 7)],
+                                    [NSValue valueWithCGPoint:P_M(5.9, 5.6)]  ,
+                                    
+                                    [NSValue valueWithCGPoint:P_M(0.7, 14)],
+                                    [NSValue valueWithCGPoint:P_M(0.9, 2)],
+                                    [NSValue valueWithCGPoint:P_M(1.5, 12.7)],
+                                    [NSValue valueWithCGPoint:P_M(0.1, 3)],
+                                    [NSValue valueWithCGPoint:P_M(0.3, 2)],
+                                    [NSValue valueWithCGPoint:P_M(0.3, 2.3)],
+                                    [NSValue valueWithCGPoint:P_M(0.5, 2.5)],
+                                    [NSValue valueWithCGPoint:P_M(2, 3.5)],
+                                    [NSValue valueWithCGPoint:P_M(4.9, 8.6)],
+                                    [NSValue valueWithCGPoint:P_M(1.5, 8)],
+                                    [NSValue valueWithCGPoint:P_M(1.2, 7)],
+                                    [NSValue valueWithCGPoint:P_M(1.1, 5.9)],
+                                    [NSValue valueWithCGPoint:P_M(1.4, 3)],
+                                    [NSValue valueWithCGPoint:P_M(2.2, 8)],
+                                    [NSValue valueWithCGPoint:P_M(1.3, 1.3)],
+                                    [NSValue valueWithCGPoint:P_M(1.5, 1.8)],
+                                    [NSValue valueWithCGPoint:P_M(1.7, 1.4)],
+                                    [NSValue valueWithCGPoint:P_M(5.9, 5.6)]   ,
+                                    
+                                    [NSValue valueWithCGPoint:P_M(0.7, 7.5)],
+                                    [NSValue valueWithCGPoint:P_M(0.6, 11)],
+                                    [NSValue valueWithCGPoint:P_M(0.8, 15)],
+                                    [NSValue valueWithCGPoint:P_M(4, 3)],
+                                    [NSValue valueWithCGPoint:P_M(5, 8)],
+                                    [NSValue valueWithCGPoint:P_M(3.3, 5)],
+                                    [NSValue valueWithCGPoint:P_M(4.5, 8)],
+                                    [NSValue valueWithCGPoint:P_M(2, 3.5)],
+                                    [NSValue valueWithCGPoint:P_M(4.9, 8.6)],
+                                    [NSValue valueWithCGPoint:P_M(1.5, 8)],
+                                    [NSValue valueWithCGPoint:P_M(2.2, 7)],
+                                    [NSValue valueWithCGPoint:P_M(4.1, 5.9)],
+                                    [NSValue valueWithCGPoint:P_M(4.3, 3)],
+                                    [NSValue valueWithCGPoint:P_M(3.2, 8)],
+                                    [NSValue valueWithCGPoint:P_M(3.3, 5)],
+                                    [NSValue valueWithCGPoint:P_M(2.5, 8)],
+                                    [NSValue valueWithCGPoint:P_M(2, 7)],
+                                    [NSValue valueWithCGPoint:P_M(5.9, 5.6)]];
+    scatterChart.contentInsets = UIEdgeInsetsMake(10, 40, 20, 10);
+    
+    [scatterChart showAnimation];
+    
+    [self.view addSubview:scatterChart];
+    
+    
+    
+    
+}
 
 
 

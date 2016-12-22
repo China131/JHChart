@@ -1,4 +1,4 @@
-#JHChart(最新版本1.0.3)
+#JHChart(最新版本1.1.0)
 
 [![CI Status](http://img.shields.io/travis/简豪/JHChart.svg?style=flat)](https://travis-ci.org/简豪/JHChart)
 [![Version](https://img.shields.io/cocoapods/v/JHChart.svg?style=flat)](http://cocoapods.org/pods/JHChart)
@@ -77,6 +77,12 @@ Actual effect chart：
 ![折线图2](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo2.png)
 - first and fouth quardrant.
 ![折线图2](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo3.png)  
+
+*** 
+### JHScatterChart
+![折线图1](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/散点图demo1.png) 
+
+
 
 ***
 ### JHColumnChart
