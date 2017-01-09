@@ -146,7 +146,7 @@
         
         if (midSpace<M_PI) {
             secondP =CGPointMake(endx.x + 20*k_Width_Scale, endx.y);
-          [self drawText:[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] andContext:contex atPoint:CGPointMake(secondP.x + 3, secondP.y - size.height / 2) WithColor:k_COLOR_STOCK[i] andFontSize:10*k_Width_Scale];
+          [self drawText:[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] andContext:contex atPoint:CGPointMake(secondP.x + 3, secondP.y - size.height / 2) WithColor:color andFontSize:10*k_Width_Scale];
 
         }else{
              secondP =CGPointMake(endx.x - 20*k_Width_Scale, endx.y);

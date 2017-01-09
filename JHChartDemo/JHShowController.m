@@ -224,17 +224,21 @@
  */
 - (void)showPieChartUpView{
     JHPieChart *pie = [[JHPieChart alloc] initWithFrame:CGRectMake(100, 100, 321, 421)];
+    pie.backgroundColor = [UIColor greenColor];
     pie.center = CGPointMake(CGRectGetMaxX(self.view.frame)/2, CGRectGetMaxY(self.view.frame)/2);
     /* Pie chart value, will automatically according to the percentage of numerical calculation */
     pie.valueArr = @[@18,@14,@25,@40,@18,@18,@25,@40];
     /* The description of each sector must be filled, and the number must be the same as the pie chart. */
     pie.descArr = @[@"第一个元素",@"第二个元素",@"第三个元素",@"第四个元素",@"5",@"6",@"7",@"8"];
-    pie.backgroundColor = [UIColor whiteColor];
+//    pie.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:pie];
     /*    When touching a pie chart, the animation offset value     */
     pie.positionChangeLengthWhenClick = 15;
+//    pie.colorArr = @[[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor yellowColor]];
     /*        Start animation         */
-    [pie showAnimation];}
+    [pie showAnimation];
+    
+}
 
 
 //环状图
@@ -251,11 +255,12 @@
     /*        Start animation             */
     [ring showAnimation];
     [self.view addSubview:ring];
+   
 }
 
 //柱状图
 - (void)showColumnView{
-    JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 44, k_MainBoundsWidth, 320)];
+    JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
     /*        Create an array of data sources, each array is a module data. For example, the first array can represent the average score of a class of different subjects, the next array represents the average score of different subjects in another class        */
     column.valueArr = @[
                         @[@12],
@@ -320,7 +325,7 @@
  *  创建表格视图
  */
 - (void)showTableView{
-    JHTableChart *table = [[JHTableChart alloc] initWithFrame:CGRectMake(10, 64, k_MainBoundsWidth-20, k_MainBoundsHeight)];
+    JHTableChart *table = [[JHTableChart alloc] initWithFrame:CGRectMake(10, 84, k_MainBoundsWidth-20, k_MainBoundsHeight)];
     /*       Table name         */
 //    table.tableTitleString = @"全选jeep自由光";
     /*        Each column of the statement, one of the first to show if the rows and columns that can use the vertical segmentation of rows and columns         */
@@ -346,7 +351,7 @@
     [table showAnimation];
     [self.view addSubview:table];
     /*        Automatic calculation table height        */
-    table.frame = CGRectMake(10, 40, k_MainBoundsWidth-20, [table heightFromThisDataSource]);
+    table.frame = CGRectMake(10, 64, k_MainBoundsWidth-20, [table heightFromThisDataSource]);
 }
 
 
@@ -384,7 +389,7 @@
 - (void)showScatterChart{
     
     /*        创建对象         */
-    JHScatterChart *scatterChart = [[JHScatterChart alloc] initWithFrame:CGRectMake(0, 40, k_MainBoundsWidth, 320)];
+    JHScatterChart *scatterChart = [[JHScatterChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
     
     /*        X轴刻度值         */
     scatterChart.xLineDataArray = @[@0,@1,@2,@3,@4,@5];
