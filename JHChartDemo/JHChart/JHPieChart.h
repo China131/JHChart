@@ -34,6 +34,10 @@
 @property (assign , nonatomic) CGFloat positionChangeLengthWhenClick;
 
 
+/**
+ *  whether this chart show the description or not,default is YES.
+ */
+@property (nonatomic,assign) BOOL showDescripotion;
 
 
 @end

@@ -44,6 +44,7 @@
     
     if (self = [super init]) {
         _chartArcLength = 8.0;
+        _showDescripotion = YES;
     }
     
     return self;
@@ -76,9 +77,13 @@
             colors = k_COLOR_STOCK;
         }
         
+        if (!self.showDescripotion) {
+            return;
+        }
+        
         for (NSInteger i = 0; i<_descArr.count; i++) {
         
-             [self drawQuartWithColor:colors[i%colors.count] andBeginPoint:P_M(15+self.frame.size.width/2*(i%2), 20*(i/2  )+25+_chartArcLength*2) andContext:contex];
+            [self drawQuartWithColor:colors[i%colors.count] andBeginPoint:P_M(15+self.frame.size.width/2*(i%2), 20*(i/2  )+25+_chartArcLength*2) andContext:contex];
             CGFloat present = [_valueArr[i] floatValue]/_allValueCount*100;
             [self drawText:[NSString stringWithFormat:@"%@ 数量:% 3ld 占比:%.1f%c",_descArr[i],[_valueArr[i] integerValue],present,'%'] andContext:contex atPoint:P_M(30+self.frame.size.width/2*(i%2), 20*(i/2  )+25+_chartArcLength*2) WithColor:[UIColor blackColor] andTextFontSize:8];
         }

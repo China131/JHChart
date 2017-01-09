@@ -234,6 +234,7 @@
     [self.view addSubview:pie];
     /*    When touching a pie chart, the animation offset value     */
     pie.positionChangeLengthWhenClick = 15;
+    pie.showDescripotion = NO;
 //    pie.colorArr = @[[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor yellowColor]];
     /*        Start animation         */
     [pie showAnimation];
