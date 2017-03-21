@@ -1,4 +1,4 @@
-#JHChart(最新版本1.1.0)
+# JHChart(最新版本1.1.0)
 
 [![CI Status](http://img.shields.io/travis/简豪/JHChart.svg?style=flat)](https://travis-ci.org/简豪/JHChart)
 [![Version](https://img.shields.io/cocoapods/v/JHChart.svg?style=flat)](http://cocoapods.org/pods/JHChart)
@@ -16,11 +16,11 @@ A simple, feature rich and customizable iOS development chart library.
 [Click here](http://www.jianshu.com/p/299066102982) if you want to see the usage of the Chinese description.
 
 
-##Requirement
+## Requirement
 * Xcode 7.0+
 * iOS 7.0+
 
-##Import library
+## Import library
 
 There are two ways to use the JHChart library.
 * 
