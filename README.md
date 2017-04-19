@@ -1,4 +1,4 @@
-# JHChart(最新版本1.1.0)
+# JHChart(最新版本1.1.0)（最近实在太忙，没有及时回复大家的邮件，望见谅见谅！有任何需求添加至Issues即可，谢谢！）
 
 [![CI Status](http://img.shields.io/travis/简豪/JHChart.svg?style=flat)](https://travis-ci.org/简豪/JHChart)
 [![Version](https://img.shields.io/cocoapods/v/JHChart.svg?style=flat)](http://cocoapods.org/pods/JHChart)
