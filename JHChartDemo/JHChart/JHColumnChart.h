@@ -14,7 +14,7 @@
 /**
  *  Each histogram of the background color, if you do not set the default value for green. Setup must ensure that the number and type of the data source array are the same, otherwise the default is not set.
  */
-@property (nonatomic, strong) NSArray<NSArray *> * columnBGcolorsArr;
+@property (nonatomic, strong) NSArray<UIColor *> * columnBGcolorsArr;
 
 /**
  *  Data source array
