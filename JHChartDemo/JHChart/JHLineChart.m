@@ -865,6 +865,7 @@
 //                   [secondPath moveToPoint:p];
               }else{
                    [firstPath addLineToPoint:p];
+                   [secondPath moveToPoint:p];
                    [secondPath addLineToPoint:p];
             }
 
