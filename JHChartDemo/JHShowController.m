@@ -336,10 +336,23 @@
     table.colWidthArr = @[@80.0,@160.0,@70,@40,@100];
 //    table.colWidthArr = @[@80.0,@30.0,@70,@50,@50,@50,@50,@50,@50,@50];
 //    table.beginSpace = 30;
+    UIColor *textColor = [UIColor redColor];
     /*        Text color of the table body         */
-    table.bodyTextColor = [UIColor redColor];
+    table.bodyTextColor = textColor;
+    /*        Text color for every column         */
+    table.bodyTextColorArr = @[textColor,textColor,textColor,textColor,[UIColor blueColor]];
     /*        Minimum grid height         */
     table.minHeightItems = 35;
+    /*        The height of the column title*/
+    table.colTitleHeight = 80;
+    /*        Text color of the column title*/
+    table.colTitleColor = [UIColor grayColor];
+    /*        Font of the column title*/
+    table.colTitleFont = [UIFont systemFontOfSize:15];
+    /*        Text color for every column title        */
+//    table.colTitleColorArr = @[textColor,textColor,textColor,textColor,[UIColor greenColor]];
+    /*        Font of the table body*/
+    table.bodyTextFont = [UIFont systemFontOfSize:14];
     /*        Table line color         */
     table.lineColor = [UIColor orangeColor];
     
