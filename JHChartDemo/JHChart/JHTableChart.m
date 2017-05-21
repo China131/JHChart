@@ -28,6 +28,7 @@
         _tableChartTitleItemsHeight = 50.0;
         _lineColor                  = [UIColor darkGrayColor];
         _tableTitleFont             = [UIFont systemFontOfSize:15];
+        _bodyTextFont               = [UIFont systemFontOfSize:15];
         _tableTitleColor            = [UIColor darkGrayColor];
         _tableWidth                 = 100;
         _lastY                      = _beginSpace;
@@ -134,29 +135,29 @@
             
             NSLog(@"第%d列 宽度 为 %f\n",i,wid);
             
-            CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, _minHeightItems) textFont:14 aimString:_colTitleArr[i]];
+            CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, self.colTitleHeight) textFont:self.colTitleFont.pointSize aimString:_colTitleArr[i]];
             
             
             if (i==0) {
-
+                
                 NSArray *firArr = [_colTitleArr[0] componentsSeparatedByString:@"|"];
                 if (firArr.count>=2) {
-                    [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY) andEndPoint:P_M(lastX + wid, _lastY + _minHeightItems) andIsDottedLine:NO andColor:_lineColor];
-                    size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, _minHeightItems) textFont:14 aimString:firArr[0]];
-
-                    [self drawText:firArr[0] context:context atPoint:CGRectMake(lastX + wid / 2.0 + wid / 4.0 - size.width / 2, _lastY + _minHeightItems / 4.0 -size.height / 2.0, wid, _minHeightItems / 2.0) WithColor:_bodyTextColor font:_tableTitleFont];
-                    size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, _minHeightItems) textFont:14 aimString:firArr[1]];
-
-                    [self drawText:firArr[1] context:context atPoint:CGRectMake(lastX + wid / 4.0 - size.width / 2.0, _lastY + _minHeightItems / 2.0 + _minHeightItems / 4.0 - size.height / 2.0, size.width+5, _minHeightItems / 2.0) WithColor:_bodyTextColor font:_tableTitleFont];
+                    [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY) andEndPoint:P_M(lastX + wid, _lastY + self.colTitleHeight) andIsDottedLine:NO andColor:_lineColor];
+                    size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, self.colTitleHeight) textFont:14 aimString:firArr[0]];
+                    
+                    [self drawText:firArr[0] context:context atPoint:CGRectMake(lastX + wid / 2.0 + wid / 4.0 - size.width / 2, _lastY + self.colTitleHeight / 4.0 -size.height / 2.0, wid, self.colTitleHeight / 2.0) WithColor:[self colorForColTitle:i] font:self.colTitleFont];
+                    size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, self.colTitleHeight) textFont:14 aimString:firArr[1]];
+                    
+                    [self drawText:firArr[1] context:context atPoint:CGRectMake(lastX + wid / 4.0 - size.width / 2.0, _lastY + self.colTitleHeight / 2.0 + self.colTitleHeight / 4.0 - size.height / 2.0, size.width+5, self.colTitleHeight / 2.0) WithColor:[self colorForColTitle:i] font:self.colTitleFont];
                 }else{
-
-                    [self drawText:_colTitleArr[i] context:context atPoint:CGRectMake(lastX + wid / 2.0 - size.width / 2, _lastY + _minHeightItems / 2.0 -size.height / 2.0, wid, size.height) WithColor:_bodyTextColor font:[UIFont systemFontOfSize:14]];;
+                    
+                    [self drawText:_colTitleArr[i] context:context atPoint:CGRectMake(lastX + wid / 2.0 - size.width / 2, _lastY + self.colTitleHeight / 2.0 -size.height / 2.0, wid, size.height) WithColor:[self colorForColTitle:i] font:self.colTitleFont];
                 }
                 
                 
             }else{
-            
-                [self drawText:_colTitleArr[i] context:context atPoint:CGRectMake(lastX + wid / 2.0 - size.width / 2, _lastY + _minHeightItems / 2.0 -size.height / 2.0, wid, _minHeightItems) WithColor:_bodyTextColor font:[UIFont systemFontOfSize:14]];;
+                
+                [self drawText:_colTitleArr[i] context:context atPoint:CGRectMake(lastX + wid / 2.0 - size.width / 2, _lastY + self.colTitleHeight / 2.0 -size.height / 2.0, wid, self.colTitleHeight) WithColor:[self colorForColTitle:i] font:self.colTitleFont];
             }
             lastX += wid;
             if (i==_colTitleArr.count - 1) {
@@ -166,7 +167,7 @@
             
             
         }
-        _lastY += _minHeightItems;
+        _lastY += self.colTitleHeight;
     }
     /*        列名分割线         */
     [self drawLineWithContext:context andStarPoint:P_M(_beginSpace, _lastY ) andEndPoint:P_M(_beginSpace + _tableWidth, _lastY ) andIsDottedLine:NO andColor:_lineColor];
@@ -209,19 +210,19 @@
                 for (NSInteger n = 0; n<[rowItems count]; n++) {
                     
                     [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY + (n+1) * perItemsHeightByMaxCount) andEndPoint:P_M(lastX + wid, _lastY + (n+1) * perItemsHeightByMaxCount) andIsDottedLine:NO andColor:_lineColor];
-                    CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, perItemsHeightByMaxCount) textFont:_tableTitleFont.pointSize aimString:rowItems[n]];
-//                    P_M(lastX + wid / 2 - size.width / 2.0, _lastY + (n+1) * perItemsHeightByMaxCount - perItemsHeightByMaxCount / 2.0 - size.height / 2.0)
-                    [self drawText:rowItems[n] context:context atPoint:CGRectMake(lastX + wid / 2 - size.width / 2.0, _lastY + (n+1) * perItemsHeightByMaxCount - perItemsHeightByMaxCount / 2.0 - size.height / 2.0, size.width, size.height) WithColor:_bodyTextColor font:_tableTitleFont];
+                    CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, perItemsHeightByMaxCount) textFont:self.bodyTextFont.pointSize aimString:rowItems[n]];
+                    //                    P_M(lastX + wid / 2 - size.width / 2.0, _lastY + (n+1) * perItemsHeightByMaxCount - perItemsHeightByMaxCount / 2.0 - size.height / 2.0)
+                    [self drawText:rowItems[n] context:context atPoint:CGRectMake(lastX + wid / 2 - size.width / 2.0, _lastY + (n+1) * perItemsHeightByMaxCount - perItemsHeightByMaxCount / 2.0 - size.height / 2.0, size.width, size.height) WithColor:[self colorForCol:j] font:self.bodyTextFont];
                 }
                 
             }else{
                 
-                CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, model.maxCount * _minHeightItems) textFont:_tableTitleFont.pointSize aimString:rowItems];
-
-                  [self drawText:rowItems context:context atPoint:CGRectMake(lastX + wid / 2 - size.width / 2.0,  _lastY + model.maxCount * _minHeightItems - model.maxCount * _minHeightItems / 2.0 - size.height / 2.0, size.width, size.height) WithColor:_bodyTextColor font:_tableTitleFont];
+                CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, model.maxCount * _minHeightItems) textFont:self.bodyTextFont.pointSize aimString:rowItems];
+                
+                [self drawText:rowItems context:context atPoint:CGRectMake(lastX + wid / 2 - size.width / 2.0,  _lastY + model.maxCount * _minHeightItems - model.maxCount * _minHeightItems / 2.0 - size.height / 2.0, size.width, size.height) WithColor:[self colorForCol:j] font:self.bodyTextFont];
             }
             lastX += wid;
-
+            
             
         }
         _lastY += model.maxCount * _minHeightItems;
@@ -311,7 +312,7 @@
         rowCount += nowCount;
     }
     
-    _bodyHeight = rowCount * _minHeightItems  + (_colTitleArr.count>0?_minHeightItems:0);
+    _bodyHeight = rowCount * _minHeightItems  + (_colTitleArr.count>0?self.colTitleHeight:0);
     _tableHeight = 0;
     _tableHeight += (_tableTitleString.length>0?_tableChartTitleItemsHeight:0) + _bodyHeight;
 }
@@ -341,4 +342,40 @@
     
 }
 
+#pragma mark - 数据行高及字体颜色处理
+- (UIFont *)colTitleFont{
+    if (!_colTitleFont) {
+        _colTitleFont = self.bodyTextFont;
+    }
+    return _colTitleFont;
+}
+
+- (CGFloat)colTitleHeight{
+    return _colTitleHeight > 0 ? _colTitleHeight : self.minHeightItems;
+}
+
+- (UIColor *)colorForColTitle:(NSInteger)colTitleIndex{
+    UIColor *defaultTitleColor = self.colTitleColor ?: self.bodyTextColor;
+    if (self.colTitleColorArr) {
+        if (colTitleIndex < self.colTitleColorArr.count) {
+            if (![self.colTitleColorArr[colTitleIndex] isKindOfClass:[UIColor class]]) {
+                return defaultTitleColor;
+            }
+            return self.colTitleColorArr[colTitleIndex];
+        }
+    }
+    return defaultTitleColor;
+}
+
+- (UIColor *)colorForCol:(NSInteger)colIndex{
+    if (self.bodyTextColorArr) {
+        if (colIndex < self.bodyTextColorArr.count) {
+            if (![self.bodyTextColorArr[colIndex] isKindOfClass:[UIColor class]]) {
+                return self.bodyTextColor;
+            }
+            return self.bodyTextColorArr[colIndex];
+        }
+    }
+    return self.bodyTextColor;
+}
 @end
