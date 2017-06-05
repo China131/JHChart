@@ -7,6 +7,11 @@
 //
 
 #import "JHChart.h"
+@protocol JHColumnChartDelegate<NSObject>
+
+@optional
+- (void)columnItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath;
+@end
 
 @interface JHColumnChart : JHChart
 
@@ -15,6 +20,9 @@
  *  Each histogram of the background color, if you do not set the default value for green. Setup must ensure that the number and type of the data source array are the same, otherwise the default is not set.
  */
 @property (nonatomic, strong) NSArray<UIColor *> * columnBGcolorsArr;
+
+/// JHColumnDelegate的代理，用以监听柱状图某一项的点击事件
+@property (nonatomic , assign)id <JHColumnChartDelegate> delegate;
 
 /**
  *  Data source array

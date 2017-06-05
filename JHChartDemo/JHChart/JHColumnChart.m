@@ -7,7 +7,7 @@
 //
 
 #import "JHColumnChart.h"
-
+#import <objc/runtime.h>
 @interface JHColumnChart ()<CAAnimationDelegate>
 
 //背景图
@@ -355,15 +355,16 @@
         NSArray *arr = _valueArr[i];
 
         for (NSInteger j = 0; j<arr.count; j++) {
-            
-
             CGFloat height =[arr[j] floatValue] *_perHeight;
-            
 
             UIView *itemsView = [UIView new];
+            NSIndexPath *path = [NSIndexPath indexPathForRow:j inSection:i];
+            objc_setAssociatedObject(itemsView, "indexPath", path,OBJC_ASSOCIATION_COPY_NONATOMIC);
             [self.showViewArr addObject:itemsView];
             itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace, CGRectGetHeight(self.frame) - _originSize.y-1, _columnWidth, 0);
-            
+            if (_delegate) {
+                [itemsView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemClick:)]];
+            }
             if (_isShowLineChart) {
                 NSString *value = [NSString stringWithFormat:@"%@",_lineValueArray[i]];
                 float valueFloat =[value floatValue];
@@ -448,13 +449,13 @@
         }
         
     }
-    
-    
-    
-    
-    
 }
 
+- (void)itemClick:(UITapGestureRecognizer *)sender{
+    if ([_delegate respondsToSelector:@selector(columnItem:didClickAtIndexRow:)]) {
+        [_delegate columnItem:sender.view didClickAtIndexRow:objc_getAssociatedObject(sender.view, "indexPath")];
+    }
+}
 
 -(void)clear{
     

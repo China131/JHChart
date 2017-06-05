@@ -10,7 +10,7 @@
 #import "JHChartHeader.h"
 #define k_MainBoundsWidth [UIScreen mainScreen].bounds.size.width
 #define k_MainBoundsHeight [UIScreen mainScreen].bounds.size.height
-@interface JHShowController ()
+@interface JHShowController ()<JHColumnChartDelegate>
 
 @end
 
@@ -313,6 +313,7 @@
                                @11
                                ];
 
+    column.delegate = self;
     /*       Start animation        */
     [column showAnimation];
     [self.view addSubview:column];
@@ -452,7 +453,7 @@
                                     [NSValue valueWithCGPoint:P_M(1.3, 1.3)],
                                     [NSValue valueWithCGPoint:P_M(1.5, 1.8)],
                                     [NSValue valueWithCGPoint:P_M(1.7, 1.4)],
-                                    [NSValue valueWithCGPoint:P_M(5.9, 5.6)]   ,
+                                    [NSValue valueWithCGPoint:P_M(5.9, 5.6)],
                                     
                                     [NSValue valueWithCGPoint:P_M(0.7, 7.5)],
                                     [NSValue valueWithCGPoint:P_M(0.6, 11)],
@@ -473,18 +474,14 @@
                                     [NSValue valueWithCGPoint:P_M(2, 7)],
                                     [NSValue valueWithCGPoint:P_M(5.9, 5.6)]];
     scatterChart.contentInsets = UIEdgeInsetsMake(10, 40, 20, 10);
-    
     [scatterChart showAnimation];
-    
     [self.view addSubview:scatterChart];
-    
-    
-    
-    
 }
 
 
-
+-(void)columnItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath{
+    NSLog(@"%@",indexPath);
+}
 
 
 
