@@ -54,6 +54,7 @@
         _showYLevelLine = NO;
         _showValueLeadingLine = YES;
         _valueFontSize = 8.0;
+        _showPointDescription = YES;
 //        _contentFillColorArr = @[[UIColor lightGrayColor]];
         [self configChartXAndYLength];
         [self configChartOrigin];
@@ -967,7 +968,9 @@
                 [self drawLineWithContext:context andStarPoint:P_M(p.x, self.chartOrigin.y) andEndPoint:p andIsDottedLine:YES andColor:positionLineColor];
             }
           
-            
+            if (!_showPointDescription) {
+                continue;
+            }
             if (p.y!=0) {
                 UIColor *pointNumberColor = (_pointNumberColorArr.count == _valueArr.count?(_pointNumberColorArr[m]):([UIColor orangeColor]));
                 

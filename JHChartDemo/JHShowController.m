@@ -10,7 +10,7 @@
 #import "JHChartHeader.h"
 #define k_MainBoundsWidth [UIScreen mainScreen].bounds.size.width
 #define k_MainBoundsHeight [UIScreen mainScreen].bounds.size.height
-@interface JHShowController ()<JHColumnChartDelegate>
+@interface JHShowController ()<JHColumnChartDelegate,JHTableChartDelegate>
 
 @end
 
@@ -96,6 +96,7 @@
     lineChart.showValueLeadingLine = NO;
     lineChart.valueFontSize = 9.0;
     lineChart.backgroundColor = [UIColor whiteColor];
+    lineChart.showPointDescription = NO;
     /* Line Chart colors */
     lineChart.valueLineColorArr =@[ [UIColor greenColor], [UIColor orangeColor]];
     /* Colors for every line chart*/
@@ -343,12 +344,13 @@
     table.minHeightItems = 35;
     /*        Table line color         */
     table.lineColor = [UIColor orangeColor];
-    
+    table.tableTitleString = @"库存";
     table.backgroundColor = [UIColor whiteColor];
     /*       Data source array, in accordance with the data from top to bottom that each line of data, if one of the rows of a column in a number of cells, can be stored in an array of         */
     table.dataArr = @[
                       @[@"2.4L优越版",@"2016皓白标准漆蓝棕",@[@"鸽子白",@"鹅黄",@"炫彩绿"],@[@"4"],@"价格十分优惠，相信市场会非常好"],
                       @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"],@"性价比还不错，内部配置较为不错，值得入手"]                      ];
+    table.delegate = self;
     /*        show                            */
     [table showAnimation];
     [self.view addSubview:table];
@@ -484,8 +486,30 @@
 }
 
 
+-(UIView *)viewForContentAtRow:(NSInteger)row column:(NSInteger)column subRow:(NSInteger)subRow contentSize:(CGSize)contentSize{
+    
+    if (0 == column) {
+        UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
+        vi.backgroundColor = [UIColor greenColor];
+        return vi;
+    }
+    return nil;
+}
 
+-(UIView *)viewForPropertyAtColumn:(NSInteger)column contentSize:(CGSize)contentSize{
+    if (0 == column) {
+        UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
+        vi.backgroundColor = [UIColor greenColor];
+        return vi;
+    }
+    return nil;
+}
 
+-(UIView *)viewForTableHeaderWithContentSize:(CGSize)contentSize{
+    UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
+    vi.backgroundColor = [UIColor greenColor];
+    return vi;
+}
 
 
 

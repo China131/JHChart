@@ -106,6 +106,13 @@
     if (_tableTitleString.length>0) {
         [self drawLineWithContext:context andStarPoint:P_M(_beginSpace, _beginSpace +_tableChartTitleItemsHeight) andEndPoint:P_M(CGRectGetWidth(self.frame) - _beginSpace , _beginSpace+_tableChartTitleItemsHeight) andIsDottedLine:NO andColor:_lineColor];
 
+        if ([_delegate respondsToSelector:@selector(viewForTableHeaderWithContentSize:)]) {
+            UIView *header = [_delegate viewForTableHeaderWithContentSize:CGSizeMake(_tableWidth, _tableChartTitleItemsHeight)];
+            if (header) {
+                header.frame = CGRectMake(_beginSpace+1, _beginSpace+1, _tableWidth-2, _tableChartTitleItemsHeight-2);
+                [self addSubview:header];
+            }
+        }
         CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(_tableWidth, _tableChartTitleItemsHeight) textFont:_tableTitleFont.pointSize aimString:_tableTitleString];
         [self drawText:_tableTitleString context:context atPoint:CGRectMake(CGRectGetWidth(self.frame)/2.0 - size.width / 2, _beginSpace + _tableChartTitleItemsHeight/2 - size.height / 2.0, _tableWidth, _tableChartTitleItemsHeight) WithColor:_tableTitleColor font:_tableTitleFont];
         _lastY = _beginSpace + _tableChartTitleItemsHeight;
@@ -135,7 +142,13 @@
             NSLog(@"第%d列 宽度 为 %f\n",i,wid);
             
             CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, _minHeightItems) textFont:14 aimString:_colTitleArr[i]];
-            
+            if ([_delegate respondsToSelector:@selector(viewForPropertyAtColumn:contentSize:)]) {
+                UIView *proView = [_delegate viewForPropertyAtColumn:i contentSize:CGSizeMake(wid-2, _minHeightItems-2)];
+                if (proView) {
+                    proView.frame = CGRectMake(lastX+1, _lastY+1, wid-2, _minHeightItems-2);
+                    [self addSubview:proView];
+                }
+            }
             
             if (i==0) {
 
@@ -184,7 +197,7 @@
         hasSetColWidth = NO;
     }
 
-    /*        绘制具体的行数据         */
+    /*        绘制具体的行数据   i表示第几行 j表示第几列      */
     
     for (NSInteger i = 0; i<_dataModelArr.count; i++) {
         
@@ -196,13 +209,9 @@
         CGFloat lastX = _beginSpace;
         
         for (NSInteger j = 0; j< model.dataArr.count; j++) {
-            
-            
             id rowItems = model.dataArr[j];
-            
-          
             CGFloat wid = (hasSetColWidth?[_colWidthArr[j] floatValue]:_tableWidth / _colTitleArr.count);
-            if ([rowItems isKindOfClass:[NSArray class]]) {
+            if ([rowItems isKindOfClass:[NSArray class]]) {//列元素为数组时
                 
                 CGFloat perItemsHeightByMaxCount = model.maxCount * _minHeightItems / [rowItems count];
                 /*       具体某一列有多个元素时       */
@@ -210,7 +219,16 @@
                     
                     [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY + (n+1) * perItemsHeightByMaxCount) andEndPoint:P_M(lastX + wid, _lastY + (n+1) * perItemsHeightByMaxCount) andIsDottedLine:NO andColor:_lineColor];
                     CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, perItemsHeightByMaxCount) textFont:_tableTitleFont.pointSize aimString:rowItems[n]];
-//                    P_M(lastX + wid / 2 - size.width / 2.0, _lastY + (n+1) * perItemsHeightByMaxCount - perItemsHeightByMaxCount / 2.0 - size.height / 2.0)
+                    if ([_delegate respondsToSelector:@selector(viewForContentAtRow:column:subRow:contentSize:)]) {
+                        CGSize contentSize = CGSizeMake(wid - 2, _minHeightItems*model.maxCount/[rowItems count] - 2);
+
+                        UIView *cacheView = [_delegate viewForContentAtRow:i column:j subRow:n contentSize:contentSize];
+                        if (cacheView) {
+                            cacheView.frame = CGRectMake(lastX+1, _lastY+2, contentSize.width, contentSize.height);
+                            [self addSubview:cacheView];
+                        }
+                        
+                    }
                     [self drawText:rowItems[n] context:context atPoint:CGRectMake(lastX + wid / 2 - size.width / 2.0, _lastY + (n+1) * perItemsHeightByMaxCount - perItemsHeightByMaxCount / 2.0 - size.height / 2.0, size.width, size.height) WithColor:_bodyTextColor font:_tableTitleFont];
                 }
                 
@@ -218,27 +236,24 @@
                 
                 CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, model.maxCount * _minHeightItems) textFont:_tableTitleFont.pointSize aimString:rowItems];
 
+                if ([_delegate respondsToSelector:@selector(viewForContentAtRow:column:subRow:contentSize:)]) {
+                    CGSize contentSize = CGSizeMake(wid - 2, _minHeightItems * model.maxCount - 2);
+                    UIView *cacheView = [_delegate viewForContentAtRow:i column:j subRow:0 contentSize:contentSize];
+                    if (cacheView) {
+                        cacheView.frame = CGRectMake(lastX+1, _lastY+1, contentSize.width, contentSize.height);
+                        [self addSubview:cacheView];
+                    }
+                    
+                }
                   [self drawText:rowItems context:context atPoint:CGRectMake(lastX + wid / 2 - size.width / 2.0,  _lastY + model.maxCount * _minHeightItems - model.maxCount * _minHeightItems / 2.0 - size.height / 2.0, size.width, size.height) WithColor:_bodyTextColor font:_tableTitleFont];
             }
             lastX += wid;
-
-            
         }
         _lastY += model.maxCount * _minHeightItems;
         
         
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 }
@@ -324,9 +339,6 @@
     [self configBaseData];
     
     [self setNeedsDisplay];
-    
-    
-    
     
 }
 

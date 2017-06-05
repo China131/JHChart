@@ -162,12 +162,15 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
 @property (nonatomic, strong) NSArray * contentFillColorArr;
 
 
-
+/*!
+ * whether this chart shows the pointDescription or not.Default is YES
+ */
+@property (nonatomic , assign)BOOL showPointDescription;
 
 /**
  *  whether this chart shows the Y line or not.Default is YES
  */
-@property (nonatomic,assign) BOOL showYLine;
+@property (nonatomic,assign) BOOL showYLine ;
 
 
 /**
