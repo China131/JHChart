@@ -335,7 +335,7 @@
 //    table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量",@"",@"",@"",@"",@"",@""];
     table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量",@"专业评价"];
     /*        The width of the column array, starting with the first column         */
-    table.colWidthArr = @[@80.0,@160.0,@70,@40,@100];
+    table.colWidthArr = @[@80.0,@130.0,@70,@40,@100];
 //    table.colWidthArr = @[@80.0,@30.0,@70,@50,@50,@50,@50,@50,@50,@50];
 //    table.beginSpace = 30;
     /*        Text color of the table body         */
@@ -488,7 +488,7 @@
 
 -(UIView *)viewForContentAtRow:(NSInteger)row column:(NSInteger)column subRow:(NSInteger)subRow contentSize:(CGSize)contentSize{
     
-    if (0 == column) {
+    if (1) {
         UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
         vi.backgroundColor = [UIColor greenColor];
         return vi;
@@ -497,7 +497,7 @@
 }
 
 -(UIView *)viewForPropertyAtColumn:(NSInteger)column contentSize:(CGSize)contentSize{
-    if (0 == column) {
+    if (1) {
         UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
         vi.backgroundColor = [UIColor greenColor];
         return vi;

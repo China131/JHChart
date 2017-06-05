@@ -224,10 +224,9 @@
 
                         UIView *cacheView = [_delegate viewForContentAtRow:i column:j subRow:n contentSize:contentSize];
                         if (cacheView) {
-                            cacheView.frame = CGRectMake(lastX+1, _lastY+2, contentSize.width, contentSize.height);
+                            cacheView.frame = CGRectMake(lastX+1, _lastY+2 + n * _minHeightItems*model.maxCount/[rowItems count] , contentSize.width, contentSize.height);
                             [self addSubview:cacheView];
                         }
-                        
                     }
                     [self drawText:rowItems[n] context:context atPoint:CGRectMake(lastX + wid / 2 - size.width / 2.0, _lastY + (n+1) * perItemsHeightByMaxCount - perItemsHeightByMaxCount / 2.0 - size.height / 2.0, size.width, size.height) WithColor:_bodyTextColor font:_tableTitleFont];
                 }
