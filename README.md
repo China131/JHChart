@@ -196,7 +196,7 @@ Actual effect chart：
 
 Actual effect chart：
 
-![表格图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/表格demo-1.png)
+![表格图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/表格图demo-1.png)
 ***
 ### JHRadarChart
 **Description: JHRadarChart can according to your incoming data description and calculation of drawing data, and pruning, the advantages and disadvantages of each attribute can reflect the image of the**
