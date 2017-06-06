@@ -1,4 +1,4 @@
-# JHChart(最新版本1.1.0)（最近实在太忙，没有及时回复大家的邮件，望见谅见谅！有任何需求添加至Issues即可，谢谢！）
+# JHChart(最新版本1.2.0)（最近实在太忙，没有及时回复大家的邮件，望见谅见谅！有任何需求添加至Issues即可，谢谢！）
 
 [![CI Status](http://img.shields.io/travis/简豪/JHChart.svg?style=flat)](https://travis-ci.org/简豪/JHChart)
 [![Version](https://img.shields.io/cocoapods/v/JHChart.svg?style=flat)](http://cocoapods.org/pods/JHChart)
@@ -27,7 +27,7 @@ There are two ways to use the JHChart library.
 Download the current Demo directly, and then add the JHChart folder to your project
 * 
 Use CocoaPod import, only need to add the following statement in your Podfile:
-pod 'JHChart','~>1.0.3'
+pod 'JHChart','~>1.2.0'
 
 **(If you don't know about [cocoapods](https://guides.cocoapods.org/), [click here](https://guides.cocoapods.org/) to go to the official website.)**
 ## Detailed usage
@@ -72,7 +72,7 @@ pod 'JHChart','~>1.0.3'
 
 Actual effect chart：
 - first quardrant.
-![折线图1](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo1.png)    
+![折线图1](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo-1.png)    
 - first and second quardrant.
 ![折线图2](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/折线图demo2.png)
 - first and fouth quardrant.
@@ -196,7 +196,7 @@ Actual effect chart：
 
 Actual effect chart：
 
-![表格图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/表格demo1.png)
+![表格图](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/表格demo-1.png)
 ***
 ### JHRadarChart
 **Description: JHRadarChart can according to your incoming data description and calculation of drawing data, and pruning, the advantages and disadvantages of each attribute can reflect the image of the**

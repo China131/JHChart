@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D5EE5791EE67E4B00246792 /* 表格图demo-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D5EE5781EE67E4B00246792 /* 表格图demo-1.png */; };
+		7D5EE57B1EE67E5500246792 /* 折线图demo-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D5EE57A1EE67E5500246792 /* 折线图demo-1.png */; };
 		AA0031601CBCCFD500F4FDEB /* JHShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA00315F1CBCCFD500F4FDEB /* JHShowController.m */; };
 		AA441C311CE1684D0056993D /* JHColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AA441C301CE1684D0056993D /* JHColumnChart.m */; };
 		AA57D8A91CD9C492003EA0A7 /* JHShowInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57D8A81CD9C492003EA0A7 /* JHShowInfoView.m */; };
@@ -66,6 +68,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D5EE5781EE67E4B00246792 /* 表格图demo-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "表格图demo-1.png"; sourceTree = "<group>"; };
+		7D5EE57A1EE67E5500246792 /* 折线图demo-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo-1.png"; sourceTree = "<group>"; };
 		AA00315E1CBCCFD500F4FDEB /* JHShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHShowController.h; sourceTree = "<group>"; };
 		AA00315F1CBCCFD500F4FDEB /* JHShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHShowController.m; sourceTree = "<group>"; };
 		AA006FFE1CBB77DC0030F296 /* JHChartHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHChartHeader.h; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 		AAF615181CBF9E7F00E066C3 /* GIFResource */ = {
 			isa = PBXGroup;
 			children = (
+				7D5EE57A1EE67E5500246792 /* 折线图demo-1.png */,
+				7D5EE5781EE67E4B00246792 /* 表格图demo-1.png */,
 				E92CB0401E0BDBFF00861E35 /* 散点图demo1.png */,
 				E9D49A1A1E092D21000453F0 /* 饼状图demo1.png */,
 				E9D49A121E091EAD000453F0 /* 折线图demo1.png */,
@@ -401,7 +407,9 @@
 				E9D49A151E091EAD000453F0 /* 折线图demo1.png in Resources */,
 				AA5E2BBE1CBA298F00FC19EE /* Assets.xcassets in Resources */,
 				AA5E2BBC1CBA298F00FC19EE /* Main.storyboard in Resources */,
+				7D5EE57B1EE67E5500246792 /* 折线图demo-1.png in Resources */,
 				E99BDEE21D812F720062F314 /* 柱状图demo.gif in Resources */,
+				7D5EE5791EE67E4B00246792 /* 表格图demo-1.png in Resources */,
 				E95A73C21E0A67CC0016F307 /* 柱状图demo3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
