@@ -160,4 +160,10 @@
     
 }
 
+-(void)dealloc{
+#if DEBUG
+    NSLog(@"%@ has dealloc",NSStringFromClass([self class]));
+#endif
+}
+
 @end

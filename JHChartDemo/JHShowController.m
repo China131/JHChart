@@ -10,7 +10,7 @@
 #import "JHChartHeader.h"
 #define k_MainBoundsWidth [UIScreen mainScreen].bounds.size.width
 #define k_MainBoundsHeight [UIScreen mainScreen].bounds.size.height
-@interface JHShowController ()
+@interface JHShowController ()<JHColumnChartDelegate,JHTableChartDelegate>
 
 @end
 
@@ -96,6 +96,9 @@
     lineChart.showValueLeadingLine = NO;
     lineChart.valueFontSize = 9.0;
     lineChart.backgroundColor = [UIColor whiteColor];
+    lineChart.showPointDescription = NO;
+    lineChart.showXDescVertical = YES;
+    lineChart.xDescMaxWidth = 15;
     /* Line Chart colors */
     lineChart.valueLineColorArr =@[ [UIColor greenColor], [UIColor orangeColor]];
     /* Colors for every line chart*/
@@ -129,7 +132,7 @@
     
     /* 值点的颜色 默认橘黄色*/
     lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
-    
+    lineChart.showXDescVertical = YES;
     /* X和Y轴的颜色 默认暗黑色 */
     lineChart.xAndYLineColor = [UIColor darkGrayColor];
     lineChart.showYLevelLine = YES;
@@ -169,7 +172,8 @@
     
     /* 值点的颜色 默认橘黄色*/
     lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
-   
+    lineChart.showXDescVertical = YES;
+    lineChart.xDescMaxWidth = 15.0;
     /*        是否展示Y轴分层线条 默认否        */
     lineChart.showYLevelLine = NO;
     lineChart.showValueLeadingLine = NO;
@@ -313,14 +317,11 @@
                                @11
                                ];
 
+    column.delegate = self;
     /*       Start animation        */
     [column showAnimation];
     [self.view addSubview:column];
 }
-
-
-
-
 
 /**
  *  创建表格视图
@@ -333,7 +334,7 @@
 //    table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量",@"",@"",@"",@"",@"",@""];
     table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量",@"专业评价"];
     /*        The width of the column array, starting with the first column         */
-    table.colWidthArr = @[@80.0,@160.0,@70,@40,@100];
+    table.colWidthArr = @[@80.0,@100.0,@70,@40,@100];
 //    table.colWidthArr = @[@80.0,@30.0,@70,@50,@50,@50,@50,@50,@50,@50];
 //    table.beginSpace = 30;
     UIColor *textColor = [UIColor redColor];
@@ -355,17 +356,25 @@
     table.bodyTextFont = [UIFont systemFontOfSize:14];
     /*        Table line color         */
     table.lineColor = [UIColor orangeColor];
-    
+    table.tableTitleString = @"库存";
     table.backgroundColor = [UIColor whiteColor];
     /*       Data source array, in accordance with the data from top to bottom that each line of data, if one of the rows of a column in a number of cells, can be stored in an array of         */
     table.dataArr = @[
                       @[@"2.4L优越版",@"2016皓白标准漆蓝棕",@[@"鸽子白",@"鹅黄",@"炫彩绿"],@[@"4"],@"价格十分优惠，相信市场会非常好"],
                       @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"],@"性价比还不错，内部配置较为不错，值得入手"]                      ];
+//    table.delegate = self;
     /*        show                            */
     [table showAnimation];
     [self.view addSubview:table];
+    
     /*        Automatic calculation table height        */
     table.frame = CGRectMake(10, 64, k_MainBoundsWidth-20, [table heightFromThisDataSource]);
+    
+    [table clear];
+    table.dataArr = @[
+                      @[@"2.0L优越版",@"2016皓白标准漆蓝棕",@[@"鸽子白",@"鹅黄",@"炫彩绿"],@[@"4"],@"价格十分优惠，相信市场会非常好"],
+                      @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"],@"性价比还不错，内部配置较为不错，值得入手"]                      ];
+    [table showAnimation];
 }
 
 
@@ -465,7 +474,7 @@
                                     [NSValue valueWithCGPoint:P_M(1.3, 1.3)],
                                     [NSValue valueWithCGPoint:P_M(1.5, 1.8)],
                                     [NSValue valueWithCGPoint:P_M(1.7, 1.4)],
-                                    [NSValue valueWithCGPoint:P_M(5.9, 5.6)]   ,
+                                    [NSValue valueWithCGPoint:P_M(5.9, 5.6)],
                                     
                                     [NSValue valueWithCGPoint:P_M(0.7, 7.5)],
                                     [NSValue valueWithCGPoint:P_M(0.6, 11)],
@@ -486,22 +495,40 @@
                                     [NSValue valueWithCGPoint:P_M(2, 7)],
                                     [NSValue valueWithCGPoint:P_M(5.9, 5.6)]];
     scatterChart.contentInsets = UIEdgeInsetsMake(10, 40, 20, 10);
-    
     [scatterChart showAnimation];
-    
     [self.view addSubview:scatterChart];
-    
-    
-    
-    
 }
 
 
+-(void)columnItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath{
+    NSLog(@"%@",indexPath);
+}
 
 
+-(UIView *)viewForContentAtRow:(NSInteger)row column:(NSInteger)column subRow:(NSInteger)subRow contentSize:(CGSize)contentSize{
+    
+    if (1) {
+        UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
+        vi.backgroundColor = [UIColor greenColor];
+        return vi;
+    }
+    return nil;
+}
 
+-(UIView *)viewForPropertyAtColumn:(NSInteger)column contentSize:(CGSize)contentSize{
+    if (1) {
+        UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
+        vi.backgroundColor = [UIColor greenColor];
+        return vi;
+    }
+    return nil;
+}
 
-
+-(UIView *)viewForTableHeaderWithContentSize:(CGSize)contentSize{
+    UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
+    vi.backgroundColor = [UIColor greenColor];
+    return vi;
+}
 
 
 

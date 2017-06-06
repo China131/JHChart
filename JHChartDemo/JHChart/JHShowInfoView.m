@@ -64,9 +64,6 @@
     self.showContentString = contentString;
     
     [UIView animateWithDuration:0.5 animations:^{
-
-        
-        
         self.layer.borderColor = bgColor.CGColor;
 
         self.center = CGPointMake(frame.origin.x, frame.origin.y);
@@ -76,5 +73,7 @@
     }];
     
 }
+
+
 
 @end

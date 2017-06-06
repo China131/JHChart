@@ -162,12 +162,15 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
 @property (nonatomic, strong) NSArray * contentFillColorArr;
 
 
-
+/*!
+ * whether this chart shows the pointDescription or not.Default is YES
+ */
+@property (nonatomic , assign)BOOL showPointDescription;
 
 /**
  *  whether this chart shows the Y line or not.Default is YES
  */
-@property (nonatomic,assign) BOOL showYLine;
+@property (nonatomic,assign) BOOL showYLine ;
 
 
 /**
@@ -186,6 +189,20 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
  */
 @property (nonatomic,assign) CGFloat valueFontSize;
 
+/*!
+ * whether chart shows XLineDescription vertical or not。Default is NO；
+ */
+@property (nonatomic , assign)BOOL showXDescVertical;
+
+/*!
+ * if showXDescVertical is YES,this property will control xDescription width.Default is 20.0
+ */
+@property (nonatomic , assign)CGFloat xDescMaxWidth;
+
+/*!
+ * if showXDescVertical is YES,this property will control xDescription angle;
+ */
+@property (nonatomic , assign)CGFloat xDescriptionAngle;
 
 /**
  *  Custom initialization method

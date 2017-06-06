@@ -15,7 +15,13 @@
 
 
 #import "JHChart.h"
-
+@protocol JHTableChartDelegate<NSObject>
+@optional
+///具体的表格数据填充内容 （不包含表头和属性解释行）
+- (UIView *)viewForContentAtRow:(NSInteger)row column:(NSInteger)column subRow:(NSInteger)subRow contentSize:(CGSize)contentSize;
+- (UIView *)viewForPropertyAtColumn:(NSInteger)column contentSize:(CGSize)contentSize;
+- (UIView *)viewForTableHeaderWithContentSize:(CGSize)contentSize;
+@end
 @interface JHTableChart : JHChart
 /**
  *  Table name, if it is empty, does not display a table name
@@ -108,7 +114,7 @@
  */
 @property (nonatomic, assign) CGFloat beginSpace;
 
-
+@property (nonatomic , assign)id <JHTableChartDelegate> delegate;
 
 /**
  *  According to the current data source to determine the desired table view
