@@ -71,8 +71,6 @@
         [_dataModelArr addObject:model];
     }
     
-    
-    
 }
 
 
@@ -334,11 +332,8 @@
  *  绘制图形
  */
 -(void)showAnimation{
-    
     [self configBaseData];
-    
     [self setNeedsDisplay];
-    
 }
 
 /**
@@ -350,6 +345,14 @@
     [self countTableHeight];
     return _tableHeight + _beginSpace * 2;
     
+}
+
+///清空表格
+-(void)clear{
+    //移除视图上的所有子视图
+    for (UIView *sub in self.subviews) {
+        [sub removeFromSuperview];
+    }
 }
 
 @end

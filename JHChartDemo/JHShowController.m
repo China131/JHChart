@@ -97,6 +97,8 @@
     lineChart.valueFontSize = 9.0;
     lineChart.backgroundColor = [UIColor whiteColor];
     lineChart.showPointDescription = NO;
+    lineChart.showXDescVertical = YES;
+    lineChart.xDescMaxWidth = 15;
     /* Line Chart colors */
     lineChart.valueLineColorArr =@[ [UIColor greenColor], [UIColor orangeColor]];
     /* Colors for every line chart*/
@@ -130,7 +132,7 @@
     
     /* 值点的颜色 默认橘黄色*/
     lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
-    
+    lineChart.showXDescVertical = YES;
     /* X和Y轴的颜色 默认暗黑色 */
     lineChart.xAndYLineColor = [UIColor darkGrayColor];
     lineChart.showYLevelLine = YES;
@@ -170,7 +172,8 @@
     
     /* 值点的颜色 默认橘黄色*/
     lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
-   
+    lineChart.showXDescVertical = YES;
+    lineChart.xDescMaxWidth = 15.0;
     /*        是否展示Y轴分层线条 默认否        */
     lineChart.showYLevelLine = NO;
     lineChart.showValueLeadingLine = NO;
@@ -320,10 +323,6 @@
     [self.view addSubview:column];
 }
 
-
-
-
-
 /**
  *  创建表格视图
  */
@@ -335,7 +334,7 @@
 //    table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量",@"",@"",@"",@"",@"",@""];
     table.colTitleArr = @[@"属性|配置",@"外观",@"内饰",@"数量",@"专业评价"];
     /*        The width of the column array, starting with the first column         */
-    table.colWidthArr = @[@80.0,@130.0,@70,@40,@100];
+    table.colWidthArr = @[@80.0,@100.0,@70,@40,@100];
 //    table.colWidthArr = @[@80.0,@30.0,@70,@50,@50,@50,@50,@50,@50,@50];
 //    table.beginSpace = 30;
     /*        Text color of the table body         */
@@ -350,12 +349,19 @@
     table.dataArr = @[
                       @[@"2.4L优越版",@"2016皓白标准漆蓝棕",@[@"鸽子白",@"鹅黄",@"炫彩绿"],@[@"4"],@"价格十分优惠，相信市场会非常好"],
                       @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"],@"性价比还不错，内部配置较为不错，值得入手"]                      ];
-    table.delegate = self;
+//    table.delegate = self;
     /*        show                            */
     [table showAnimation];
     [self.view addSubview:table];
+    
     /*        Automatic calculation table height        */
     table.frame = CGRectMake(10, 64, k_MainBoundsWidth-20, [table heightFromThisDataSource]);
+    
+    [table clear];
+    table.dataArr = @[
+                      @[@"2.0L优越版",@"2016皓白标准漆蓝棕",@[@"鸽子白",@"鹅黄",@"炫彩绿"],@[@"4"],@"价格十分优惠，相信市场会非常好"],
+                      @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"],@"性价比还不错，内部配置较为不错，值得入手"]                      ];
+    [table showAnimation];
 }
 
 
