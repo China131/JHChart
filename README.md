@@ -10,6 +10,11 @@
 Well, I admit that there are a lot of other graphics libraries on the GitHub. But, because of my project needs, most of the library can not fully meet my needs. So I took out a little free time, I wrote a chart library. Initial plan to write only a few lines (my project needs), did not expect the release to GitHub after a number of friends told me that they need more styles.I don't want to tell them I just intend to do it here, so it's a bit of a development to the present 0.1.1 version, basically meet the needs of users before. Of course, the follow-up will continue to update, add more features.
 
 
+## List of new features for the 1.2.0 version
+* The X axis scale of the line chart is displayed vertically, and the overlap of the X axis scales is solved after the data is too long.
+* Histogram add click function.
+* The table view adds custom background and text attribute functions.
+
 ## Introduction  
 
 A simple, feature rich and customizable iOS development chart library.
