@@ -2,7 +2,7 @@
 //  JHPieForeBGView.m
 //  JHCALayer
 //
-//  Created by cjatech-简豪 on 16/4/28.
+//  Created by 简豪 on 16/4/28.
 //  Copyright © 2016年 JH. All rights reserved.
 //
 

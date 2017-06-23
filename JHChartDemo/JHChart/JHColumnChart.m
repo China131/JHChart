@@ -2,7 +2,7 @@
 //  JHColumnChart.m
 //  JHChartDemo
 //
-//  Created by cjatech-简豪 on 16/5/10.
+//  Created by 简豪 on 16/5/10.
 //  Copyright © 2016年 JH. All rights reserved.
 //
 
