@@ -164,12 +164,12 @@
     JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 54, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
     lineChart.xLineDataArr = @[@"一月份",@"二月份",@"三月份",@"四月份",@"五月份",@"六月份",@"七月份",@"八月份"];
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstAndFouthQuardrant;
-    lineChart.valueArr = @[@[@"5",@"-22",@"17",@(-4),@25,@5,@6,@9],@[@"1",@"-12",@"1",@6,@4,@(-8),@6,@7]];
+    lineChart.valueArr = @[@[@"5",@"-220",@"170",@(-4),@25,@5,@6,@9],@[@"1",@"-12",@"1",@6,@4,@(-8),@6,@7]];
     lineChart.yDescTextFontSize = lineChart.xDescTextFontSize = 9.0;
     lineChart.valueFontSize = 9.0;
     /* 值折线的折线颜色 默认暗黑色*/
     lineChart.valueLineColorArr =@[ [UIColor redColor], [UIColor greenColor]];
-    
+    lineChart.showPointDescription = NO;
     /* 值点的颜色 默认橘黄色*/
     lineChart.pointColorArr = @[[UIColor orangeColor],[UIColor yellowColor]];
     lineChart.showXDescVertical = YES;
@@ -179,7 +179,7 @@
     lineChart.showValueLeadingLine = NO;
     lineChart.showYLevelLine = YES;
     lineChart.showYLine = YES;
-    
+    lineChart.contentInsets = UIEdgeInsetsMake(10, 30, 5, 10);
     /* X和Y轴的颜色 默认暗黑色 */
     lineChart.xAndYLineColor = [UIColor darkGrayColor];
     lineChart.backgroundColor = [UIColor whiteColor];

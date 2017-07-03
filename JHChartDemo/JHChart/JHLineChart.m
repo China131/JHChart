@@ -385,6 +385,10 @@
     
 }
 
+-(void)setContentInsets:(UIEdgeInsets)contentInsets{
+    [super setContentInsets:contentInsets];
+    [self configChartOrigin];
+}
 
 /**
  *  构建折线图原点
@@ -546,7 +550,7 @@
             [self drawLineWithContext:context andStarPoint:self.chartOrigin andEndPoint:P_M(self.contentInsets.left+_xLength, self.chartOrigin.y) andIsDottedLine:NO andColor:self.xAndYLineColor];
             
             if (_showYLine) {
-                [self drawLineWithContext:context andStarPoint:P_M(self.contentInsets.left,CGRectGetHeight(self.frame)-self.contentInsets.bottom) andEndPoint:P_M(self.chartOrigin.x,self.contentInsets.top) andIsDottedLine:NO andColor:self.xAndYLineColor];
+                [self drawLineWithContext:context andStarPoint:P_M(self.contentInsets.left,CGRectGetHeight(self.frame)-self.contentInsets.bottom) andEndPoint:P_M(self.contentInsets.left,self.contentInsets.top) andIsDottedLine:NO andColor:self.xAndYLineColor];
             }
             
             if (_xLineDataArr.count>0) {
