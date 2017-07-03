@@ -340,6 +340,8 @@
     UIColor *textColor = [UIColor redColor];
     /*        Text color of the table body         */
     table.bodyTextColor = textColor;
+    
+    table.bodyTextFont = [UIFont systemFontOfSize:5];
     /*        Text color for every column         */
     table.bodyTextColorArr = @[textColor,textColor,textColor,textColor,[UIColor blueColor]];
     /*        Minimum grid height         */
@@ -353,7 +355,7 @@
     /*        Text color for every column title        */
 //    table.colTitleColorArr = @[textColor,textColor,textColor,textColor,[UIColor greenColor]];
     /*        Font of the table body*/
-    table.bodyTextFont = [UIFont systemFontOfSize:14];
+//    table.bodyTextFont = [UIFont systemFontOfSize:14];
     /*        Table line color         */
     table.lineColor = [UIColor orangeColor];
     table.tableTitleString = @"库存";
