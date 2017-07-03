@@ -268,10 +268,10 @@
     JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
     /*        Create an array of data sources, each array is a module data. For example, the first array can represent the average score of a class of different subjects, the next array represents the average score of different subjects in another class        */
     column.valueArr = @[
-                        @[@12],
-                        @[@22],
-                        @[@1],
-                        @[@21],
+                        @[@[@22,@10]],//第一组元素 如果有多个元素，往该组添加，每一组只有一个元素，表示是单列柱状图| | | | |
+                        @[@[@15,@20]],//第二组元素
+                        @[@[@10,@5]],//第三组元素
+                        @[@[@21,@12]],
                         @[@19],
                         @[@12],
                         @[@15],
@@ -297,7 +297,7 @@
     /*        X, Y axis line color         */
     column.colorForXYLine = [UIColor darkGrayColor];
     /*    Each module of the color array, such as the A class of the language performance of the color is red, the color of the math achievement is green     */
-    column.columnBGcolorsArr = @[[UIColor colorWithRed:72/256.0 green:200.0/256 blue:255.0/256 alpha:1],[UIColor greenColor],[UIColor orangeColor]];
+    column.columnBGcolorsArr = @[@[[UIColor redColor],[UIColor greenColor]],@[[UIColor redColor],[UIColor greenColor]],@[[UIColor redColor],[UIColor greenColor]]];//如果为复合型柱状图 即每个柱状图分段 需要传入如上颜色数组 达到同时指定复合型柱状图分段颜色的效果
     /*        Module prompt         */
     column.xShowInfoText = @[@"A班级",@"B班级",@"C班级",@"D班级",@"E班级",@"F班级",@"G班级",@"H班级",@"i班级",@"J班级",@"L班级",@"M班级",@"N班级"];
     column.isShowLineChart = YES;
@@ -504,6 +504,9 @@
     NSLog(@"%@",indexPath);
 }
 
+-(void)columnItem:(JHColumnItem *)item didClickAtIndexPath:(JHIndexPath *)indexPath{
+    NSLog(@"%@",indexPath);
+}
 
 -(UIView *)viewForContentAtRow:(NSInteger)row column:(NSInteger)column subRow:(NSInteger)subRow contentSize:(CGSize)contentSize{
     

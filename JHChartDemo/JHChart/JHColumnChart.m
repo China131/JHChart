@@ -8,7 +8,8 @@
 
 #import "JHColumnChart.h"
 #import <objc/runtime.h>
-@interface JHColumnChart ()<CAAnimationDelegate>
+#import "JHColumnItem.h"
+@interface JHColumnChart ()<CAAnimationDelegate,JHColumnItemActionDelegate>
 
 //背景图
 @property (nonatomic,strong)UIScrollView *BGScrollView;
@@ -155,8 +156,15 @@
     for (NSArray *arr in _valueArr) {
         
         for (id number in arr) {
-            
-            CGFloat currentNumber = [NSString stringWithFormat:@"%@",number].floatValue;
+            CGFloat currentNumber = 0;
+
+            if ([number isKindOfClass:[NSArray class]]) {
+                for (id sub in number) {
+                    currentNumber += [NSString stringWithFormat:@"%@",sub].floatValue;
+                };
+            }else{
+                currentNumber = [NSString stringWithFormat:@"%@",number].floatValue;
+            }
             if (currentNumber>max) {
                 max = currentNumber;
             }
@@ -355,25 +363,38 @@
         NSArray *arr = _valueArr[i];
 
         for (NSInteger j = 0; j<arr.count; j++) {
-            CGFloat height =[arr[j] floatValue] *_perHeight;
-
-            UIView *itemsView = [UIView new];
+            CGFloat height = 0;
+            id colors = nil;
+            if ([arr[j] isKindOfClass:[NSArray class]]) {
+                NSAssert([_columnBGcolorsArr[j]isKindOfClass:[NSArray class]] &&_columnBGcolorsArr.count >= arr.count , @"when current columnItem is  component，you must offer a NSArray type for item's color");
+                colors = _columnBGcolorsArr[j];
+                for (id obj in arr[j]) {
+                    height += [obj floatValue];
+                }
+                height = height * _perHeight;
+            }else{
+                height =[arr[j] floatValue] *_perHeight;
+                colors = (_columnBGcolorsArr.count<arr.count?[UIColor greenColor]:_columnBGcolorsArr[j]);
+                if ([colors isKindOfClass:[NSArray class]] && [colors count] > 0) {
+                    colors = colors[0];
+                }
+            }
+            JHColumnItem *itemsView = [[JHColumnItem alloc] initWithFrame:CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace, CGRectGetHeight(self.frame) - height - _originSize.y -1, _columnWidth, height) perHeight:_perHeight valueArray:arr[j] colors:colors];
+            itemsView.clipsToBounds = YES;
+            itemsView.delegate = self;
             NSIndexPath *path = [NSIndexPath indexPathForRow:j inSection:i];
-            objc_setAssociatedObject(itemsView, "indexPath", path,OBJC_ASSOCIATION_COPY_NONATOMIC);
+            itemsView.index = path;
             [self.showViewArr addObject:itemsView];
             itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace, CGRectGetHeight(self.frame) - _originSize.y-1, _columnWidth, 0);
-            if (_delegate) {
-                [itemsView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(itemClick:)]];
-            }
+
             if (_isShowLineChart) {
                 NSString *value = [NSString stringWithFormat:@"%@",_lineValueArray[i]];
                 float valueFloat =[value floatValue];
                 NSValue *lineValue = [NSValue valueWithCGPoint:P_M(CGRectGetMaxX(itemsView.frame) - _columnWidth / 2, CGRectGetHeight(self.frame) - valueFloat * _perHeight - _originSize.y -1)];
                 [self.drawLineValue addObject:lineValue];
             }
-            
-            
-            itemsView.backgroundColor = (UIColor *)(_columnBGcolorsArr.count<arr.count?[UIColor greenColor]:_columnBGcolorsArr[j]);
+            [self.BGScrollView addSubview:itemsView];
+
             [UIView animateWithDuration:1 animations:^{
                 
                  itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace, CGRectGetHeight(self.frame) - height - _originSize.y -1, _columnWidth, height);
@@ -385,7 +406,7 @@
                     CATextLayer *textLayer = [CATextLayer layer];
                     
                     [self.layerArr addObject:textLayer];
-                    NSString *str = [NSString stringWithFormat:@"%@",arr[j]];
+                    NSString *str = [NSString stringWithFormat:@"%0.2f",height / _perHeight];
                     
                     CGSize size = [str boundingRectWithSize:CGSizeMake(_columnWidth, MAXFLOAT) options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:9]} context:nil].size;
                     
@@ -443,7 +464,6 @@
                 
             }];
             
-            [self.BGScrollView addSubview:itemsView];
             
 
         }
@@ -491,7 +511,6 @@
                     [self.layerArr addObject:roundLayer];
                         [self.BGScrollView.layer addSublayer:roundLayer];
                         
-
                     
                 }
                 
@@ -504,6 +523,18 @@
     
 }
 
+
+-(void)columnItem:(JHColumnItem *)item didClickAtIndexPath:(JHIndexPath *)indexPath{
+    if (_delegate) {
+        if ([_delegate respondsToSelector:@selector(columnItem:didClickAtIndexPath:)]) {
+            [_delegate columnItem:item didClickAtIndexPath:indexPath];
+        }
+        
+        if ([_delegate respondsToSelector:@selector(columnItem:didClickAtIndexRow:)]) {
+            [_delegate columnItem:item didClickAtIndexRow:item.index];
+        }
+    }
+}
 
 
 

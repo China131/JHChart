@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7D5EE5791EE67E4B00246792 /* 表格图demo-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D5EE5781EE67E4B00246792 /* 表格图demo-1.png */; };
 		7D5EE57B1EE67E5500246792 /* 折线图demo-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D5EE57A1EE67E5500246792 /* 折线图demo-1.png */; };
+		7DEA76351F09DD720060D893 /* JHColumnItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEA76341F09DD720060D893 /* JHColumnItem.m */; };
+		7DEA76381F0A34200060D893 /* JHIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEA76371F0A34200060D893 /* JHIndexPath.m */; };
 		AA0031601CBCCFD500F4FDEB /* JHShowController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA00315F1CBCCFD500F4FDEB /* JHShowController.m */; };
 		AA441C311CE1684D0056993D /* JHColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = AA441C301CE1684D0056993D /* JHColumnChart.m */; };
 		AA57D8A91CD9C492003EA0A7 /* JHShowInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57D8A81CD9C492003EA0A7 /* JHShowInfoView.m */; };
@@ -70,6 +72,10 @@
 /* Begin PBXFileReference section */
 		7D5EE5781EE67E4B00246792 /* 表格图demo-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "表格图demo-1.png"; sourceTree = "<group>"; };
 		7D5EE57A1EE67E5500246792 /* 折线图demo-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "折线图demo-1.png"; sourceTree = "<group>"; };
+		7DEA76331F09DD720060D893 /* JHColumnItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHColumnItem.h; sourceTree = "<group>"; };
+		7DEA76341F09DD720060D893 /* JHColumnItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHColumnItem.m; sourceTree = "<group>"; };
+		7DEA76361F0A34200060D893 /* JHIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHIndexPath.h; sourceTree = "<group>"; };
+		7DEA76371F0A34200060D893 /* JHIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHIndexPath.m; sourceTree = "<group>"; };
 		AA00315E1CBCCFD500F4FDEB /* JHShowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHShowController.h; sourceTree = "<group>"; };
 		AA00315F1CBCCFD500F4FDEB /* JHShowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHShowController.m; sourceTree = "<group>"; };
 		AA006FFE1CBB77DC0030F296 /* JHChartHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHChartHeader.h; sourceTree = "<group>"; };
@@ -255,6 +261,10 @@
 				E922F8041D82A8B0000C7C77 /* JHRadarChart.m */,
 				E92CB03D1E0BA14900861E35 /* JHScatterChart.h */,
 				E92CB03E1E0BA14900861E35 /* JHScatterChart.m */,
+				7DEA76331F09DD720060D893 /* JHColumnItem.h */,
+				7DEA76341F09DD720060D893 /* JHColumnItem.m */,
+				7DEA76361F0A34200060D893 /* JHIndexPath.h */,
+				7DEA76371F0A34200060D893 /* JHIndexPath.m */,
 			);
 			path = JHChart;
 			sourceTree = "<group>";
@@ -441,9 +451,11 @@
 				E92CB03F1E0BA14900861E35 /* JHScatterChart.m in Sources */,
 				AA57D8A91CD9C492003EA0A7 /* JHShowInfoView.m in Sources */,
 				AAA60A911CD8A81A0094D6E5 /* JHPieItemsView.m in Sources */,
+				7DEA76351F09DD720060D893 /* JHColumnItem.m in Sources */,
 				AAE935E81CBE0CCA002517EB /* JHWaveChart.m in Sources */,
 				AA5E2BE71CBA2B3100FC19EE /* JHLineChart.m in Sources */,
 				E922F8051D82A8B0000C7C77 /* JHRadarChart.m in Sources */,
+				7DEA76381F0A34200060D893 /* JHIndexPath.m in Sources */,
 				AA5E2BEA1CBA2CE700FC19EE /* JHChart.m in Sources */,
 				AA5E2BB91CBA298F00FC19EE /* ViewController.m in Sources */,
 				AA441C311CE1684D0056993D /* JHColumnChart.m in Sources */,
