@@ -80,19 +80,24 @@
 //第一象限折线图
 - (void)showFirstQuardrant{
     /*     Create object        */
-    JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 40, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
+    JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 60, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
     
     /* The scale value of the X axis can be passed into the NSString or NSNumber type and the data structure changes with the change of the line chart type. The details look at the document or other quadrant X axis data source sample.*/
     
     lineChart.xLineDataArr = @[@"一月份",@"二月份",@"三月份",@"四月份",@"五月份",@"六月份",@"七月份",@"八月份"];
-    lineChart.contentInsets = UIEdgeInsetsMake(0, 25, 20, 10);
+    lineChart.contentInsets = UIEdgeInsetsMake(0, 25, 20, 25);
     /* The different types of the broken line chart, according to the quadrant division, different quadrant correspond to different X axis scale data source and different value data source. */
     
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;
     
-    lineChart.valueArr = @[@[@"1",@"12",@"1",@6,@4,@9,@6,@7],@[@"3",@"1",@"2",@16,@2,@3,@25,@10]];
+    lineChart.valueArr = @[@[@"0",@"12",@"1",@6,@4,@9,@6,@7]];
+    lineChart.valueBaseRightYLineArray = @[@[@"3",@"1",@"2",@1,@2,@3,@2,@5]];
     lineChart.showYLevelLine = YES;
-    lineChart.showYLine = NO;
+    lineChart.showYLine = YES;
+    lineChart.yLineDataArr = @[@[@5,@10,@15,@20,@25,@30],@[@1,@2,@3,@4,@5,@6]];
+//    lineChart.yLineDataArr = @[@5,@10,@15,@20,@25,@30];
+
+    lineChart.showDoubleYLevelLine = YES;
     lineChart.showValueLeadingLine = NO;
     lineChart.valueFontSize = 9.0;
     lineChart.backgroundColor = [UIColor whiteColor];
@@ -110,7 +115,7 @@
     /* Dotted line color of the coordinate point */
     lineChart.positionLineColorArr = @[[UIColor blueColor],[UIColor greenColor]];
     /*        Set whether to fill the content, the default is False         */
-    lineChart.contentFill = YES;
+    lineChart.contentFill = NO;
     /*        Set whether the curve path         */
     lineChart.pathCurve = YES;
     /*        Set fill color array         */

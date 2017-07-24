@@ -204,6 +204,15 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
  */
 @property (nonatomic , assign)CGFloat xDescriptionAngle;
 
+/*!
+ * if showDoubleYLevelLine is true ,this chart will show two y levelLine.Default is NO;
+ */
+@property (nonatomic , assign)BOOL showDoubleYLevelLine;
+
+/*!
+ * if showDoubleYLevelLine is true ,this chart will display others vlaues from this Array;
+ */
+@property (nonatomic , strong)NSArray * valueBaseRightYLineArray;
 /**
  *  Custom initialization method
  *
