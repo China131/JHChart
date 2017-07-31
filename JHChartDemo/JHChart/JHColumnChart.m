@@ -408,10 +408,12 @@
                     [self.layerArr addObject:textLayer];
                     NSString *str = [NSString stringWithFormat:@"%0.2f",height / _perHeight];
                     
-                    CGSize size = [str boundingRectWithSize:CGSizeMake(_columnWidth, MAXFLOAT) options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:9]} context:nil].size;
+                    CGSize size = [str boundingRectWithSize:CGSizeMake(MAXFLOAT, 20) options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:9]} context:nil].size;
                     
-                    textLayer.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace, CGRectGetHeight(self.frame) - height - _originSize.y -3 - size.height, _columnWidth, size.height);
-                    
+                    textLayer.frame = CGRectMake(CGRectGetMinX(itemsView.frame), CGRectGetMinY(itemsView.frame) - size.height - 5,size.width, size.height);
+                    CGPoint center = textLayer.position;
+                    center.x = itemsView.center.x;
+                    textLayer.position = center;
                     textLayer.string = str;
                     
                     textLayer.fontSize = 9.0;
