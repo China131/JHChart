@@ -213,6 +213,11 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
  * if showDoubleYLevelLine is true ,this chart will display others vlaues from this Array;
  */
 @property (nonatomic , strong)NSArray * valueBaseRightYLineArray;
+
+/*!
+ * if animationDuration <= 0,this chart will display without animation.Default is 2.0;
+ */
+@property (nonatomic , assign)NSTimeInterval animationDuration;;
 /**
  *  Custom initialization method
  *
@@ -222,6 +227,7 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
  */
 -(instancetype)initWithFrame:(CGRect)frame
             andLineChartType:(JHLineChartType)lineChartType;
+
 
 
 

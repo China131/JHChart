@@ -58,6 +58,7 @@
         _valueFontSize = 8.0;
         _showPointDescription = YES;
         _showDoubleYLevelLine = NO;
+        _animationDuration = 2.0;
 //        _contentFillColorArr = @[[UIColor lightGrayColor]];
         [self configChartXAndYLength];
         [self configChartOrigin];
@@ -1025,11 +1026,15 @@
     
     ani.toValue = @1;
     
-    ani.duration = 2.0;
+    ani.duration = _animationDuration;
     
     ani.delegate = self;
     
-    [shapeLayer addAnimation:ani forKey:NSStringFromSelector(@selector(strokeEnd))];
+    if (ani.duration > 0) {
+        [shapeLayer addAnimation:ani forKey:NSStringFromSelector(@selector(strokeEnd))];
+    }else{
+        ani = nil;
+    }
     
     [self.layer addSublayer:shapeLayer];
     [_layerArr addObject:shapeLayer];

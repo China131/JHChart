@@ -96,7 +96,7 @@
     lineChart.showYLine = YES;
     lineChart.yLineDataArr = @[@[@5,@10,@15,@20,@25,@30],@[@1,@2,@3,@4,@5,@6]];
 //    lineChart.yLineDataArr = @[@5,@10,@15,@20,@25,@30];
-
+    lineChart.animationDuration = 2.0;
     lineChart.showDoubleYLevelLine = YES;
     lineChart.showValueLeadingLine = NO;
     lineChart.valueFontSize = 9.0;
