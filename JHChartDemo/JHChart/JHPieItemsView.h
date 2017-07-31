@@ -34,4 +34,7 @@
                      andFillColor:(UIColor *)fillColor;
 
 - (void)showAnimation;
+- (void)itemDidClickWithRediusChange:(CGFloat)length;
+@property (nonatomic , assign)BOOL hasClick;
+
 @end

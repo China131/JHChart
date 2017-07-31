@@ -47,6 +47,8 @@
         _chartArcLength = 8.0;
         _showDescripotion = YES;
         _animationType = JHPieChartAnimationNormalType;
+        _saveIndex = -1;
+        _didClickType = JHPieChartDidClickNormalType;
     }
     
     return self;
@@ -274,7 +276,10 @@
             
             JHPieItemsView *itemsView = _layersArr[i];
            
-            JHPieItemsView *saveItems = _layersArr[_saveIndex];
+            JHPieItemsView *saveItems = nil;
+            if (_saveIndex != -1) {
+                saveItems = _layersArr[_saveIndex];
+            }
             
             CGFloat wid = self.frame.size.width-20;
             
@@ -285,6 +290,8 @@
                 wid = self.frame.size.height - 10 - i*25;
                 
             }
+            
+            
             NSArray *colors = nil;
             
             if (_colorArr.count == _valueArr.count) {
@@ -296,7 +303,31 @@
                 colors = k_COLOR_STOCK;
                 
             }
-             CGFloat present = [_valueArr[i] floatValue]/_allValueCount*100;
+            CGFloat present = [_valueArr[i] floatValue]/_allValueCount*100;
+            
+            
+            if (_didClickType == JHPieChartDidClickTranslateToBig) {
+                if (_saveIndex == i) {
+                    saveItems = nil;
+                    _saveIndex = -1;
+                }else{
+                    [saveItems itemDidClickWithRediusChange:self.positionChangeLengthWhenClick];
+                    _saveIndex = i;
+                }
+                
+                [itemsView itemDidClickWithRediusChange:self.positionChangeLengthWhenClick];
+                
+                self.showInfoView.hidden = !itemsView.hasClick;
+                [self.showInfoView updateFrameTo:CGRectMake(p.x, p.y, self.showInfoView.frame.size.width, self.showInfoView.frame.size.height) andBGColor:colors[i%colors.count] andShowContentString:[NSString stringWithFormat:@"%@ 数量:% 3ld 占比:%.1f%c",weakself.descArr[i],[self.valueArr[i] integerValue],present,'%']];
+                return;
+            }
+            
+            
+            
+           
+            
+            return;
+            
             [UIView animateWithDuration:0.3 animations:^{
                 if (weakself.saveIndex==i) {
                     
@@ -323,7 +354,6 @@
             }];
            
             
-               _saveIndex = i;
             
             break;
         }

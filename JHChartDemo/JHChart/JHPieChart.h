@@ -13,6 +13,11 @@ typedef  NS_ENUM(NSInteger,JHPieChartAnimationType){
     JHPieChartAnimationByOrder = 1
 };
 
+typedef NS_ENUM(NSInteger,JHPieChartDidClickType) {
+    JHPieChartDidClickNormalType = 0,//Default
+    JHPieChartDidClickTranslateToBig = 1
+};
+
 @interface JHPieChart : JHChart
 
 /**
@@ -44,5 +49,13 @@ typedef  NS_ENUM(NSInteger,JHPieChartAnimationType){
  */
 @property (nonatomic,assign) BOOL showDescripotion;
 
+/*!
+ * Default is JHPieChartAnimationNormalType
+ */
 @property (nonatomic , assign)JHPieChartAnimationType animationType;
+
+/*!
+ * Default is JHPieChartDidClickNormalType;
+ */
+@property (nonatomic , assign)JHPieChartDidClickType didClickType;
 @end

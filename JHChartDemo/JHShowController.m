@@ -240,7 +240,7 @@
     /* The description of each sector must be filled, and the number must be the same as the pie chart. */
     pie.descArr = @[@"第一个元素",@"第二个元素",@"第三个元素",@"第四个元素",@"5",@"6",@"7",@"8"];
 //    pie.backgroundColor = [UIColor whiteColor];
-    
+    pie.didClickType = JHPieChartDidClickTranslateToBig;
     pie.animationDuration = 1.0;
     [self.view addSubview:pie];
     /*    When touching a pie chart, the animation offset value     */
