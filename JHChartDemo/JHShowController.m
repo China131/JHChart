@@ -273,7 +273,7 @@
     JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
     /*        Create an array of data sources, each array is a module data. For example, the first array can represent the average score of a class of different subjects, the next array represents the average score of different subjects in another class        */
     column.valueArr = @[
-                        @[@[@11525,@0]],//第一组元素 如果有多个元素，往该组添加，每一组只有一个元素，表示是单列柱状图| | | | |
+                        @[@[@15,@10]],//第一组元素 如果有多个元素，往该组添加，每一组只有一个元素，表示是单列柱状图| | | | |
                         @[@[@15,@20]],//第二组元素
                         @[@[@10,@5]],//第三组元素
                         @[@[@21,@12]],
@@ -285,18 +285,20 @@
                         @[@6],
                         @[@9],
                         @[@18],
-                        @[@11525],
+                        @[@11],
                         ];
     /*       This point represents the distance from the lower left corner of the origin.         */
     column.originSize = CGPointMake(30, 20);
     /*    The first column of the distance from the starting point     */
     column.drawFromOriginX = 20;
+    column.backgroundColor = [UIColor yellowColor];
     column.typeSpace = 10;
     column.isShowYLine = NO;
+    column.contentInsets = UIEdgeInsetsMake(5, 0, 0, 0);
     /*        Column width         */
     column.columnWidth = 30;
     /*        Column backgroundColor         */
-    column.bgVewBackgoundColor = [UIColor whiteColor];
+    column.bgVewBackgoundColor = [UIColor yellowColor];
     /*        X, Y axis font color         */
     column.drawTextColorForX_Y = [UIColor blackColor];
     /*        X, Y axis line color         */

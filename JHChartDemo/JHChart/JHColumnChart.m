@@ -182,7 +182,7 @@
     }
     
     _maxHeight += 4;
-    _perHeight = (CGRectGetHeight(self.frame) - 30 - _originSize.y)/_maxHeight;
+    _perHeight = (CGRectGetHeight(self.frame) - 30 - _originSize.y - self.contentInsets.top)/_maxHeight;
     
     
 }
@@ -195,7 +195,7 @@
     _columnWidth = (_columnWidth<=0?30:_columnWidth);
     NSInteger count = _valueArr.count * [_valueArr[0] count];
     _typeSpace = (_typeSpace<=0?15:_typeSpace);
-    _maxWidth = count * _columnWidth + _valueArr.count * _typeSpace + _typeSpace + 40;
+    _maxWidth = count * _columnWidth + _valueArr.count * _typeSpace + _typeSpace + 40 + _drawFromOriginX;
     self.BGScrollView.contentSize = CGSizeMake(_maxWidth, 0);
     self.BGScrollView.backgroundColor = _bgVewBackgoundColor;
     
@@ -328,7 +328,7 @@
             
             CGSize size = [_xShowInfoText[i] boundingRectWithSize:CGSizeMake(wid, MAXFLOAT) options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:self.xDescTextFontSize]} context:nil].size;
             
-            textLayer.frame = CGRectMake( i * (count * _columnWidth + _typeSpace) + _typeSpace + _originSize.x, CGRectGetHeight(self.frame) - _originSize.y+5,wid, size.height);
+            textLayer.frame = CGRectMake( i * (count * _columnWidth + _typeSpace) + _typeSpace + _originSize.x+ _drawFromOriginX, CGRectGetHeight(self.frame) - _originSize.y+5,wid, size.height);
             textLayer.string = _xShowInfoText[i];
             textLayer.contentsScale = [UIScreen mainScreen].scale;
             UIFont *font = [UIFont systemFontOfSize:self.xDescTextFontSize];
@@ -385,7 +385,7 @@
             NSIndexPath *path = [NSIndexPath indexPathForRow:j inSection:i];
             itemsView.index = path;
             [self.showViewArr addObject:itemsView];
-            itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace, CGRectGetHeight(self.frame) - _originSize.y-1, _columnWidth, 0);
+            itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace + _drawFromOriginX, CGRectGetHeight(self.frame) - _originSize.y-1, _columnWidth, 0);
 
             if (_isShowLineChart) {
                 NSString *value = [NSString stringWithFormat:@"%@",_lineValueArray[i]];
@@ -397,7 +397,7 @@
 
             [UIView animateWithDuration:1 animations:^{
                 
-                 itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace, CGRectGetHeight(self.frame) - height - _originSize.y -1, _columnWidth, height);
+                 itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace + _drawFromOriginX, CGRectGetHeight(self.frame) - height - _originSize.y -1, _columnWidth, height);
                 
             } completion:^(BOOL finished) {
                 /*        动画结束后添加提示文字         */
