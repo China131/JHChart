@@ -20,6 +20,7 @@
         self.xAndYLineColor = [UIColor darkGrayColor];
         self.contentInsets = UIEdgeInsetsMake(10, 20, 10, 10);
         self.chartOrigin = P_M(self.contentInsets.left, CGRectGetHeight(self.frame) - self.contentInsets.bottom);
+        self.animationDuration = 2.0;
     }
     return self;
 }

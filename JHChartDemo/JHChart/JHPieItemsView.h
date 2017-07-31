@@ -7,8 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@class JHPieItemsView;
+@protocol JHPieChartDelegate <NSObject>
 
+@optional
+
+- (void)pieChart:(JHPieItemsView *)pieChart animationDidEnd:(BOOL)flag;
+
+@end
 @interface JHPieItemsView : UIView
+
+@property (nonatomic , assign)NSTimeInterval animationDuration ;
+
+@property (nonatomic , weak)id<JHPieChartDelegate> delegate;
 
 /**
  *  Each initialization method of pie chart
@@ -21,4 +32,6 @@
                     andBeginAngle:(CGFloat)beginAngle
                       andEndAngle:(CGFloat)endAngle
                      andFillColor:(UIColor *)fillColor;
+
+- (void)showAnimation;
 @end

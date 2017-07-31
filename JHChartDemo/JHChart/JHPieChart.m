@@ -12,7 +12,7 @@
 #import "JHShowInfoView.h"
 #define k_COLOR_STOCK @[[UIColor colorWithRed:244/255.0 green:161/255.0 blue:100/255.0 alpha:1],[UIColor colorWithRed:87/255.0 green:255/255.0 blue:191/255.0 alpha:1],[UIColor colorWithRed:254/255.0 green:224/255.0 blue:90/255.0 alpha:1],[UIColor colorWithRed:240/255.0 green:58/255.0 blue:63/255.0 alpha:1],[UIColor colorWithRed:147/255.0 green:111/255.0 blue:255/255.0 alpha:1],[UIColor colorWithRed:255/255.0 green:255/255.0 blue:199/255.0 alpha:1],[UIColor colorWithRed:90/255.0 green:159/255.0 blue:229/255.0 alpha:1],[UIColor colorWithRed:100/255.0 green:230/255.0 blue:95/255.0 alpha:1],[UIColor colorWithRed:33/255.0 green:255/255.0 blue:255/255.0 alpha:1],[UIColor colorWithRed:249/255.0 green:110/255.0 blue:176/255.0 alpha:1],[UIColor colorWithRed:192/255.0 green:168/255.0 blue:250/255.0 alpha:1],[UIColor colorWithRed:166/255.0 green:134/255.0 blue:54/255.0 alpha:1],[UIColor colorWithRed:217/255.0 green:221/255.0 blue:228/255.0 alpha:1],[UIColor colorWithRed:99/255.0 green:106/255.0 blue:192/255.0 alpha:1]]
 
-@interface JHPieChart ()
+@interface JHPieChart ()<JHPieChartDelegate>
 
 @property (nonatomic,strong) JHPieForeBGView * pieForeView;
 
@@ -40,23 +40,13 @@
 @implementation JHPieChart
 
 
--(instancetype)init{
-    
-    if (self = [super init]) {
-        _chartArcLength = 8.0;
-        _showDescripotion = YES;
-    }
-    
-    return self;
-    
-}
-
 
 -(instancetype)initWithFrame:(CGRect)frame{
     
     if (self = [super initWithFrame:frame]) {
-        
         _chartArcLength = 8.0;
+        _showDescripotion = YES;
+        _animationType = JHPieChartAnimationNormalType;
     }
     
     return self;
@@ -145,6 +135,22 @@
     
 }
 
+
+- (void)pieChart:(JHPieItemsView *)pieChart animationDidEnd:(BOOL)flag{
+    if (flag) {
+        if (_animationType == JHPieChartAnimationByOrder) {
+            if (pieChart.tag < _layersArr.count - 1) {
+                JHPieItemsView *nextView = _layersArr[pieChart.tag + 1];
+                nextView.delegate = self;
+                [nextView showAnimation];
+            }
+            
+        }
+        
+    }
+}
+
+
 -(void)showAnimation{
     
  
@@ -189,7 +195,21 @@
             itemsView.center = CGPointMake(self.frame.size.width/2, 10+wid/2);
             
             itemsView.tag = i;
+            itemsView.animationDuration = self.animationDuration;
             
+            NSTimeInterval cacheTime = ([_countPreAngeleArr[i+1] floatValue] - [_countPreAngeleArr[i] floatValue]) * self.animationDuration / M_PI;
+            
+            if (_animationType == JHPieChartAnimationNormalType || i == 0) {
+                if (i == 0 && _animationType == JHPieChartAnimationByOrder) {
+                    itemsView.delegate = self;
+                    itemsView.animationDuration = cacheTime;
+                }
+                [itemsView showAnimation];
+                
+            }else{
+                itemsView.delegate = self;
+                itemsView.animationDuration = cacheTime;
+            }
             [_layersArr addObject:itemsView];
             
             [self addSubview:itemsView];

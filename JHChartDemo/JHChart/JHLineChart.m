@@ -58,7 +58,7 @@
         _valueFontSize = 8.0;
         _showPointDescription = YES;
         _showDoubleYLevelLine = NO;
-        _animationDuration = 2.0;
+        self.animationDuration = 2.0;
 //        _contentFillColorArr = @[[UIColor lightGrayColor]];
         [self configChartXAndYLength];
         [self configChartOrigin];
@@ -1026,7 +1026,7 @@
     
     ani.toValue = @1;
     
-    ani.duration = _animationDuration;
+    ani.duration = self.animationDuration;
     
     ani.delegate = self;
     

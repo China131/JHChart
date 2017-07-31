@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "JHChart.h"
+typedef  NS_ENUM(NSInteger,JHPieChartAnimationType){
+    JHPieChartAnimationNormalType = 0,//Default
+    JHPieChartAnimationByOrder = 1
+};
+
 @interface JHPieChart : JHChart
 
 /**
@@ -39,5 +44,5 @@
  */
 @property (nonatomic,assign) BOOL showDescripotion;
 
-
+@property (nonatomic , assign)JHPieChartAnimationType animationType;
 @end

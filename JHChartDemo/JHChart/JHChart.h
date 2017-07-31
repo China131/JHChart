@@ -44,7 +44,10 @@
  */
 @property (nonatomic,assign) CGFloat yDescTextFontSize;
 
-
+/*!
+ * if animationDuration <= 0,this chart will display without animation.Default is 2.0;
+ */
+@property (nonatomic , assign)NSTimeInterval animationDuration;
 
 /**
  *  The fontsize of X line text.Default id 8;
