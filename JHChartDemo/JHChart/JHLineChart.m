@@ -57,6 +57,7 @@
         _showValueLeadingLine = YES;
         _valueFontSize = 8.0;
         _showPointDescription = YES;
+        _drawPathFromXIndex = 0;
         _showDoubleYLevelLine = NO;
         self.animationDuration = 2.0;
 //        _contentFillColorArr = @[[UIColor lightGrayColor]];
@@ -801,7 +802,7 @@
             
             for (NSArray *valueArr in _valueArr) {
                 NSMutableArray *dataMArr = [NSMutableArray array];
-                for (NSInteger i = 0; i<valueArr.count; i++) {
+                for (NSInteger i = _drawPathFromXIndex; i<valueArr.count; i++) {
                     
                     CGPoint p = P_M(i*_perXLen+self.chartOrigin.x,self.contentInsets.top + _yLength - [valueArr[i] floatValue]*_perValue);
                     NSValue *value = [NSValue valueWithCGPoint:p];
@@ -815,7 +816,7 @@
                 CGFloat scale = [_yLineDataArr[0][0] floatValue] / [_yLineDataArr[1][0] floatValue];
                 for (NSArray *valueArr in _valueBaseRightYLineArray) {
                     NSMutableArray *dataMArr = [NSMutableArray array];
-                    for (NSInteger i = 0; i<valueArr.count; i++) {
+                    for (NSInteger i = _drawPathFromXIndex; i<valueArr.count; i++) {
                         CGPoint p = P_M(i*_perXLen+self.chartOrigin.x,self.contentInsets.top + _yLength - [valueArr[i] floatValue]*_perValue*scale);
                         NSValue *value = [NSValue valueWithCGPoint:p];
                         [dataMArr addObject:value];
@@ -863,7 +864,7 @@
             _perValue = _perYlen/[[_yLineDataArr[0] firstObject] floatValue];
             for (NSArray *valueArr in _valueArr) {
                 NSMutableArray *dataMArr = [NSMutableArray array];
-                for (NSInteger i = 0; i<valueArr.count; i++) {
+                for (NSInteger i = _drawPathFromXIndex; i<valueArr.count; i++) {
                     
                     CGPoint p = P_M(i*_perXLen+self.chartOrigin.x,self.chartOrigin.y - [valueArr[i] floatValue]*_perValue);
                     NSValue *value = [NSValue valueWithCGPoint:p];

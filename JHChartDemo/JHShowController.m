@@ -96,6 +96,7 @@
     lineChart.showYLine = YES;
     lineChart.yLineDataArr = @[@[@5,@10,@15,@20,@25,@30],@[@1,@2,@3,@4,@5,@6]];
 //    lineChart.yLineDataArr = @[@5,@10,@15,@20,@25,@30];
+//    lineChart.drawPathFromXIndex = 1;
     lineChart.animationDuration = 2.0;
     lineChart.showDoubleYLevelLine = YES;
     lineChart.showValueLeadingLine = NO;
@@ -167,7 +168,7 @@
 //第一四象限
 - (void)showFirstAndFouthQuardrant{
     JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 54, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
-    lineChart.xLineDataArr = @[@"一月份",@"二月份",@"三月份",@"四月份",@"五月份",@"六月份",@"七月份",@"八月份"];
+    lineChart.xLineDataArr = @[@"",@"二月份",@"三月份",@"四月份",@"五月份",@"六月份",@"七月份",@"八月份"];
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstAndFouthQuardrant;
     lineChart.valueArr = @[@[@"5",@"-220",@"170",@(-4),@25,@5,@6,@9],@[@"1",@"-12",@"1",@6,@4,@(-8),@6,@7]];
     lineChart.yDescTextFontSize = lineChart.xDescTextFontSize = 9.0;
@@ -184,6 +185,8 @@
     lineChart.showValueLeadingLine = NO;
     lineChart.showYLevelLine = YES;
     lineChart.showYLine = YES;
+    //从下标为1的点开始绘制 默认从下标为0的点开始绘制
+    lineChart.drawPathFromXIndex = 1;
     lineChart.contentInsets = UIEdgeInsetsMake(10, 30, 5, 10);
     /* X和Y轴的颜色 默认暗黑色 */
     lineChart.xAndYLineColor = [UIColor darkGrayColor];

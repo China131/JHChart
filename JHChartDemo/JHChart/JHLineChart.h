@@ -214,7 +214,11 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
  */
 @property (nonatomic , strong)NSArray * valueBaseRightYLineArray;
 
-
+/*!
+ * it will draw path start will point valueArray[drawPathFromXIndex];Default 0;Action:this property only take effect when chart type in JHLineChartQuadrantTypeFirstQuardrant and
+  JHLineChartQuadrantTypeFirstAndFouthQuardrant;
+ */
+@property (nonatomic , assign)NSInteger drawPathFromXIndex;
 /**
  *  Custom initialization method
  *
