@@ -474,8 +474,8 @@
 }
 
 - (void)itemClick:(UITapGestureRecognizer *)sender{
-    if ([_delegate respondsToSelector:@selector(columnItem:didClickAtIndexRow:)]) {
-        [_delegate columnItem:sender.view didClickAtIndexRow:objc_getAssociatedObject(sender.view, "indexPath")];
+    if ([_delegate respondsToSelector:@selector(columnChart:columnItem:didClickAtIndexRow:)]) {
+        [_delegate columnChart:self columnItem:sender.view didClickAtIndexRow:objc_getAssociatedObject(sender.view, "indexPath")];
     }
 }
 
@@ -528,12 +528,12 @@
 
 -(void)columnItem:(JHColumnItem *)item didClickAtIndexPath:(JHIndexPath *)indexPath{
     if (_delegate) {
-        if ([_delegate respondsToSelector:@selector(columnItem:didClickAtIndexPath:)]) {
-            [_delegate columnItem:item didClickAtIndexPath:indexPath];
+        if ([_delegate respondsToSelector:@selector(columnChart:columnItem:didClickAtIndexPath:)]) {
+            [_delegate columnChart:self columnItem:item didClickAtIndexPath:indexPath];
         }
         
-        if ([_delegate respondsToSelector:@selector(columnItem:didClickAtIndexRow:)]) {
-            [_delegate columnItem:item didClickAtIndexRow:item.index];
+        if ([_delegate respondsToSelector:@selector(columnChart:columnItem:didClickAtIndexRow:)]) {
+            [_delegate columnChart:self columnItem:item didClickAtIndexRow:item.index];
         }
     }
 }

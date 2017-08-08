@@ -515,15 +515,15 @@
 }
 
 
--(void)columnItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath{
+-(void)columnChart:(JHColumnChart*)chart columnItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath{
     NSLog(@"%@",indexPath);
 }
 
--(void)columnItem:(JHColumnItem *)item didClickAtIndexPath:(JHIndexPath *)indexPath{
+-(void)columnChart:(JHColumnChart*)chart columnItem:(JHColumnItem *)item didClickAtIndexPath:(JHIndexPath *)indexPath{
     NSLog(@"%@",indexPath);
 }
 
--(UIView *)viewForContentAtRow:(NSInteger)row column:(NSInteger)column subRow:(NSInteger)subRow contentSize:(CGSize)contentSize{
+-(UIView *)tableChart:(JHTableChart*)chart viewForContentAtRow:(NSInteger)row column:(NSInteger)column subRow:(NSInteger)subRow contentSize:(CGSize)contentSize{
     
     if (1) {
         UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
@@ -533,7 +533,7 @@
     return nil;
 }
 
--(UIView *)viewForPropertyAtColumn:(NSInteger)column contentSize:(CGSize)contentSize{
+-(UIView *)tableChart:(JHTableChart*)chart viewForPropertyAtColumn:(NSInteger)column contentSize:(CGSize)contentSize{
     if (1) {
         UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
         vi.backgroundColor = [UIColor greenColor];
@@ -542,7 +542,7 @@
     return nil;
 }
 
--(UIView *)viewForTableHeaderWithContentSize:(CGSize)contentSize{
+-(UIView *)tableChart:(JHTableChart*)chart viewForTableHeaderWithContentSize:(CGSize)contentSize{
     
 //    return nil;
     UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];

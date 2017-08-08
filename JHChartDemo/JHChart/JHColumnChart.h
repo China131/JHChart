@@ -7,12 +7,12 @@
 //
 
 #import "JHChart.h"
-@class JHColumnItem,JHIndexPath;
+@class JHColumnItem,JHIndexPath,JHColumnChart;
 @protocol JHColumnChartDelegate<NSObject>
 
 @optional
-- (void)columnItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath; //1.2.0
-- (void)columnItem:(JHColumnItem *)item didClickAtIndexPath:(JHIndexPath *)indexPath;//1.2.1
+- (void)columnChart:(JHColumnChart *)chart columnItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath; //1.2.0
+- (void)columnChart:(JHColumnChart *)chart columnItem:(JHColumnItem *)item didClickAtIndexPath:(JHIndexPath *)indexPath;//1.2.1
 @end
 
 @interface JHColumnChart : JHChart

@@ -106,8 +106,8 @@
         [self drawLineWithContext:context andStarPoint:P_M(_beginSpace, _beginSpace +_tableChartTitleItemsHeight) andEndPoint:P_M(CGRectGetWidth(self.frame) - _beginSpace , _beginSpace+_tableChartTitleItemsHeight) andIsDottedLine:NO andColor:_lineColor];
 
         BOOL drawText = true;
-        if ([_delegate respondsToSelector:@selector(viewForTableHeaderWithContentSize:)]) {
-            UIView *header = [_delegate viewForTableHeaderWithContentSize:CGSizeMake(_tableWidth, _tableChartTitleItemsHeight)];
+        if ([_delegate respondsToSelector:@selector(tableChart:viewForTableHeaderWithContentSize:)]) {
+            UIView *header = [_delegate tableChart:self viewForTableHeaderWithContentSize:CGSizeMake(_tableWidth, _tableChartTitleItemsHeight)];
             if (header) {
                 header.frame = CGRectMake(_beginSpace+1, _beginSpace+1, _tableWidth-2, _tableChartTitleItemsHeight-2);
                 drawText = false;
@@ -150,8 +150,8 @@
             
             BOOL drawText = true;
             
-            if ([_delegate respondsToSelector:@selector(viewForPropertyAtColumn:contentSize:)]) {
-                UIView *proView = [_delegate viewForPropertyAtColumn:i contentSize:CGSizeMake(wid-2, self.colTitleHeight-2)];
+            if ([_delegate respondsToSelector:@selector(tableChart:viewForPropertyAtColumn:contentSize:)]) {
+                UIView *proView = [_delegate tableChart:self viewForPropertyAtColumn:i contentSize:CGSizeMake(wid-2, self.colTitleHeight-2)];
                 if (proView) {
                     proView.frame = CGRectMake(lastX+1, _lastY+1, wid-2, self.colTitleHeight-2);
                     drawText = false;
@@ -243,10 +243,10 @@
 
                     CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, perItemsHeightByMaxCount) textFont:_bodyTextFont.pointSize aimString:rowItems[n]];
                     BOOL drawText = true;
-                    if ([_delegate respondsToSelector:@selector(viewForContentAtRow:column:subRow:contentSize:)]) {
+                    if ([_delegate respondsToSelector:@selector(tableChart:viewForContentAtRow:column:subRow:contentSize:)]) {
                         CGSize contentSize = CGSizeMake(wid - 2, _minHeightItems*model.maxCount/[rowItems count] - 2);
 
-                        UIView *cacheView = [_delegate viewForContentAtRow:i column:j subRow:n contentSize:contentSize];
+                        UIView *cacheView = [_delegate tableChart:self  viewForContentAtRow:i column:j subRow:n contentSize:contentSize];
                         if (cacheView) {
                             cacheView.frame = CGRectMake(lastX+1, _lastY+2 + n * _minHeightItems*model.maxCount/[rowItems count] , contentSize.width, contentSize.height);
                             drawText = false;
@@ -265,9 +265,9 @@
                 CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, model.maxCount * _minHeightItems) textFont:_bodyTextFont.pointSize aimString:rowItems];
 
                 BOOL drawText = true;
-                if ([_delegate respondsToSelector:@selector(viewForContentAtRow:column:subRow:contentSize:)]) {
+                if ([_delegate respondsToSelector:@selector(tableChart:viewForContentAtRow:column:subRow:contentSize:)]) {
                     CGSize contentSize = CGSizeMake(wid - 2, _minHeightItems * model.maxCount - 2);
-                    UIView *cacheView = [_delegate viewForContentAtRow:i column:j subRow:0 contentSize:contentSize];
+                    UIView *cacheView = [_delegate tableChart:self  viewForContentAtRow:i column:j subRow:0 contentSize:contentSize];
                     if (cacheView) {
                         cacheView.frame = CGRectMake(lastX+1, _lastY+1, contentSize.width, contentSize.height);
                         drawText = false;
