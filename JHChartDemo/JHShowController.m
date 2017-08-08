@@ -377,7 +377,7 @@
     table.dataArr = @[
                       @[@"2.4L优越版",@"2016皓白标准漆蓝棕",@[@"鸽子白",@"鹅黄",@"炫彩绿"],@[@"4"],@"价格十分优惠，相信市场会非常好"],
                       @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"],@"性价比还不错，内部配置较为不错，值得入手"]                      ];
-//    table.delegate = self;
+    table.delegate = self;
     /*        show                            */
     [table showAnimation];
     [self.view addSubview:table];
@@ -543,6 +543,8 @@
 }
 
 -(UIView *)viewForTableHeaderWithContentSize:(CGSize)contentSize{
+    
+//    return nil;
     UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
     vi.backgroundColor = [UIColor greenColor];
     return vi;
