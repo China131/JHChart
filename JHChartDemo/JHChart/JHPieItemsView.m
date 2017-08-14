@@ -50,12 +50,10 @@
   
     }
     
-    
     _shapeLayer.path = path.CGPath;
-    
-    
+
     _shapeLayer.strokeColor = _fillColor.CGColor;
-    _shapeLayer.fillColor = [UIColor yellowColor].CGColor;
+    _shapeLayer.fillColor = [UIColor clearColor].CGColor;
     _shapeLayer.borderColor = [UIColor clearColor].CGColor;
     
 
