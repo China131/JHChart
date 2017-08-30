@@ -45,13 +45,10 @@
 
 -(NSMutableArray *)showViewArr{
     
-    
     if (!_showViewArr) {
         _showViewArr = [NSMutableArray array];
     }
-    
     return _showViewArr;
-    
 }
 
 -(NSMutableArray *)layerArr{
@@ -111,12 +108,15 @@
         _isShowYLine = YES;
         _lineChartPathColor = [UIColor blueColor];
         _lineChartValuePointColor = [UIColor yellowColor];
+        _type = JHColumnChartNormal;
     }
     return self;
     
 }
 
 -(void)setLineValueArray:(NSArray *)lineValueArray{
+    
+    NSAssert(_type == JHColumnChartXAsValue, @"您选择的柱状图类型不适合添加折线图");
     
     if (!_isShowLineChart) {
         return;
@@ -183,6 +183,9 @@
     
     _maxHeight += 4;
     _perHeight = (CGRectGetHeight(self.frame) - 30 - _originSize.y - self.contentInsets.top)/_maxHeight;
+    if (_type == JHColumnChartXAsValue) {//
+       _perHeight = (CGRectGetWidth(self.frame) - 30 - _originSize.x - self.contentInsets.right)/_maxHeight;
+    }
     
     
 }
@@ -195,8 +198,12 @@
     _columnWidth = (_columnWidth<=0?30:_columnWidth);
     NSInteger count = _valueArr.count * [_valueArr[0] count];
     _typeSpace = (_typeSpace<=0?15:_typeSpace);
+    //最大宽度
     _maxWidth = count * _columnWidth + _valueArr.count * _typeSpace + _typeSpace + 40 + _drawFromOriginX;
     self.BGScrollView.contentSize = CGSizeMake(_maxWidth, 0);
+    if (_type == JHColumnChartXAsValue) {
+        self.BGScrollView.contentSize = CGSizeMake(0, _maxWidth);
+    }
     self.BGScrollView.backgroundColor = _bgVewBackgoundColor;
     
     
@@ -209,16 +216,19 @@
         
         UIBezierPath *bezier = [UIBezierPath bezierPath];
         
-        if (self.isShowYLine) {
+        if (_type == JHColumnChartNormal) {
+            if (self.isShowYLine) {
+                [bezier moveToPoint:CGPointMake(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
+                [bezier addLineToPoint:P_M(self.originSize.x, 20)];
+            }
+        
             [bezier moveToPoint:CGPointMake(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
-             [bezier addLineToPoint:P_M(self.originSize.x, 20)];
-        }
-        
-        [bezier moveToPoint:CGPointMake(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
     
-        [bezier addLineToPoint:P_M(_maxWidth , CGRectGetHeight(self.frame) - self.originSize.y)];
+            [bezier addLineToPoint:P_M(_maxWidth , CGRectGetHeight(self.frame) - self.originSize.y)];
         
-        
+        }else{
+            
+        }
         layer.path = bezier.CGPath;
         
         layer.strokeColor = (_colorForXYLine==nil?([UIColor blackColor].CGColor):_colorForXYLine.CGColor);
@@ -242,7 +252,6 @@
         
         [self.BGScrollView.layer addSublayer:layer];
         
-//        _maxHeight += 4;
         
         /*        设置虚线辅助线         */
         UIBezierPath *second = [UIBezierPath bezierPath];

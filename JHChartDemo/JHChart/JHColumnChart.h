@@ -7,6 +7,11 @@
 //
 
 #import "JHChart.h"
+
+typedef NS_ENUM(NSInteger,JHColumnChartType){
+    JHColumnChartNormal = 0,//Default
+    JHColumnChartXAsValue = 1
+};
 @class JHColumnItem,JHIndexPath,JHColumnChart;
 @protocol JHColumnChartDelegate<NSObject>
 
@@ -112,7 +117,10 @@
  */
 @property (nonatomic,strong)UIColor * lineChartValuePointColor;
 
-
+/*!
+ * chartType defalut 0
+ */
+@property (nonatomic , assign)JHColumnChartType type;
 
 
 @end
