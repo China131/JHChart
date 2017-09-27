@@ -418,6 +418,10 @@
     
     [self.view addSubview:radarChart];
     
+//    radarChart.valueDataArray = @[@[@"10",@"20",@"50",@"76",@"75",@"50"],@[@"50",@"80",@"30",@"46",@"35",@"50"]];
+//    [radarChart clear];
+//    [radarChart showAnimation];
+    
 }
 
 

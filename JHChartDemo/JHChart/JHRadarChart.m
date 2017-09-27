@@ -14,11 +14,19 @@
 @property (nonatomic,strong)NSMutableArray * drawPointArray;
 
 @property (nonatomic,strong)NSMutableArray * baseDrawPointArray;
+@property (nonatomic , strong)NSMutableArray * layerArray;
+
 @end
 
 
 @implementation JHRadarChart
-
+- (NSMutableArray *)layerArray{
+    if (!_layerArray) {
+        _layerArray = [NSMutableArray array];
+    }
+    
+    return _layerArray;
+}
 
 -(NSMutableArray *)drawPointArray{
     
@@ -197,7 +205,7 @@
     shapeLayer.path = path.CGPath;
     shapeLayer.strokeColor = self.speraLineColor.CGColor;
     [self.layer addSublayer:shapeLayer];
-    
+    [self.layerArray addObject:shapeLayer];
     
     
 
@@ -247,7 +255,7 @@
         
         
         [self.layer addSublayer:shaper];
-        
+        [self.layerArray addObject:shaper];
     }
     
     
@@ -261,6 +269,18 @@
     [self drawBaseView];
     [self drawValueView];
     
+}
+
+-(void)clear{
+    for (CALayer *layer in self.layerArray) {
+        [layer removeFromSuperlayer];
+    }
+    
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
+    [self.drawPointArray removeAllObjects];
+    [self.baseDrawPointArray removeAllObjects];
 }
 
 
