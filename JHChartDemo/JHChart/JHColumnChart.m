@@ -116,7 +116,7 @@
 
 -(void)setLineValueArray:(NSArray *)lineValueArray{
     
-    NSAssert(_type == JHColumnChartXAsValue, @"您选择的柱状图类型不适合添加折线图");
+    NSAssert(_type != JHColumnChartXAsValue, @"您选择的柱状图类型不适合添加折线图");
     
     if (!_isShowLineChart) {
         return;
