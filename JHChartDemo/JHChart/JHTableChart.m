@@ -114,8 +114,10 @@
                 [self addSubview:header];
             }
         }
-        CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(_tableWidth, _tableChartTitleItemsHeight) textFont:_tableTitleFont.pointSize aimString:_tableTitleString];
+        
         if (drawText) {
+            //需要绘制文字时再计算宽度
+            CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(_tableWidth, _tableChartTitleItemsHeight) textFont:_tableTitleFont.pointSize aimString:_tableTitleString];
             [self drawText:_tableTitleString context:context atPoint:CGRectMake(CGRectGetWidth(self.frame)/2.0 - size.width / 2, _beginSpace + _tableChartTitleItemsHeight/2 - size.height / 2.0, _tableWidth, _tableChartTitleItemsHeight) WithColor:_tableTitleColor font:_tableTitleFont];
         }
         
@@ -146,10 +148,8 @@
             
             NSLog(@"第%ld列 宽度 为 %f\n",i,wid);
             
-            CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, self.colTitleHeight) textFont:self.colTitleFont.pointSize aimString:_colTitleArr[i]];
-            
             BOOL drawText = true;
-            
+            // 上层调用代理传进自定义的view
             if ([_delegate respondsToSelector:@selector(tableChart:viewForPropertyAtColumn:contentSize:)]) {
                 UIView *proView = [_delegate tableChart:self viewForPropertyAtColumn:i contentSize:CGSizeMake(wid-2, self.colTitleHeight-2)];
                 if (proView) {
@@ -167,10 +167,13 @@
                     //绘制列分割线
                     [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY) andEndPoint:P_M(lastX, _lastY + _bodyHeight) andIsDottedLine:NO andColor:_lineColor];
                 }
+                //跳出本次循环，下面绘制文字代码不执行
                 continue;
             }
-            if (i==0) {
-                
+            
+            CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, self.colTitleHeight) textFont:self.colTitleFont.pointSize aimString:_colTitleArr[i]];
+            
+            if (i == 0) {
                 NSArray *firArr = [_colTitleArr[0] componentsSeparatedByString:@"|"];
                 if (firArr.count>=2) {
                     [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY) andEndPoint:P_M(lastX + wid, _lastY + self.colTitleHeight) andIsDottedLine:NO andColor:_lineColor];
@@ -191,7 +194,7 @@
                 [self drawText:_colTitleArr[i] context:context atPoint:CGRectMake(lastX + wid / 2.0 - size.width / 2, _lastY + self.colTitleHeight / 2.0 -size.height / 2.0, wid, self.colTitleHeight) WithColor:[self colorForColTitle:i] font:self.colTitleFont];
             }
             lastX += wid;
-            if (i==_colTitleArr.count - 1) {
+            if (i == _colTitleArr.count - 1) {
                 
             }else{
                 [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY) andEndPoint:P_M(lastX, _lastY + _bodyHeight) andIsDottedLine:NO andColor:_lineColor];
@@ -240,8 +243,6 @@
                 for (NSInteger n = 0; n<[rowItems count]; n++) {
                     
                     [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY + (n+1) * perItemsHeightByMaxCount) andEndPoint:P_M(lastX + wid, _lastY + (n+1) * perItemsHeightByMaxCount) andIsDottedLine:NO andColor:_lineColor];
-
-                    CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, perItemsHeightByMaxCount) textFont:_bodyTextFont.pointSize aimString:rowItems[n]];
                     BOOL drawText = true;
                     if ([_delegate respondsToSelector:@selector(tableChart:viewForContentAtRow:column:subRow:contentSize:)]) {
                         CGSize contentSize = CGSizeMake(wid - 2, _minHeightItems*model.maxCount/[rowItems count] - 2);
@@ -255,6 +256,7 @@
                     }
                     
                     if (drawText) {
+                        CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, perItemsHeightByMaxCount) textFont:_bodyTextFont.pointSize aimString:rowItems[n]];
                         [self drawText:rowItems[n] context:context atPoint:CGRectMake(lastX + wid / 2 - size.width / 2.0, _lastY + (n+1) * perItemsHeightByMaxCount - perItemsHeightByMaxCount / 2.0 - size.height / 2.0, size.width, size.height) WithColor:_bodyTextColor font:_bodyTextFont];
                     }
                     
