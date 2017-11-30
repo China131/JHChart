@@ -50,6 +50,8 @@
 		E9D49A191E0927EC000453F0 /* 柱状图demo2.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D49A181E0927EC000453F0 /* 柱状图demo2.png */; };
 		E9D49A1B1E092D21000453F0 /* 饼状图demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9D49A1A1E092D21000453F0 /* 饼状图demo1.png */; };
 		E9DAFF3E1D6EB6E900D4E148 /* JHTableDataRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */; };
+		F1743D651FCFBB7300B2738A /* JHRowItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1743D641FCFBB7300B2738A /* JHRowItem.m */; };
+		F1B4D44D1FCFF3020035E16D /* JHRowChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F1743D611FCFBB0200B2738A /* JHRowChart.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +140,10 @@
 		E9D49A1A1E092D21000453F0 /* 饼状图demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "饼状图demo1.png"; sourceTree = "<group>"; };
 		E9DAFF3C1D6EB6E900D4E148 /* JHTableDataRowModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHTableDataRowModel.h; sourceTree = "<group>"; };
 		E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHTableDataRowModel.m; sourceTree = "<group>"; };
+		F1743D601FCFBB0200B2738A /* JHRowChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHRowChart.h; sourceTree = "<group>"; };
+		F1743D611FCFBB0200B2738A /* JHRowChart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHRowChart.m; sourceTree = "<group>"; };
+		F1743D631FCFBB7300B2738A /* JHRowItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHRowItem.h; sourceTree = "<group>"; };
+		F1743D641FCFBB7300B2738A /* JHRowItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHRowItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +271,10 @@
 				7DEA76341F09DD720060D893 /* JHColumnItem.m */,
 				7DEA76361F0A34200060D893 /* JHIndexPath.h */,
 				7DEA76371F0A34200060D893 /* JHIndexPath.m */,
+				F1743D601FCFBB0200B2738A /* JHRowChart.h */,
+				F1743D611FCFBB0200B2738A /* JHRowChart.m */,
+				F1743D631FCFBB7300B2738A /* JHRowItem.h */,
+				F1743D641FCFBB7300B2738A /* JHRowItem.m */,
 			);
 			path = JHChart;
 			sourceTree = "<group>";
@@ -357,7 +367,7 @@
 		AA5E2BA61CBA298F00FC19EE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = JH;
 				TargetAttributes = {
 					AA5E2BAD1CBA298F00FC19EE = {
@@ -448,6 +458,7 @@
 				AA0031601CBCCFD500F4FDEB /* JHShowController.m in Sources */,
 				E9135FE61D2B810B00ED9F6D /* JHRingChart.m in Sources */,
 				AAA60A8F1CD8A81A0094D6E5 /* JHPieChart.m in Sources */,
+				F1B4D44D1FCFF3020035E16D /* JHRowChart.m in Sources */,
 				E92CB03F1E0BA14900861E35 /* JHScatterChart.m in Sources */,
 				AA57D8A91CD9C492003EA0A7 /* JHShowInfoView.m in Sources */,
 				AAA60A911CD8A81A0094D6E5 /* JHPieItemsView.m in Sources */,
@@ -462,6 +473,7 @@
 				AA5E2BB61CBA298F00FC19EE /* AppDelegate.m in Sources */,
 				AAA60A901CD8A81A0094D6E5 /* JHPieForeBGView.m in Sources */,
 				AA5E2BB31CBA298F00FC19EE /* main.m in Sources */,
+				F1743D651FCFBB7300B2738A /* JHRowItem.m in Sources */,
 				E9DAFF3E1D6EB6E900D4E148 /* JHTableDataRowModel.m in Sources */,
 				E90C3EB01D6D971A0019BE6A /* JHTableChart.m in Sources */,
 			);
@@ -526,13 +538,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -569,13 +589,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

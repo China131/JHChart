@@ -9,6 +9,7 @@
 #import "JHColumnChart.h"
 #import <objc/runtime.h>
 #import "JHColumnItem.h"
+
 @interface JHColumnChart ()<CAAnimationDelegate,JHColumnItemActionDelegate>
 
 //背景图
@@ -44,80 +45,55 @@
 }
 
 -(NSMutableArray *)showViewArr{
-    
-    
     if (!_showViewArr) {
         _showViewArr = [NSMutableArray array];
     }
     
     return _showViewArr;
-    
 }
 
 -(NSMutableArray *)layerArr{
-    
-    
     if (!_layerArr) {
         _layerArr = [NSMutableArray array];
     }
-    
     return _layerArr;
 }
 
-
 -(UIScrollView *)BGScrollView{
-    
-    
     if (!_BGScrollView) {
-
         _BGScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         _BGScrollView.showsHorizontalScrollIndicator = NO;
         _BGScrollView.backgroundColor = _bgVewBackgoundColor;
         [self addSubview:_BGScrollView];
         
     }
-    
     return _BGScrollView;
-    
-    
 }
-
 
 -(void)setBgVewBackgoundColor:(UIColor *)bgVewBackgoundColor{
-    
     _bgVewBackgoundColor = bgVewBackgoundColor;
     self.BGScrollView.backgroundColor = _bgVewBackgoundColor;
-    
 }
 
-
 -(NSMutableArray *)yLineDataArr{
-    
-    
     if (!_yLineDataArr) {
         _yLineDataArr = [NSMutableArray array];
     }
     return _yLineDataArr;
-    
 }
 
 
 -(instancetype)initWithFrame:(CGRect)frame{
-    
-    
     if (self = [super initWithFrame:frame]) {
-
         _needXandYLine = YES;
         _isShowYLine = YES;
         _lineChartPathColor = [UIColor blueColor];
         _lineChartValuePointColor = [UIColor yellowColor];
     }
     return self;
-    
 }
 
 -(void)setLineValueArray:(NSArray *)lineValueArray{
-    
     if (!_isShowLineChart) {
         return;
     }
@@ -143,8 +119,6 @@
     
     _maxHeight += 4;
     _perHeight = (CGRectGetHeight(self.frame) - 30 - _originSize.y)/_maxHeight;
-    
-    
 }
 
 -(void)setValueArr:(NSArray<NSArray *> *)valueArr{
@@ -152,12 +126,12 @@
     
     _valueArr = valueArr;
     CGFloat max = 0;
- 
+    
     for (NSArray *arr in _valueArr) {
         
         for (id number in arr) {
             CGFloat currentNumber = 0;
-
+            
             if ([number isKindOfClass:[NSArray class]]) {
                 for (id sub in number) {
                     currentNumber += [NSString stringWithFormat:@"%@",sub].floatValue;
@@ -168,9 +142,7 @@
             if (currentNumber>max) {
                 max = currentNumber;
             }
-            
         }
-
     }
     
     if (max<5.0) {
@@ -183,13 +155,11 @@
     
     _maxHeight += 4;
     _perHeight = (CGRectGetHeight(self.frame) - 30 - _originSize.y - self.contentInsets.top)/_maxHeight;
-    
-    
 }
 
 
 -(void)showAnimation{
-
+    
     [self clear];
     
     _columnWidth = (_columnWidth<=0?30:_columnWidth);
@@ -210,22 +180,16 @@
         UIBezierPath *bezier = [UIBezierPath bezierPath];
         
         if (self.isShowYLine) {
-            [bezier moveToPoint:CGPointMake(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
-             [bezier addLineToPoint:P_M(self.originSize.x, 20)];
+            [bezier moveToPoint:P_M(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
+            [bezier addLineToPoint:P_M(self.originSize.x, 20)];
         }
-        
-        [bezier moveToPoint:CGPointMake(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
-    
-        [bezier addLineToPoint:P_M(_maxWidth , CGRectGetHeight(self.frame) - self.originSize.y)];
-        
+        [bezier moveToPoint:P_M(self.originSize.x, CGRectGetHeight(self.frame) - self.originSize.y)];
+        [bezier addLineToPoint:P_M(_maxWidth, CGRectGetHeight(self.frame) - self.originSize.y)];
         
         layer.path = bezier.CGPath;
-        
         layer.strokeColor = (_colorForXYLine==nil?([UIColor blackColor].CGColor):_colorForXYLine.CGColor);
-        
-        
+
         CABasicAnimation *basic = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-        
         
         basic.duration = self.isShowYLine?1.5:0.75;
         
@@ -237,12 +201,9 @@
         
         basic.fillMode = kCAFillModeForwards;
         
-        
         [layer addAnimation:basic forKey:nil];
         
         [self.BGScrollView.layer addSublayer:layer];
-        
-//        _maxHeight += 4;
         
         /*        设置虚线辅助线         */
         UIBezierPath *second = [UIBezierPath bezierPath];
@@ -251,11 +212,8 @@
             CGFloat height = _perHeight * (i+1)*pace;
             [second moveToPoint:P_M(_originSize.x, CGRectGetHeight(self.frame) - _originSize.y -height)];
             [second addLineToPoint:P_M(_maxWidth, CGRectGetHeight(self.frame) - _originSize.y - height)];
-            
-            
-            
+
             CATextLayer *textLayer = [CATextLayer layer];
-            
             textLayer.contentsScale = [UIScreen mainScreen].scale;
             NSString *text =[NSString stringWithFormat:@"%ld",(i + 1) * pace];
             CGFloat be = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yDescTextFontSize aimString:text].width;
@@ -273,44 +231,27 @@
             textLayer.foregroundColor = (_drawTextColorForX_Y==nil?[UIColor blackColor].CGColor:_drawTextColorForX_Y.CGColor);
             [_BGScrollView.layer addSublayer:textLayer];
             [self.layerArr addObject:textLayer];
-
         }
         
         CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-        
         shapeLayer.path = second.CGPath;
-        
         shapeLayer.strokeColor = (_dashColor==nil?([UIColor darkGrayColor].CGColor):_dashColor.CGColor);
-        
         shapeLayer.lineWidth = 0.5;
-        
         [shapeLayer setLineDashPattern:@[@(3),@(3)]];
         
         CABasicAnimation *basic2 = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-        
-        
         basic2.duration = 1.5;
-        
         basic2.fromValue = @(0);
-        
         basic2.toValue = @(1);
-        
         basic2.autoreverses = NO;
-        
-        
-        
         basic2.fillMode = kCAFillModeForwards;
         
         [shapeLayer addAnimation:basic2 forKey:nil];
         
         [self.BGScrollView.layer addSublayer:shapeLayer];
         [self.layerArr addObject:shapeLayer];
-        
     }
     
-    
-    
-
     /*        绘制X轴提示语  不管是否设置了是否绘制X、Y轴 提示语都应有         */
     if (_xShowInfoText.count == _valueArr.count&&_xShowInfoText.count>0) {
         
@@ -318,50 +259,28 @@
         
         for (NSInteger i = 0; i<_xShowInfoText.count; i++) {
             
-
-            
             CATextLayer *textLayer = [CATextLayer layer];
-            
             CGFloat wid =  count * _columnWidth;
-            
-            
-            
             CGSize size = [_xShowInfoText[i] boundingRectWithSize:CGSizeMake(wid, MAXFLOAT) options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:self.xDescTextFontSize]} context:nil].size;
-            
             textLayer.frame = CGRectMake( i * (count * _columnWidth + _typeSpace) + _typeSpace + _originSize.x+ _drawFromOriginX, CGRectGetHeight(self.frame) - _originSize.y+5,wid, size.height);
             textLayer.string = _xShowInfoText[i];
             textLayer.contentsScale = [UIScreen mainScreen].scale;
+            
             UIFont *font = [UIFont systemFontOfSize:self.xDescTextFontSize];
-            
-
-            
             textLayer.fontSize = font.pointSize;
-            
             textLayer.foregroundColor = _drawTextColorForX_Y.CGColor;
-            
             textLayer.alignmentMode = kCAAlignmentCenter;
             
             [_BGScrollView.layer addSublayer:textLayer];
-            
             [self.layerArr addObject:textLayer];
-            
-            
         }
-        
-        
     }
-    
-    
-    
-    
-    
     
     /*        动画展示         */
     for (NSInteger i = 0; i<_valueArr.count; i++) {
         
-        
         NSArray *arr = _valueArr[i];
-
+        
         for (NSInteger j = 0; j<arr.count; j++) {
             CGFloat height = 0;
             id colors = nil;
@@ -386,7 +305,7 @@
             itemsView.index = path;
             [self.showViewArr addObject:itemsView];
             itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace + _drawFromOriginX, CGRectGetHeight(self.frame) - _originSize.y-1, _columnWidth, 0);
-
+            
             if (_isShowLineChart) {
                 NSString *value = [NSString stringWithFormat:@"%@",_lineValueArray[i]];
                 float valueFloat =[value floatValue];
@@ -394,10 +313,10 @@
                 [self.drawLineValue addObject:lineValue];
             }
             [self.BGScrollView addSubview:itemsView];
-
+            
             [UIView animateWithDuration:1 animations:^{
                 
-                 itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace + _drawFromOriginX, CGRectGetHeight(self.frame) - height - _originSize.y -1, _columnWidth, height);
+                itemsView.frame = CGRectMake((i * arr.count + j)*_columnWidth + i*_typeSpace+_originSize.x + _typeSpace + _drawFromOriginX, CGRectGetHeight(self.frame) - height - _originSize.y -1, _columnWidth, height);
                 
             } completion:^(BOOL finished) {
                 /*        动画结束后添加提示文字         */
@@ -423,7 +342,7 @@
                     textLayer.foregroundColor = itemsView.backgroundColor.CGColor;
                     
                     [_BGScrollView.layer addSublayer:textLayer];
-                 
+                    
                     
                     //添加折线图
                     if (i==_valueArr.count - 1&&j == arr.count-1 && _isShowLineChart) {
@@ -451,7 +370,7 @@
                         [self.layerArr addObject:shaper];
                         
                         CABasicAnimation *basic = [CABasicAnimation animationWithKeyPath:NSStringFromSelector(@selector(strokeEnd))];
-
+                        
                         basic.fromValue = @0;
                         basic.toValue = @1;
                         basic.duration = 1;
@@ -459,17 +378,9 @@
                         [shaper addAnimation:basic forKey:@"stokentoend"];
                         [self.BGScrollView.layer addSublayer:shaper];
                     }
-                    
-                    
-                    
                 }
-                
             }];
-            
-            
-
         }
-        
     }
 }
 
@@ -480,8 +391,6 @@
 }
 
 -(void)clear{
-    
-    
     for (CALayer *lay in self.layerArr) {
         [lay removeAllAnimations];
         [lay removeFromSuperlayer];
@@ -490,41 +399,23 @@
     for (UIView *subV in self.showViewArr) {
         [subV removeFromSuperview];
     }
-    
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    
-    
     if (flag) {
-        
         if (_isShowLineChart) {
-            
-
-                for (int32_t m=0;m<_lineValueArray.count;m++) {
-                    NSLog(@"%@",_drawLineValue[m]);
-
-
-                        
-                        CAShapeLayer *roundLayer = [CAShapeLayer layer];
-                        UIBezierPath *roundPath = [UIBezierPath bezierPathWithArcCenter:[_drawLineValue[m] CGPointValue] radius:4.5 startAngle:M_PI_2 endAngle:M_PI_2 + M_PI * 2 clockwise:YES];
-                        roundLayer.path = roundPath.CGPath;
-                        roundLayer.fillColor = _lineChartValuePointColor.CGColor;
-                    [self.layerArr addObject:roundLayer];
-                        [self.BGScrollView.layer addSublayer:roundLayer];
-                        
-                    
-                }
-                
-
-            
+            for (int32_t m=0;m<_lineValueArray.count;m++) {
+                NSLog(@"%@",_drawLineValue[m]);
+                CAShapeLayer *roundLayer = [CAShapeLayer layer];
+                UIBezierPath *roundPath = [UIBezierPath bezierPathWithArcCenter:[_drawLineValue[m] CGPointValue] radius:4.5 startAngle:M_PI_2 endAngle:M_PI_2 + M_PI * 2 clockwise:YES];
+                roundLayer.path = roundPath.CGPath;
+                roundLayer.fillColor = _lineChartValuePointColor.CGColor;
+                [self.layerArr addObject:roundLayer];
+                [self.BGScrollView.layer addSublayer:roundLayer];
+            }
         }
-        
     }
-    
-    
 }
-
 
 -(void)columnItem:(JHColumnItem *)item didClickAtIndexPath:(JHIndexPath *)indexPath{
     if (_delegate) {
@@ -538,9 +429,5 @@
     }
 }
 
-
-
-
-
-
 @end
+

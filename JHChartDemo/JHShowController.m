@@ -68,6 +68,10 @@
         {
             [self showScatterChart];
         }break;
+        case 10:
+        {
+            [self showRowChart];
+        }break;
         default:
             break;
     }
@@ -279,7 +283,7 @@
     JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
     /*        Create an array of data sources, each array is a module data. For example, the first array can represent the average score of a class of different subjects, the next array represents the average score of different subjects in another class        */
     column.valueArr = @[
-                        @[@[@15,@10]],//第一组元素 如果有多个元素，往该组添加，每一组只有一个元素，表示是单列柱状图| | | | |
+                        @[@[@15,@10],@[@8,@7]],//第一组元素 如果有多个元素，往该组添加，每一组只有一个元素，表示是单列柱状图| | | | |
                         @[@[@15,@20]],//第二组元素
                         @[@[@10,@5]],//第三组元素
                         @[@[@21,@12]],
@@ -310,7 +314,7 @@
     /*        X, Y axis line color         */
     column.colorForXYLine = [UIColor darkGrayColor];
     /*    Each module of the color array, such as the A class of the language performance of the color is red, the color of the math achievement is green     */
-    column.columnBGcolorsArr = @[@[[UIColor redColor],[UIColor greenColor]],@[[UIColor redColor],[UIColor greenColor]],@[[UIColor redColor],[UIColor greenColor]]];//如果为复合型柱状图 即每个柱状图分段 需要传入如上颜色数组 达到同时指定复合型柱状图分段颜色的效果
+    column.columnBGcolorsArr = @[@[[UIColor redColor],[UIColor greenColor],[UIColor redColor], [UIColor blueColor]],@[[UIColor redColor],[UIColor blueColor]],@[[UIColor redColor],[UIColor greenColor]]];//如果为复合型柱状图 即每个柱状图分段 需要传入如上颜色数组 达到同时指定复合型柱状图分段颜色的效果
     /*        Module prompt         */
     column.xShowInfoText = @[@"A班级",@"B班级",@"C班级",@"D班级",@"E班级",@"F班级",@"G班级",@"H班级",@"i班级",@"J班级",@"L班级",@"M班级",@"N班级"];
     column.isShowLineChart = YES;
@@ -514,6 +518,69 @@
     [self.view addSubview:scatterChart];
 }
 
+- (void)showRowChart {
+    JHRowChart *column = [[JHRowChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
+    /*        Create an array of data sources, each array is a module data. For example, the first array can represent the average score of a class of different subjects, the next array represents the average score of different subjects in another class        */
+    column.valueArr = @[
+                        @[@15,@10,@8,@7],//第一组元素 如果有多个元素，往该组添加，每一组只有一个元素，表示是单列柱状图| | | | |
+                        @[@15,@20],//第二组元素
+                        @[@10,@5],//第三组元素
+                        @[@21,@12],
+                        @[@19],
+                        @[@12],
+                        @[@15],
+                        @[@9],
+                        @[@8],
+                        @[@6],
+                        @[@9],
+                        @[@18],
+                        @[@11],
+                        ];
+    column.rowBGcolorsArr=@[@[[UIColor redColor],[UIColor greenColor],[UIColor redColor], [UIColor blueColor]],
+                            @[[UIColor redColor],[UIColor blueColor]],
+                            @[[UIColor redColor],[UIColor greenColor]]];//如果为复合型柱状图 即每个柱状图分段 需要传入如上颜色数组 达到同时指定复合型柱状图分段颜色的效果
+    /*       This point represents the distance from the lower left corner of the origin.         */
+    column.originSize = CGPointMake(30, 20);
+    /*    The first column of the distance from the starting point     */
+    column.drawFromOriginX = 20;
+    column.backgroundColor = [UIColor yellowColor];
+    column.typeSpace = 10;
+    column.isShowYLine = NO;
+    column.contentInsets = UIEdgeInsetsMake(5, 0, 0, 0);
+    /*        Column width         */
+    column.rowHeight = 30;
+    /*        Column backgroundColor         */
+    column.bgVewBackgoundColor = [UIColor grayColor];
+    /*        X, Y axis font color         */
+    column.drawTextColorForX_Y = [UIColor blackColor];
+    /*        X, Y axis line color         */
+    column.colorForXYLine = [UIColor darkGrayColor];
+    /*    Each module of the color array, such as the A class of the language performance of the color is red, the color of the math achievement is green     */
+    /*        Module prompt         */
+    column.xShowInfoText = @[@"A班级",@"B班级",@"C班级",@"D班级",@"E班级",@"F班级",@"G班级",@"H班级",@"i班级",@"J班级",@"L班级",@"M班级",@"N班级"];
+    column.isShowLineChart = YES;
+    column.lineValueArray =  @[
+                               @6,
+                               @12,
+                               @10,
+                               @1,
+                               @9,
+                               @5,
+                               @9,
+                               @9,
+                               @5,
+                               @6,
+                               @4,
+                               @8,
+                               @11
+                               ];
+    
+    column.delegate = self;
+    /*       Start animation        */
+    [column showAnimation];
+    [self.view addSubview:column];
+}
+
 
 -(void)columnChart:(JHColumnChart*)chart columnItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath{
     NSLog(@"%@",indexPath);
@@ -549,15 +616,6 @@
     vi.backgroundColor = [UIColor greenColor];
     return vi;
 }
-
-
-
-
-
-
-
-
-
 
 
 @end

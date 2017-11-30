@@ -11,6 +11,8 @@
 #import <Foundation/Foundation.h>
 
 #define P_M(x,y) CGPointMake(x, y)
+#define G_W(r) CGRectGetWidth(r)
+#define G_H(r) CGRectGetHeight(r)
 
 #define weakSelf(weakSelf)  __weak typeof(self) weakself = self;
 #define XORYLINEMAXSIZE CGSizeMake(CGFLOAT_MAX,30)

@@ -1,29 +1,30 @@
 //
-//  JHColumnChart.h
+//  JHRowChart.h
 //  JHChartDemo
 //
-//  Created by 简豪 on 16/5/10.
-//  Copyright © 2016年 JH. All rights reserved.
+//  Created by Mayqiyue on 30/11/2017.
+//  Copyright © 2017 JH. All rights reserved.
 //
 
 #import "JHChart.h"
-@class JHColumnItem,JHIndexPath,JHColumnChart;
-@protocol JHColumnChartDelegate<NSObject>
+
+@class JHRowItem,JHIndexPath,JHRowChart;
+@protocol JHRowChartDelegate<NSObject>
 
 @optional
-- (void)columnChart:(JHColumnChart *)chart columnItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath; //1.2.0
-- (void)columnChart:(JHColumnChart *)chart columnItem:(JHColumnItem *)item didClickAtIndexPath:(JHIndexPath *)indexPath;//1.2.1
+- (void)rowChart:(JHRowChart *)chart rowItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath; //1.2.0
+- (void)rowChart:(JHRowChart *)chart rowItem:(JHRowItem *)item didClickAtIndexPath:(JHIndexPath *)indexPath;//1.2.1
 @end
 
-@interface JHColumnChart : JHChart
+@interface JHRowChart : JHChart
 
 /**
  *  Each histogram of the background color, if you do not set the default value for green. Setup must ensure that the number and type of the data source array are the same, otherwise the default is not set.
  */
-@property (nonatomic, strong) NSArray * columnBGcolorsArr;
+@property (nonatomic, strong) NSArray * rowBGcolorsArr;
 
 /// JHColumnDelegate的代理，用以监听柱状图某一项的点击事件
-@property (nonatomic , assign)id <JHColumnChartDelegate> delegate;
+@property (nonatomic , assign)id <JHRowChartDelegate> delegate;
 
 /**
  *  Data source array
@@ -35,20 +36,22 @@
  */
 @property (nonatomic, strong) NSArray * xShowInfoText;
 
+
 /**
  *  The background color of the content view
  */
 @property (nonatomic, strong) UIColor  * bgVewBackgoundColor;
 
+
 /**
- *  Column spacing, non continuous, default is 15
+ *  Row spacing, non continuous, default is 5
  */
 @property (nonatomic, assign) CGFloat typeSpace;
 
 /**
- *  The width of the column, the default is 40
+ *  The height of the Row, the default is 40
  */
-@property (nonatomic, assign) CGFloat columnWidth;
+@property (nonatomic, assign) CGFloat rowHeight;
 
 /**
  *  Whether the need for Y, X axis, the default YES
@@ -71,7 +74,7 @@
 @property (nonatomic, strong) UIColor * dashColor;
 
 /**
- *  The starting point, can be understood as the origin of the left and bottom margins
+ *  The starting point, can be understood as the origin of the left and top margins
  */
 @property (nonatomic, assign) CGPoint originSize;
 
@@ -90,10 +93,12 @@
  */
 @property (nonatomic,assign) BOOL isShowLineChart;
 
+
 /**
  *  If isShowLineChart proprety is YES,we need this value array to draw chart
  */
 @property (nonatomic,strong)NSArray * lineValueArray;
+
 
 /**
  *  If isShowLineChart proprety is Yes,we will draw path of this linechart with this color

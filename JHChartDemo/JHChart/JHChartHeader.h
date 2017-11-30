@@ -16,3 +16,4 @@
 #import "JHTableChart.h"
 #import "JHRadarChart.h"
 #import "JHScatterChart.h"
+#import "JHRowChart.h"
