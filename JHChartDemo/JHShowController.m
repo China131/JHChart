@@ -120,9 +120,9 @@
     /* Dotted line color of the coordinate point */
     lineChart.positionLineColorArr = @[[UIColor blueColor],[UIColor greenColor]];
     /*        Set whether to fill the content, the default is False         */
-    lineChart.contentFill = NO;
+    lineChart.contentFill = YES;
     /*        Set whether the curve path         */
-    lineChart.pathCurve = YES;
+    lineChart.pathCurve = NO;
     /*        Set fill color array         */
     lineChart.contentFillColorArr = @[[UIColor colorWithRed:0 green:1 blue:0 alpha:0.468],[UIColor colorWithRed:1 green:0 blue:0 alpha:0.468]];
     [self.view addSubview:lineChart];
