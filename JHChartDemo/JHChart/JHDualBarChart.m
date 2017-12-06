@@ -1,0 +1,338 @@
+//
+//  JHDualBarChart.m
+//  JHChartDemo
+//
+//  Created by Mayqiyue on 06/12/2017.
+//  Copyright © 2017 JH. All rights reserved.
+//
+
+#import "JHDualBarChart.h"
+@interface JHDualBarChart () {
+    CGFloat _maxH, _maxW, lPerH, rPerH;
+}
+
+@property (nonatomic, strong) UIScrollView *scrollView;
+
+@property (nonatomic, strong) NSMutableArray *leftBarViews;
+@property (nonatomic, strong) NSMutableArray *rightBarViews;
+@property (nonatomic, strong) NSMutableArray *layerArr;
+
+@property (nonatomic, strong) NSMutableArray *drawLineValue;
+
+@end
+
+@implementation JHDualBarChart
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    [self addSubview:self.scrollView];
+    self.scrollView.frame = self.bounds;
+    _needYLines = YES;
+    _needXLine = YES;
+    _needLeftYTexts = YES;
+    _needRightYTexts = YES;
+    _leftYTextesMargin = 5;
+    _xTextFont = [UIFont systemFontOfSize:8];
+    _yRightTextFont = [UIFont systemFontOfSize:8];
+    _yleftTextFont = [UIFont systemFontOfSize:8];
+    _barTextFont = [UIFont systemFontOfSize:8];
+    _drawTextColorForX_Y = [UIColor blackColor];
+    _colorForXYLine = [UIColor blackColor];
+    _levelLineColor = [UIColor blackColor];
+    self.contentInsets = UIEdgeInsetsMake(10, 30, 0, 30);
+    self.chartOrigin = CGPointMake(0, self.scrollView.frame.size.height - 20);
+}
+
+- (void)showAnimation {
+    NSAssert(self.leftBarValues.count == self.rightBarValues.count, @"");
+    NSAssert(self.leftBarBGColors.count > 0 || self.rightBarBGColors.count > 0, @"");
+
+    [self clear];
+    
+    _barWidth = _barWidth ? : 30;
+    _barSpacing = _barSpacing ?: 15;
+    _maxW = self.chartOrigin.x + _barWidth * (_leftBarValues.count + _rightBarValues.count) + (_barSpacing + 1) * _leftBarValues.count;
+    _maxH = self.chartOrigin.y;
+    lPerH = _maxH / (_levelLineNum * _yLeftRadix);
+    rPerH = _maxH / (_levelLineNum * _yRightRadix);
+    
+    self.scrollView.contentSize = CGSizeMake(_maxW, _maxH);
+    
+    CGPoint p = [self.scrollView convertPoint:self.chartOrigin toView:self];
+    
+    [self drawXAndYAxis:p];
+    [self drawLevelLines:p];
+    [self drawDualYTexts:p];
+    [self drawXTexts];
+    [self drawBars];
+}
+
+- (void)drawXAndYAxis:(CGPoint)p {
+    if (_needXLine) {
+        UIBezierPath *bezier = [UIBezierPath bezierPath];
+        [bezier moveToPoint:p];
+        [bezier addLineToPoint:P_M(self.frame.size.width - p.x, p.y)];
+        
+        if (_needYLines) {
+            [bezier moveToPoint:p];
+            [bezier addLineToPoint:P_M(p.x, self.contentInsets.top)];
+            [bezier moveToPoint:P_M(self.frame.size.width - p.x, p.y)];
+            [bezier addLineToPoint:P_M(self.frame.size.width - p.x, self.contentInsets.top)];
+        }
+        
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.path = bezier.CGPath;
+        layer.strokeColor = _colorForXYLine.CGColor;
+        
+        [self.layer addSublayer:layer];
+        [self.layerArr addObject:layer];
+    }
+}
+
+- (void)drawLevelLines:(CGPoint)p {
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    for (NSInteger i = 1; i <_levelLineNum + 1; i++) {
+        CGFloat h = i * lPerH * _yLeftRadix;
+        [path moveToPoint:P_M(p.x, p.y - h)];
+        [path addLineToPoint:P_M(self.frame.size.width - p.x, p.y - h)];
+    }
+    
+    CABasicAnimation *basic2 = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    basic2.duration = 1.5;
+    basic2.fromValue = @(0);
+    basic2.toValue = @(1);
+    basic2.autoreverses = NO;
+    basic2.duration = 1.0;
+    basic2.fillMode = kCAFillModeForwards;
+    
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = path.CGPath;
+    shapeLayer.strokeColor = _levelLineColor.CGColor;
+    shapeLayer.lineWidth = 0.5;
+    [shapeLayer setLineDashPattern:@[@(3),@(3)]];
+    [shapeLayer addAnimation:basic2 forKey:nil];
+    
+    [self.layer insertSublayer:shapeLayer atIndex:0];
+    [self.layerArr addObject:shapeLayer];
+}
+
+- (void)drawXTexts {
+    /* Darw x texts*/
+    for (NSInteger i = 0; i<_xTexts.count; i++) {
+        CATextLayer *textLayer = [CATextLayer layer];
+        CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT) textFont:self.xTextFont.pointSize aimString:_xTexts[i]];
+        textLayer.bounds = CGRectMake(0, 0, size.width, size.height);
+        textLayer.string = _xTexts[i];
+        textLayer.contentsScale = [UIScreen mainScreen].scale;
+        textLayer.fontSize = self.xTextFont.pointSize;
+        textLayer.foregroundColor = _drawTextColorForX_Y.CGColor;
+        textLayer.alignmentMode = kCAAlignmentCenter;
+        if (_leftBarValues[i] && _rightBarValues[i]) {
+            textLayer.position = CGPointMake(self.chartOrigin.x + (_barWidth * 2 + _barSpacing) * (i + 1) - _barWidth, self.chartOrigin.y + size.height/2.0f + 5);
+        }
+        else {
+            textLayer.position = CGPointMake((_barWidth + _barSpacing) * (i + 1) - _barWidth/2.0, self.chartOrigin.y + size.height/2.0f + 5);
+        }
+        
+        if (self.rotateForXAxisText) {
+            CGFloat r = -45.0 / 180.0 * M_PI;
+            textLayer.transform = CATransform3DMakeRotation(r, 0.0, 0.0, 1.0);
+            textLayer.position = CGPointMake(textLayer.position.x - size.width/2.0 * cos(r), textLayer.position.y - size.width/2.0 * sin(r));
+        }
+        else {
+            textLayer.transform = CATransform3DIdentity;
+        }
+        
+        [self.scrollView.layer addSublayer:textLayer];
+        [self.layerArr addObject:textLayer];
+    }
+}
+
+- (void)drawDualYTexts:(CGPoint)p {
+    
+    for (NSInteger i = 1; i <_levelLineNum + 1; i++) {
+        CGFloat h = i * lPerH * _yLeftRadix;
+        
+        if (self.needLeftYTexts) {
+            CATextLayer *textLayer = [CATextLayer layer];
+            textLayer.contentsScale = [UIScreen mainScreen].scale;
+            NSString *text = @(i * _yLeftRadix).stringValue;
+            CGSize size = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yleftTextFont.pointSize aimString:text];
+            textLayer.bounds = CGRectMake(0, 0, size.width, size.height);
+            textLayer.position = CGPointMake(p.x - size.width/2.0 - _leftYTextesMargin, p.y - h);
+            CFStringRef fontName = (__bridge CFStringRef)self.yleftTextFont.fontName;
+            CGFontRef fontRef = CGFontCreateWithFontName(fontName);
+            textLayer.font = fontRef;
+            textLayer.fontSize = self.yleftTextFont.pointSize;
+            CGFontRelease(fontRef);
+            textLayer.string = text;
+            textLayer.foregroundColor = _drawTextColorForX_Y.CGColor;
+            [self.layer addSublayer:textLayer];
+            [self.layerArr addObject:textLayer];
+        }
+        
+        if (self.needRightYTexts) {
+            CATextLayer *textLayer = [CATextLayer layer];
+            textLayer.contentsScale = [UIScreen mainScreen].scale;
+            NSString *text = @(i * _yRightRadix).stringValue;
+            CGSize size = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yRightTextFont.pointSize aimString:text];
+            textLayer.bounds = CGRectMake(0, 0, size.width, size.height);
+            textLayer.position = CGPointMake(self.frame.size.width - p.x + size.width/2.0 + _leftYTextesMargin, p.y - h);
+            CFStringRef fontName = (__bridge CFStringRef)self.yRightTextFont.fontName;
+            CGFontRef fontRef = CGFontCreateWithFontName(fontName);
+            textLayer.font = fontRef;
+            textLayer.fontSize = self.yRightTextFont.pointSize;
+            CGFontRelease(fontRef);
+            textLayer.string = text;
+            textLayer.foregroundColor = _drawTextColorForX_Y.CGColor;
+            
+            [self.layer addSublayer:textLayer];
+            [self.layerArr addObject:textLayer];
+        }
+    }
+}
+
+
+- (void)drawBars {
+    for (NSUInteger i = 0; i < self.leftBarValues.count; i ++) {
+        UIView *left = [UIView new];
+        left.backgroundColor = self.leftBarBGColors.count > i ? self.leftBarBGColors[i] : self.leftBarBGColors.firstObject;
+        left.frame = CGRectMake(self.chartOrigin.x + i * (_barWidth*2 + _barSpacing) + _barSpacing, self.chartOrigin.y, _barWidth, 0);
+        
+        UIView *right = [UIView new];
+        right.backgroundColor = self.rightBarBGColors.count > i ? self.rightBarBGColors[i] : self.rightBarBGColors.firstObject;
+        right.frame = CGRectMake(self.chartOrigin.x + i * (_barWidth*2 + _barSpacing) + _barSpacing + _barWidth, self.chartOrigin.y, _barWidth, 0);
+        
+        [self.scrollView addSubview:left];
+        [self.scrollView addSubview:right];
+        [self.leftBarViews addObject:left];
+        [self.rightBarViews addObject:right];
+        
+        [UIView animateWithDuration:1 animations:^{
+            CGRect frame = left.frame;
+            frame.size.height = self.leftBarValues[i].floatValue * lPerH;
+            frame.origin.y = self.chartOrigin.y - frame.size.height - 1;
+            left.frame = frame;
+            
+            frame = right.frame;
+            frame.size.height = self.rightBarValues[i].floatValue * rPerH;
+            frame.origin.y = self.chartOrigin.y - frame.size.height - 1;
+            right.frame = frame;
+        } completion:^(BOOL finished) {
+            if (!finished) {
+                return;
+            }
+            
+            /*        动画结束后添加提示文字         */
+            void (^addTextBlock)(UIView *, UIFont *, NSString *) = ^(UIView *view, UIFont *font, NSString *str) {
+                CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT) textFont:font.pointSize aimString:str];
+                
+                CATextLayer *textLayer = [CATextLayer layer];
+                textLayer.bounds = CGRectMake(0, 0, size.width, size.height);
+                textLayer.position = CGPointMake(CGRectGetMidX(view.frame), CGRectGetMinY(view.frame) - size.height - 3);
+                textLayer.string = str;
+                textLayer.fontSize = font.pointSize;
+                textLayer.alignmentMode = kCAAlignmentCenter;
+                textLayer.contentsScale = [UIScreen mainScreen].scale;
+                textLayer.foregroundColor = self.drawTextColorForX_Y.CGColor;
+                
+                [self.layerArr addObject:textLayer];
+                [self.scrollView.layer addSublayer:textLayer];
+            };
+            
+            addTextBlock(left, self.barTextFont, self.leftBarValues[i].stringValue);
+            addTextBlock(right, self.barTextFont, self.rightBarValues[i].stringValue);
+        }];
+    }
+}
+
+- (void)clear {
+    [self.leftBarViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.rightBarViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.layerArr makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+}
+
+#pragma mark - Geters and Setters
+
+- (void)setContentInsets:(UIEdgeInsets)contentInsets {
+    [super setContentInsets:contentInsets];
+    self.scrollView.frame = CGRectMake(contentInsets.left,
+                                       contentInsets.top,
+                                       self.frame.size.width - contentInsets.left - contentInsets.right,
+                                       self.frame.size.height - contentInsets.top - contentInsets.bottom);
+}
+
+- (void)setLeftBarValues:(NSArray<NSNumber *> *)leftBarValues {
+    NSAssert(_yLeftRadix > 0, nil);
+    
+    _leftBarValues = leftBarValues;
+    
+    CGFloat max = 0;
+    for (NSNumber *num in leftBarValues) {
+        max = MAX(num.floatValue, max);
+    }
+    CGFloat t = max/_yLeftRadix;
+    t = t - floor(t) > 0 ? t + 1 : t;
+    self.levelLineNum = MAX((NSUInteger)t, _levelLineNum);
+}
+
+- (void)setRightBarValues:(NSArray<NSNumber *> *)rightBarValues {
+    NSAssert(_yRightRadix > 0, nil);
+    
+    _rightBarValues = rightBarValues;
+    
+    CGFloat max = 0;
+    for (NSNumber *num in rightBarValues) {
+        max = MAX(num.floatValue, max);
+    }
+    CGFloat t = max/_yRightRadix;
+    t = t - floor(t) > 0 ? t + 1 : t;
+    self.levelLineNum = MAX((NSUInteger)t, _levelLineNum);
+}
+
+- (void)setLevelLineNum:(NSUInteger)levelLineNum {
+    _levelLineNum = MAX(_levelLineNum, levelLineNum);
+}
+
+- (void)setBgVewBackgoundColor:(UIColor *)bgVewBackgoundColor {
+    _bgVewBackgoundColor = bgVewBackgoundColor;
+}
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] init];
+        _scrollView.showsHorizontalScrollIndicator = false;
+        _scrollView.backgroundColor = [UIColor clearColor];
+    }
+    return _scrollView;
+}
+
+- (NSMutableArray *)layerArr {
+    if (!_layerArr) {
+        _layerArr = [[NSMutableArray alloc] init];
+    }
+    return _layerArr;
+}
+
+- (NSMutableArray *)rightBarViews {
+    if (!_rightBarViews) {
+        _rightBarViews = [[NSMutableArray alloc] init];
+    }
+    return _rightBarViews;
+}
+
+- (NSMutableArray *)leftBarViews {
+    if (!_leftBarViews) {
+        _leftBarViews = [[NSMutableArray alloc] init];
+    }
+    return _leftBarViews;
+}
+@end

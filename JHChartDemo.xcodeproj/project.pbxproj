@@ -52,6 +52,7 @@
 		E9DAFF3E1D6EB6E900D4E148 /* JHTableDataRowModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DAFF3D1D6EB6E900D4E148 /* JHTableDataRowModel.m */; };
 		F1743D651FCFBB7300B2738A /* JHRowItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1743D641FCFBB7300B2738A /* JHRowItem.m */; };
 		F1B4D44D1FCFF3020035E16D /* JHRowChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F1743D611FCFBB0200B2738A /* JHRowChart.m */; };
+		F1E85A481FD7C91E00713875 /* JHDualBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E85A471FD7C91E00713875 /* JHDualBarChart.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +145,8 @@
 		F1743D611FCFBB0200B2738A /* JHRowChart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHRowChart.m; sourceTree = "<group>"; };
 		F1743D631FCFBB7300B2738A /* JHRowItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHRowItem.h; sourceTree = "<group>"; };
 		F1743D641FCFBB7300B2738A /* JHRowItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHRowItem.m; sourceTree = "<group>"; };
+		F1E85A461FD7C91E00713875 /* JHDualBarChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHDualBarChart.h; sourceTree = "<group>"; };
+		F1E85A471FD7C91E00713875 /* JHDualBarChart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHDualBarChart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +278,8 @@
 				F1743D611FCFBB0200B2738A /* JHRowChart.m */,
 				F1743D631FCFBB7300B2738A /* JHRowItem.h */,
 				F1743D641FCFBB7300B2738A /* JHRowItem.m */,
+				F1E85A461FD7C91E00713875 /* JHDualBarChart.h */,
+				F1E85A471FD7C91E00713875 /* JHDualBarChart.m */,
 			);
 			path = JHChart;
 			sourceTree = "<group>";
@@ -465,6 +470,7 @@
 				7DEA76351F09DD720060D893 /* JHColumnItem.m in Sources */,
 				AAE935E81CBE0CCA002517EB /* JHWaveChart.m in Sources */,
 				AA5E2BE71CBA2B3100FC19EE /* JHLineChart.m in Sources */,
+				F1E85A481FD7C91E00713875 /* JHDualBarChart.m in Sources */,
 				E922F8051D82A8B0000C7C77 /* JHRadarChart.m in Sources */,
 				7DEA76381F0A34200060D893 /* JHIndexPath.m in Sources */,
 				AA5E2BEA1CBA2CE700FC19EE /* JHChart.m in Sources */,

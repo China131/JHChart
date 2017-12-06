@@ -72,12 +72,13 @@
         {
             [self showRowChart];
         }break;
+        case 11: {
+            [self showDualBarChart];
+        }
+            break;
         default:
             break;
     }
-    
-    
-    
 }
 
 
@@ -581,6 +582,22 @@
     [self.view addSubview:column];
 }
 
+- (void)showDualBarChart {
+    JHDualBarChart *chart = [[JHDualBarChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
+    chart.yLeftRadix = 10;
+    chart.yRightRadix = 50;
+    chart.leftBarValues = @[@(20),@(30),@(89),@(45),@(57)];
+    chart.rightBarValues = @[@(200),@(345),@(100),@(110),@(50)];
+    chart.xTexts = @[@"first",@"second",@"third", @"fourth", @"fiveth"];
+    chart.leftBarBGColors = @[[UIColor redColor]];
+    chart.rightBarBGColors = @[[UIColor yellowColor]];
+    chart.backgroundColor = [UIColor grayColor];
+    chart.bgVewBackgoundColor = [UIColor grayColor];
+    chart.rotateForXAxisText = YES;
+
+    [self.view addSubview:chart];
+    [chart showAnimation];
+}
 
 -(void)columnChart:(JHColumnChart*)chart columnItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath{
     NSLog(@"%@",indexPath);
