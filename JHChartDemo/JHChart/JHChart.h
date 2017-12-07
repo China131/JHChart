@@ -14,8 +14,11 @@
 #define G_W(r) CGRectGetWidth(r)
 #define G_H(r) CGRectGetHeight(r)
 
+#define SAFE_ACCESS(a, i) (((a).count > i) ? (a)[i] : nil)
+
 #define weakSelf(weakSelf)  __weak typeof(self) weakself = self;
 #define XORYLINEMAXSIZE CGSizeMake(CGFLOAT_MAX,30)
+
 @interface JHChart : UIView
 
 
@@ -152,4 +155,5 @@
 - (CGSize)sizeOfStringWithMaxSize:(CGSize)maxSize
                          textFont:(CGFloat)fontSize
                         aimString:(NSString *)aimString;
+
 @end

@@ -584,16 +584,23 @@
 
 - (void)showDualBarChart {
     JHDualBarChart *chart = [[JHDualBarChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
-    chart.yLeftRadix = 25;
-    chart.yRightRadix = 50;
-    chart.levelLineNum = 6;
-    chart.leftBarValues = @[@(20),@(30),@(89),@(45),@(57)];
-    chart.xTexts = @[@"first",@"second",@"third", @"fourth", @"fiveth"];
-    chart.leftBarBGColors = @[[UIColor colorWithRed:191/255.0 green:215.0/255.0 blue:242.0/255.0 alpha:1]];
-    chart.rightBarBGColors = @[[UIColor yellowColor]];
-    chart.backgroundColor = [UIColor grayColor];
+    chart.yLeftRadix           = 25;
+    chart.yRightRadix          = 50;
+    chart.levelLineNum         = 6;
+    chart.leftBarValues        = @[@(20),@(30),@(89),@(45),@(57)];
+    chart.rightBarValues       = @[@(100),@(200),@(287),@(34),@(30)];
+    chart.leftLineValues       = @[@(20),@(30),@(89),@(45),@(57)];
+    chart.rightBarValues       = @[@(100),@(200),@(287),@(34),@(30)];
+    chart.rightLineValues      = @[@(100),@(200),@(287),@(34),@(30)];
+    chart.xTexts               = @[@"first",@"second",@"third", @"fourth", @"fiveth"];
+    chart.leftBarBGColors      = @[[UIColor colorWithRed:23/255.0 green:93.0/255.0 blue:180.0/255.0 alpha:1]];
+    chart.rightBarBGColors     = @[[UIColor colorWithRed:191/255.0 green:215.0/255.0 blue:242.0/255.0 alpha:1]];
+    chart.leftLinePathColor    = [UIColor redColor];
+    chart.rightLinePathColor   = [UIColor yellowColor];
+    chart.backgroundColor      = [UIColor grayColor];
     chart.chartBackgroundColor = [UIColor grayColor];
-    chart.rotateForXAxisText = YES;
+    chart.showLineChart        = true;
+    chart.rotateForXAxisText   = YES;
 
     [self.view addSubview:chart];
     [chart showAnimation];

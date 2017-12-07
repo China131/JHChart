@@ -7,7 +7,8 @@
 //
 
 #import "JHDualBarChart.h"
-@interface JHDualBarChart () {
+@interface JHDualBarChart () <CAAnimationDelegate>
+{
     CGFloat _maxH, _maxW, lPerH, rPerH;
 }
 
@@ -46,6 +47,7 @@
     _drawTextColorForX_Y = [UIColor blackColor];
     _colorForXYLine = [UIColor blackColor];
     _levelLineColor = [UIColor blackColor];
+    _showLineChart = false;
     self.contentInsets = UIEdgeInsetsMake(10, 30, 0, 30);
     self.chartOrigin = CGPointMake(0, self.scrollView.frame.size.height - 20);
 }
@@ -276,14 +278,77 @@
             if (self.rightBarValues.count > i) {
                 addTextBlock(right, self.barTextFont, self.rightBarValues[i].stringValue);
             }
+            
+            [self drawLineChart];
         }];
     }
+}
+
+- (void)drawLineChart {
+    if (!self.showLineChart) {
+        return;
+    }
+    NSAssert(self.leftLineValues.count <= MAX(self.leftBarValues.count, self.rightBarValues.count), @"");
+    NSAssert(self.rightLineValues.count <= MAX(self.leftBarValues.count, self.rightBarValues.count), @"");
+    
+    void (^addLineBlock)(NSArray *, CGFloat, UIColor *, BOOL) = ^(NSArray *values, CGFloat h, UIColor *lineColor, BOOL isLeft) {
+        
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        for (NSUInteger i = 0; i < values.count; i ++) {
+            UIView *l = SAFE_ACCESS(self.leftBarViews, i);
+            UIView *r = SAFE_ACCESS(self.rightBarViews, i);
+            if (l && r) {
+                if (i == 0) {
+                    [path moveToPoint:P_M(CGRectGetMidX((isLeft ? l : r).frame), self.chartOrigin.y - h * [values[i] floatValue])];
+                }
+                else {
+                    [path addLineToPoint:P_M(CGRectGetMidX((isLeft ? l : r).frame), self.chartOrigin.y - h * [values[i] floatValue])];
+                }
+            }
+            else if (l || r) {
+                l = l ?: r;
+                if (i == 0) {
+                    [path moveToPoint:P_M(CGRectGetMidX(l.frame), self.chartOrigin.y - h * [values[i] floatValue])];
+                }
+                else {
+                    [path addLineToPoint:P_M(CGRectGetMidX(l.frame), self.chartOrigin.y - h * [values[i] floatValue])];
+                }
+            }
+        }
+        
+        CAShapeLayer *shaper = [CAShapeLayer layer];
+        shaper.path = path.CGPath;
+        shaper.frame = self.scrollView.bounds;
+        shaper.lineWidth = 1.5;
+        shaper.fillColor = [UIColor clearColor].CGColor;
+        shaper.strokeColor = lineColor.CGColor;
+
+        [self.layerArr addObject:shaper];
+        
+        CABasicAnimation *basic = [CABasicAnimation animationWithKeyPath:NSStringFromSelector(@selector(strokeEnd))];
+        
+        basic.fromValue = @0;
+        basic.toValue = @1;
+        basic.duration = 1;
+        basic.delegate = self;
+        [shaper addAnimation:basic forKey:@"stokentoend"];
+        [self.scrollView.layer addSublayer:shaper];
+    };
+    
+    addLineBlock(self.leftLineValues, lPerH, self.leftLinePathColor, true);
+    addLineBlock(self.rightLineValues, rPerH, self.rightLinePathColor, false);
 }
 
 - (void)clear {
     [self.leftBarViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.rightBarViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.layerArr makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    if (flag) {
+        // TODO: add line point
+    }
 }
 
 #pragma mark - Geters and Setters

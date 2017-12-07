@@ -94,13 +94,14 @@
 @property (nonatomic) BOOL rotateForXAxisText;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 /**
- *  If isShowLineChart proprety is YES,we need this value array to draw chart
+ *  If  showLineChart proprety is YES,we need this value array to draw chart
  */
 /**
  *  Whether this chart show line or not.Default is NO;
  */
-@property (nonatomic, assign) BOOL isShowLineChart;
+@property (nonatomic, assign) BOOL showLineChart;
 
 
 @property (nonatomic, strong) NSArray *leftLineValues;
@@ -115,7 +116,7 @@
  *  if isShowLineChart proprety is Yes,we will draw this linechart valuepoint with this color
  *  Default is yellow
  */
-@property (nonatomic, strong)UIColor *leftLinePointColor;
+@property (nonatomic, strong) UIColor *leftLinePointColor;
 
 @property (nonatomic, strong) NSArray *rightLineValues;
 
