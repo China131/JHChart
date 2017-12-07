@@ -44,12 +44,14 @@
     _yRightTextFont = [UIFont systemFontOfSize:8];
     _yleftTextFont = [UIFont systemFontOfSize:8];
     _barTextFont = [UIFont systemFontOfSize:8];
+    _yDetailTextFont = [UIFont systemFontOfSize:10];
+    _chartSubTitleFont = [UIFont systemFontOfSize:16];
     _drawTextColorForX_Y = [UIColor blackColor];
     _colorForXYLine = [UIColor blackColor];
     _levelLineColor = [UIColor blackColor];
     _showLineChart = false;
-    self.contentInsets = UIEdgeInsetsMake(10, 30, 0, 30);
-    self.chartOrigin = CGPointMake(0, self.scrollView.frame.size.height - 20);
+    self.contentInsets = UIEdgeInsetsMake(50, 50, 0, 50);
+    self.chartOrigin = CGPointMake(0, self.scrollView.frame.size.height - 40);
 }
 
 - (void)showAnimation {
@@ -67,12 +69,76 @@
     self.scrollView.contentSize = CGSizeMake(_maxW, _maxH);
     
     CGPoint p = [self.scrollView convertPoint:self.chartOrigin toView:self];
-    
+
+    [self drawChartTitles];
     [self drawXAndYAxis:p];
     [self drawLevelLines:p];
     [self drawDualYTexts:p];
     [self drawXTexts];
     [self drawBars];
+}
+
+- (void)drawChartTitles {
+    NSMutableArray <CALayer *>*array = [NSMutableArray new];
+    
+    if (self.leftBarValues.count > 0) {
+        CALayer *lump = [CALayer layer];
+        lump.backgroundColor = self.leftBarBGColors.firstObject.CGColor;
+        lump.frame = CGRectMake(0, 0, 10, 10);
+        CATextLayer *l = [self createTextLayer:self.yLeftDetailText font:self.chartSubTitleFont color:self.leftBarBGColors.firstObject];
+        CGRect f = l.frame;
+        f.size.width += 5;
+        l.frame = f;
+
+        CALayer *container = [CALayer new];
+        container.backgroundColor = [UIColor clearColor].CGColor;
+        container.frame = CGRectMake(0, 0, lump.frame.size.width + l.frame.size.width + 5, MAX(lump.frame.size.height, l.frame.size.height));
+
+        [container addSublayer:lump];
+        [container addSublayer:l];
+        
+        lump.position = P_M(lump.frame.size.width/2.0, container.frame.size.height/2.0);
+        l.position = P_M(lump.frame.size.width + 5 + l.frame.size.width/2.0, container.frame.size.height/2.0);
+        
+        [array addObject:container];
+    }
+    if (self.rightBarValues.count > 0) {
+        CALayer *lump = [CALayer layer];
+        lump.backgroundColor = self.rightBarBGColors.firstObject.CGColor;
+        lump.frame = CGRectMake(0, 0, 10, 10);
+        CATextLayer *l = [self createTextLayer:self.yRightDetailText font:self.chartSubTitleFont color:self.rightBarBGColors.firstObject];
+        CGRect f = l.frame;
+        f.size.width += 5;
+        l.frame = f;
+        
+
+        CALayer *container = [CALayer new];
+        container.backgroundColor = [UIColor clearColor].CGColor;
+        container.frame = CGRectMake(0, 0, lump.frame.size.width + l.frame.size.width + 5, MAX(lump.frame.size.height, l.frame.size.height));
+        
+        lump.position = P_M(lump.frame.size.width/2.0, container.frame.size.height/2.0);
+        l.position = P_M(lump.frame.size.width + 5 + l.frame.size.width/2.0, container.frame.size.height/2.0);
+
+        [container addSublayer:lump];
+        [container addSublayer:l];
+        
+        [array addObject:container];
+    }
+    
+    for (CALayer *l in array) {
+        [self.layerArr addObject:l];
+        [self.layer addSublayer:l];
+    }
+    
+    if (array.count == 1) {
+        array.firstObject.position = P_M(self.frame.size.width/2.0f, 30);
+    }
+    else if (array.count == 2) {
+        CGFloat h = 15;
+        CGFloat w = (self.frame.size.width - h - array.firstObject.frame.size.width - array[1].frame.size.width) / 2.0;
+        array.firstObject.position = P_M(w + array.firstObject.frame.size.width/2.0f, 30);
+        array[1].position = P_M(CGRectGetMaxX(array.firstObject.frame) + h + array[1].frame.size.width/2.0f, 30);
+    }
 }
 
 - (void)drawXAndYAxis:(CGPoint)p {
@@ -159,46 +225,40 @@
 }
 
 - (void)drawDualYTexts:(CGPoint)p {
-    
+
     for (NSInteger i = 1; i <_levelLineNum + 1; i++) {
         CGFloat h = i * lPerH * _yLeftRadix;
         
         if (self.needLeftYTexts) {
-            CATextLayer *textLayer = [CATextLayer layer];
-            textLayer.contentsScale = [UIScreen mainScreen].scale;
-            NSString *text = @(i * _yLeftRadix).stringValue;
-            CGSize size = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yleftTextFont.pointSize aimString:text];
-            textLayer.bounds = CGRectMake(0, 0, size.width, size.height);
-            textLayer.position = CGPointMake(p.x - size.width/2.0 - _leftYTextsMargin, p.y - h);
-            CFStringRef fontName = (__bridge CFStringRef)self.yleftTextFont.fontName;
-            CGFontRef fontRef = CGFontCreateWithFontName(fontName);
-            textLayer.font = fontRef;
-            textLayer.fontSize = self.yleftTextFont.pointSize;
-            CGFontRelease(fontRef);
-            textLayer.string = text;
-            textLayer.foregroundColor = _drawTextColorForX_Y.CGColor;
-            [self.layer addSublayer:textLayer];
-            [self.layerArr addObject:textLayer];
+            CATextLayer *layer = [self createTextLayer:@(i * _yLeftRadix).stringValue font:_yleftTextFont color:_drawTextColorForX_Y];
+            layer.position = CGPointMake(p.x - layer.frame.size.width/2.0 - _leftYTextsMargin, p.y - h);
+            [self.layer addSublayer:layer];
+            [self.layerArr addObject:layer];
         }
         
         if (self.needRightYTexts) {
-            CATextLayer *textLayer = [CATextLayer layer];
-            textLayer.contentsScale = [UIScreen mainScreen].scale;
-            NSString *text = @(i * _yRightRadix).stringValue;
-            CGSize size = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yRightTextFont.pointSize aimString:text];
-            textLayer.bounds = CGRectMake(0, 0, size.width, size.height);
-            textLayer.position = CGPointMake(self.frame.size.width - p.x + size.width/2.0 + _leftYTextsMargin, p.y - h);
-            CFStringRef fontName = (__bridge CFStringRef)self.yRightTextFont.fontName;
-            CGFontRef fontRef = CGFontCreateWithFontName(fontName);
-            textLayer.font = fontRef;
-            textLayer.fontSize = self.yRightTextFont.pointSize;
-            CGFontRelease(fontRef);
-            textLayer.string = text;
-            textLayer.foregroundColor = _drawTextColorForX_Y.CGColor;
-            
-            [self.layer addSublayer:textLayer];
-            [self.layerArr addObject:textLayer];
+            CATextLayer *layer = [self createTextLayer:@(i * _yRightRadix).stringValue font:_yRightTextFont color:_drawTextColorForX_Y];
+            layer.position = CGPointMake(self.frame.size.width - p.x + layer.frame.size.width/2.0 + _leftYTextsMargin, p.y - h);
+            [self.layer addSublayer:layer];
+            [self.layerArr addObject:layer];
         }
+    }
+    
+    if (_needLeftYTexts) {
+        CATextLayer *layer = [self createTextLayer:_yLeftDetailText font:_yDetailTextFont color:_drawTextColorForX_Y];
+        layer.position = CGPointMake(p.x - layer.frame.size.height/2.0 - 20, p.y - _maxH/2.0f);
+        layer.transform = CATransform3DMakeRotation(-M_PI_2, 0.0, 0.0, 1.0);
+        
+        [self.layer addSublayer:layer];
+        [self.layerArr addObject:layer];
+    }
+    if (self.needRightYTexts) {
+        CATextLayer *layer = [self createTextLayer:_yRightDetailText font:_yDetailTextFont color:_drawTextColorForX_Y];
+        layer.position = CGPointMake(self.frame.size.width - p.x + layer.frame.size.height/2.0 + _leftYTextsMargin + 20, p.y - _maxH/2.0f);
+        layer.transform = CATransform3DMakeRotation(-M_PI_2, 0.0, 0.0, 1.0);
+        
+        [self.layer addSublayer:layer];
+        [self.layerArr addObject:layer];
     }
 }
 
@@ -426,4 +486,23 @@
     }
     return _leftBarViews;
 }
+
+- (CATextLayer *)createTextLayer:(NSString *)text
+                            font:(UIFont *)font
+                           color:(UIColor *)textColor {
+    CATextLayer *textLayer = [CATextLayer layer];
+    textLayer.contentsScale = [UIScreen mainScreen].scale;
+    CGSize size = [self sizeOfString:text withFont:font];
+    textLayer.bounds = CGRectMake(0, 0, size.width, size.height);
+    CGFontRef fontRef = CGFontCreateWithFontName((__bridge CFStringRef)font.fontName);
+    textLayer.font = fontRef;
+    textLayer.fontSize = font.pointSize;
+    CGFontRelease(fontRef);
+    
+    textLayer.string = text;
+    textLayer.foregroundColor = textColor.CGColor;
+    return textLayer;
+};
+
+
 @end

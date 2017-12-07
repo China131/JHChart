@@ -156,8 +156,14 @@
  */
 - (CGSize)sizeOfStringWithMaxSize:(CGSize)maxSize textFont:(CGFloat)fontSize aimString:(NSString *)aimString{
     return [[NSString stringWithFormat:@"%@",aimString] boundingRectWithSize:maxSize options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]} context:nil].size;
-    
 }
+
+- (CGSize)sizeOfString:(NSString *)string withFont:(UIFont *)font {
+    return [string boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine
+                             attributes:@{NSFontAttributeName:font} context:nil].size;
+}
+
 
 -(void)dealloc{
 #if DEBUG

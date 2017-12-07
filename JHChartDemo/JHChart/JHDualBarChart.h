@@ -45,6 +45,14 @@
 
 @property (nonatomic, copy) UIFont *barTextFont;
 
+@property (nonatomic, copy) NSString *yLeftDetailText;
+
+@property (nonatomic, copy) NSString *yRightDetailText;
+
+@property (nonatomic, copy) UIFont *yDetailTextFont;
+
+@property (nonatomic, copy) UIFont *chartSubTitleFont;
+
 /**
  *  Whether the need for Y, X axis, the default YES
  */

@@ -583,7 +583,7 @@
 }
 
 - (void)showDualBarChart {
-    JHDualBarChart *chart = [[JHDualBarChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
+    JHDualBarChart *chart      = [[JHDualBarChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
     chart.yLeftRadix           = 25;
     chart.yRightRadix          = 50;
     chart.levelLineNum         = 6;
@@ -601,6 +601,8 @@
     chart.chartBackgroundColor = [UIColor grayColor];
     chart.showLineChart        = true;
     chart.rotateForXAxisText   = YES;
+    chart.yLeftDetailText      = @"Number of photos";
+    chart.yRightDetailText     = @"Engagement per photo";
 
     [self.view addSubview:chart];
     [chart showAnimation];

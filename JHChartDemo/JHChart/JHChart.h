@@ -156,4 +156,6 @@
                          textFont:(CGFloat)fontSize
                         aimString:(NSString *)aimString;
 
+- (CGSize)sizeOfString:(NSString *)string withFont:(UIFont *)font;
+
 @end
