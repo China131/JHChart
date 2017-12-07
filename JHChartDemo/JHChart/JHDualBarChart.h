@@ -28,11 +28,14 @@
  */
 @property (nonatomic, strong) NSArray <NSString *>*xTexts;
 
-@property (nonatomic, assign) NSUInteger levelLineNum;
-
 @property (nonatomic, assign) CGFloat yLeftRadix;
 
 @property (nonatomic, assign) CGFloat yRightRadix;
+
+/**
+ *  X axis classification of each icon
+ */
+@property (nonatomic, assign) NSUInteger levelLineNum;
 
 @property (nonatomic, copy) UIFont *xTextFont;
 
@@ -53,12 +56,12 @@
 
 @property (nonatomic, assign) BOOL needRightYTexts;
 
-@property (nonatomic, assign) CGFloat leftYTextesMargin;
+@property (nonatomic, assign) CGFloat leftYTextsMargin;
 
 /**
  *  The background color of the content view
  */
-@property (nonatomic, strong) UIColor *bgVewBackgoundColor;
+@property (nonatomic, strong) UIColor *chartBackgroundColor;
 
 /**
  *  Column spacing, non continuous, default is 15
@@ -85,7 +88,9 @@
  */
 @property (nonatomic, strong) UIColor *levelLineColor;
 
-/** Controls whether text for x-axis be straight or rotate 45 degree. */
+/**
+ *  Controls whether text for x-axis be straight or rotate 45 degree.
+ */
 @property (nonatomic) BOOL rotateForXAxisText;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

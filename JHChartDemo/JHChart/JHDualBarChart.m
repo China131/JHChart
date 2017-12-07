@@ -38,7 +38,7 @@
     _needXLine = YES;
     _needLeftYTexts = YES;
     _needRightYTexts = YES;
-    _leftYTextesMargin = 5;
+    _leftYTextsMargin = 5;
     _xTextFont = [UIFont systemFontOfSize:8];
     _yRightTextFont = [UIFont systemFontOfSize:8];
     _yleftTextFont = [UIFont systemFontOfSize:8];
@@ -51,14 +51,13 @@
 }
 
 - (void)showAnimation {
-    NSAssert(self.leftBarValues.count == self.rightBarValues.count, @"");
     NSAssert(self.leftBarBGColors.count > 0 || self.rightBarBGColors.count > 0, @"");
 
     [self clear];
     
     _barWidth = _barWidth ? : 30;
     _barSpacing = _barSpacing ?: 15;
-    _maxW = self.chartOrigin.x + _barWidth * (_leftBarValues.count + _rightBarValues.count) + (_barSpacing + 1) * _leftBarValues.count;
+    _maxW = self.chartOrigin.x + _barWidth * (_leftBarValues.count + _rightBarValues.count) + (_barSpacing + 1) * MAX(_leftBarValues.count, _rightBarValues.count);
     _maxH = self.chartOrigin.y;
     lPerH = _maxH / (_levelLineNum * _yLeftRadix);
     rPerH = _maxH / (_levelLineNum * _yRightRadix);
@@ -135,11 +134,12 @@
         textLayer.fontSize = self.xTextFont.pointSize;
         textLayer.foregroundColor = _drawTextColorForX_Y.CGColor;
         textLayer.alignmentMode = kCAAlignmentCenter;
-        if (_leftBarValues[i] && _rightBarValues[i]) {
+        
+        if (_leftBarValues.count > i && _rightBarValues.count > i) {
             textLayer.position = CGPointMake(self.chartOrigin.x + (_barWidth * 2 + _barSpacing) * (i + 1) - _barWidth, self.chartOrigin.y + size.height/2.0f + 5);
         }
         else {
-            textLayer.position = CGPointMake((_barWidth + _barSpacing) * (i + 1) - _barWidth/2.0, self.chartOrigin.y + size.height/2.0f + 5);
+            textLayer.position = CGPointMake(self.chartOrigin.x + (i + MIN(_leftBarValues.count, _rightBarValues.count)) * _barWidth + (_barSpacing) * (i + 1) + _barWidth/2.0, self.chartOrigin.y + size.height/2.0f + 5);
         }
         
         if (self.rotateForXAxisText) {
@@ -167,7 +167,7 @@
             NSString *text = @(i * _yLeftRadix).stringValue;
             CGSize size = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yleftTextFont.pointSize aimString:text];
             textLayer.bounds = CGRectMake(0, 0, size.width, size.height);
-            textLayer.position = CGPointMake(p.x - size.width/2.0 - _leftYTextesMargin, p.y - h);
+            textLayer.position = CGPointMake(p.x - size.width/2.0 - _leftYTextsMargin, p.y - h);
             CFStringRef fontName = (__bridge CFStringRef)self.yleftTextFont.fontName;
             CGFontRef fontRef = CGFontCreateWithFontName(fontName);
             textLayer.font = fontRef;
@@ -185,7 +185,7 @@
             NSString *text = @(i * _yRightRadix).stringValue;
             CGSize size = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yRightTextFont.pointSize aimString:text];
             textLayer.bounds = CGRectMake(0, 0, size.width, size.height);
-            textLayer.position = CGPointMake(self.frame.size.width - p.x + size.width/2.0 + _leftYTextesMargin, p.y - h);
+            textLayer.position = CGPointMake(self.frame.size.width - p.x + size.width/2.0 + _leftYTextsMargin, p.y - h);
             CFStringRef fontName = (__bridge CFStringRef)self.yRightTextFont.fontName;
             CGFontRef fontRef = CGFontCreateWithFontName(fontName);
             textLayer.font = fontRef;
@@ -202,30 +202,52 @@
 
 
 - (void)drawBars {
+    
+    NSArray *moreArr = self.leftBarValues.count >= self.rightBarValues.count ? self.leftBarValues : self.rightBarValues;
+    
     for (NSUInteger i = 0; i < self.leftBarValues.count; i ++) {
-        UIView *left = [UIView new];
-        left.backgroundColor = self.leftBarBGColors.count > i ? self.leftBarBGColors[i] : self.leftBarBGColors.firstObject;
-        left.frame = CGRectMake(self.chartOrigin.x + i * (_barWidth*2 + _barSpacing) + _barSpacing, self.chartOrigin.y, _barWidth, 0);
+        UIView *view = [UIView new];
+        view.backgroundColor = self.leftBarBGColors.count > i ? self.leftBarBGColors[i] : self.leftBarBGColors.firstObject;
+        [self.scrollView addSubview:view];
+        [self.leftBarViews addObject:view];
+    }
+    
+    for (NSUInteger i = 0; i < self.rightBarValues.count; i ++) {
+        UIView *view = [UIView new];
+        view.backgroundColor = self.rightBarBGColors.count > i ? self.rightBarBGColors[i] : self.rightBarBGColors.firstObject;
+        [self.scrollView addSubview:view];
+        [self.rightBarViews addObject:view];
+    }
+    
+    for (NSUInteger i = 0; i < moreArr.count; i ++) {
+        UIView *left = self.leftBarViews.count > i ? self.leftBarViews[i] : nil;
+        UIView *right = self.rightBarViews.count > i ? self.rightBarViews[i] : nil;
         
-        UIView *right = [UIView new];
-        right.backgroundColor = self.rightBarBGColors.count > i ? self.rightBarBGColors[i] : self.rightBarBGColors.firstObject;
-        right.frame = CGRectMake(self.chartOrigin.x + i * (_barWidth*2 + _barSpacing) + _barSpacing + _barWidth, self.chartOrigin.y, _barWidth, 0);
-        
-        [self.scrollView addSubview:left];
-        [self.scrollView addSubview:right];
-        [self.leftBarViews addObject:left];
-        [self.rightBarViews addObject:right];
+        if (!left) {
+            right.frame = CGRectMake(self.chartOrigin.x + (self.leftBarViews.count + i) * _barWidth + (i + 1) * _barSpacing, self.chartOrigin.y, _barWidth, 0);
+        }
+        if (!right) {
+            left.frame = CGRectMake(self.chartOrigin.x + (self.rightBarViews.count + i) * _barWidth + (i + 1) * _barSpacing, self.chartOrigin.y, _barWidth, 0);
+        }
+        else {
+            left.frame = CGRectMake(self.chartOrigin.x + i * (_barWidth*2 + _barSpacing) + _barSpacing, self.chartOrigin.y, _barWidth, 0);
+            right.frame = CGRectMake(self.chartOrigin.x + i * (_barWidth*2 + _barSpacing) + _barSpacing + _barWidth, self.chartOrigin.y, _barWidth, 0);
+        }
         
         [UIView animateWithDuration:1 animations:^{
-            CGRect frame = left.frame;
-            frame.size.height = self.leftBarValues[i].floatValue * lPerH;
-            frame.origin.y = self.chartOrigin.y - frame.size.height - 1;
-            left.frame = frame;
+            if (left) {
+                CGRect frame = left.frame;
+                frame.size.height = self.leftBarValues[i].floatValue * lPerH;
+                frame.origin.y = self.chartOrigin.y - frame.size.height - 1;
+                left.frame = frame;
+            }
+            if (right) {
+                CGRect frame = right.frame;
+                frame.size.height = self.rightBarValues[i].floatValue * rPerH;
+                frame.origin.y = self.chartOrigin.y - frame.size.height - 1;
+                right.frame = frame;
+            }
             
-            frame = right.frame;
-            frame.size.height = self.rightBarValues[i].floatValue * rPerH;
-            frame.origin.y = self.chartOrigin.y - frame.size.height - 1;
-            right.frame = frame;
         } completion:^(BOOL finished) {
             if (!finished) {
                 return;
@@ -248,8 +270,12 @@
                 [self.scrollView.layer addSublayer:textLayer];
             };
             
-            addTextBlock(left, self.barTextFont, self.leftBarValues[i].stringValue);
-            addTextBlock(right, self.barTextFont, self.rightBarValues[i].stringValue);
+            if (self.leftBarValues.count > i) {
+                addTextBlock(left, self.barTextFont, self.leftBarValues[i].stringValue);
+            }
+            if (self.rightBarValues.count > i) {
+                addTextBlock(right, self.barTextFont, self.rightBarValues[i].stringValue);
+            }
         }];
     }
 }
@@ -271,7 +297,7 @@
 }
 
 - (void)setLeftBarValues:(NSArray<NSNumber *> *)leftBarValues {
-    NSAssert(_yLeftRadix > 0, nil);
+    NSAssert(_yLeftRadix > 0, @"You should set  yLeftRadix first");
     
     _leftBarValues = leftBarValues;
     
@@ -285,7 +311,7 @@
 }
 
 - (void)setRightBarValues:(NSArray<NSNumber *> *)rightBarValues {
-    NSAssert(_yRightRadix > 0, nil);
+    NSAssert(_yRightRadix > 0, @"You should set  yLeftRadix first");
     
     _rightBarValues = rightBarValues;
     
@@ -302,8 +328,8 @@
     _levelLineNum = MAX(_levelLineNum, levelLineNum);
 }
 
-- (void)setBgVewBackgoundColor:(UIColor *)bgVewBackgoundColor {
-    _bgVewBackgoundColor = bgVewBackgoundColor;
+- (void)setChartBackgroundColor:(UIColor *)chartBackgroundColor {
+    _chartBackgroundColor = chartBackgroundColor;
 }
 
 - (UIScrollView *)scrollView {

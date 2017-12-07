@@ -584,15 +584,15 @@
 
 - (void)showDualBarChart {
     JHDualBarChart *chart = [[JHDualBarChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
-    chart.yLeftRadix = 10;
+    chart.yLeftRadix = 25;
     chart.yRightRadix = 50;
+    chart.levelLineNum = 6;
     chart.leftBarValues = @[@(20),@(30),@(89),@(45),@(57)];
-    chart.rightBarValues = @[@(200),@(345),@(100),@(110),@(50)];
     chart.xTexts = @[@"first",@"second",@"third", @"fourth", @"fiveth"];
-    chart.leftBarBGColors = @[[UIColor redColor]];
+    chart.leftBarBGColors = @[[UIColor colorWithRed:191/255.0 green:215.0/255.0 blue:242.0/255.0 alpha:1]];
     chart.rightBarBGColors = @[[UIColor yellowColor]];
     chart.backgroundColor = [UIColor grayColor];
-    chart.bgVewBackgoundColor = [UIColor grayColor];
+    chart.chartBackgroundColor = [UIColor grayColor];
     chart.rotateForXAxisText = YES;
 
     [self.view addSubview:chart];
