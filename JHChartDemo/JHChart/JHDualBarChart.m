@@ -50,8 +50,8 @@
     _colorForXYLine = [UIColor blackColor];
     _levelLineColor = [UIColor blackColor];
     _showLineChart = false;
-    self.contentInsets = UIEdgeInsetsMake(50, 50, 0, 50);
-    self.chartOrigin = CGPointMake(0, self.scrollView.frame.size.height - 40);
+    self.contentInsets = UIEdgeInsetsMake(50, 50, 40, 50);
+    self.chartOrigin = CGPointMake(0, self.scrollView.frame.size.height-self.contentInsets.bottom);
 }
 
 - (void)showAnimation {
@@ -61,13 +61,13 @@
     
     _barWidth = _barWidth ? : 30;
     _barSpacing = _barSpacing ?: 15;
-    _maxW = self.chartOrigin.x + _barWidth * (_leftBarValues.count + _rightBarValues.count) + (_barSpacing + 1) * MAX(_leftBarValues.count, _rightBarValues.count);
-    _maxH = self.chartOrigin.y;
+    _maxW = self.chartOrigin.x + _barWidth * (_leftBarValues.count + _rightBarValues.count) + _barSpacing * (1 + MAX(_leftBarValues.count, _rightBarValues.count));
+    _maxH = self.frame.size.height - self.contentInsets.top - self.contentInsets.bottom;
     lPerH = _maxH / (_levelLineNum * _yLeftRadix);
     rPerH = _maxH / (_levelLineNum * _yRightRadix);
     
     self.scrollView.contentSize = CGSizeMake(_maxW, _maxH);
-    
+
     CGPoint p = [self.scrollView convertPoint:self.chartOrigin toView:self];
 
     [self drawChartTitles];
@@ -87,7 +87,7 @@
         lump.frame = CGRectMake(0, 0, 10, 10);
         CATextLayer *l = [self createTextLayer:self.yLeftDetailText font:self.chartSubTitleFont color:self.leftBarBGColors.firstObject];
         CGRect f = l.frame;
-        f.size.width += 5;
+        f.size.width += 6;
         l.frame = f;
 
         CALayer *container = [CALayer new];
@@ -108,7 +108,7 @@
         lump.frame = CGRectMake(0, 0, 10, 10);
         CATextLayer *l = [self createTextLayer:self.yRightDetailText font:self.chartSubTitleFont color:self.rightBarBGColors.firstObject];
         CGRect f = l.frame;
-        f.size.width += 5;
+        f.size.width += 6;
         l.frame = f;
         
 
@@ -416,9 +416,9 @@
 - (void)setContentInsets:(UIEdgeInsets)contentInsets {
     [super setContentInsets:contentInsets];
     self.scrollView.frame = CGRectMake(contentInsets.left,
-                                       contentInsets.top,
+                                       0,
                                        self.frame.size.width - contentInsets.left - contentInsets.right,
-                                       self.frame.size.height - contentInsets.top - contentInsets.bottom);
+                                       self.frame.size.height);
 }
 
 - (void)setLeftBarValues:(NSArray<NSNumber *> *)leftBarValues {

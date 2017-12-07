@@ -377,7 +377,7 @@
 				TargetAttributes = {
 					AA5E2BAD1CBA298F00FC19EE = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = HRJA43XU8W;
+						DevelopmentTeam = A4ZY6X2WCR;
 					};
 					AA5E2BC61CBA298F00FC19EE = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -638,6 +638,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = A4ZY6X2WCR;
 				INFOPLIST_FILE = JHChartDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -653,6 +654,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = A4ZY6X2WCR;
 				INFOPLIST_FILE = JHChartDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
