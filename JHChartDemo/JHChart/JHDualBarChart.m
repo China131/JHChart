@@ -24,6 +24,14 @@
 
 @implementation JHDualBarChart
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        NSAssert(false, @"Please use initWithFrame");
+    }
+    return self;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -34,24 +42,24 @@
 
 - (void)commonInit {
     [self addSubview:self.scrollView];
-    self.scrollView.frame = self.bounds;
-    _needYLines = YES;
-    _needXLine = YES;
-    _needLeftYTexts = YES;
-    _needRightYTexts = YES;
-    _leftYTextsMargin = 5;
-    _xTextFont = [UIFont systemFontOfSize:8];
-    _yRightTextFont = [UIFont systemFontOfSize:8];
-    _yleftTextFont = [UIFont systemFontOfSize:8];
-    _barTextFont = [UIFont systemFontOfSize:8];
-    _yDetailTextFont = [UIFont systemFontOfSize:10];
-    _chartSubTitleFont = [UIFont systemFontOfSize:16];
+
+    _needYLines          = YES;
+    _needXLine           = YES;
+    _needLeftYTexts      = YES;
+    _needRightYTexts     = YES;
+    _leftYTextsMargin    = 5;
+    _xTextFont           = [UIFont systemFontOfSize:8];
+    _yRightTextFont      = [UIFont systemFontOfSize:8];
+    _yleftTextFont       = [UIFont systemFontOfSize:8];
+    _barTextFont         = [UIFont systemFontOfSize:8];
+    _yDetailTextFont     = [UIFont systemFontOfSize:10];
+    _chartSubTitleFont   = [UIFont systemFontOfSize:16];
     _drawTextColorForX_Y = [UIColor blackColor];
-    _colorForXYLine = [UIColor blackColor];
-    _levelLineColor = [UIColor blackColor];
-    _showLineChart = false;
-    self.contentInsets = UIEdgeInsetsMake(50, 50, 40, 50);
-    self.chartOrigin = CGPointMake(0, self.scrollView.frame.size.height-self.contentInsets.bottom);
+    _colorForXYLine      = [UIColor blackColor];
+    _levelLineColor      = [UIColor blackColor];
+    _showLineChart       = false;
+    self.contentInsets   = UIEdgeInsetsMake(50, 50, 40, 50);
+    self.chartOrigin     = CGPointMake(0, self.scrollView.frame.size.height-self.contentInsets.bottom);
 }
 
 - (void)showAnimation {
@@ -460,8 +468,10 @@
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] init];
+        _scrollView.frame = self.bounds;
         _scrollView.showsHorizontalScrollIndicator = false;
         _scrollView.backgroundColor = [UIColor clearColor];
+        _scrollView.clipsToBounds = true;
     }
     return _scrollView;
 }
@@ -503,6 +513,5 @@
     textLayer.foregroundColor = textColor.CGColor;
     return textLayer;
 };
-
 
 @end
