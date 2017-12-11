@@ -34,9 +34,6 @@
 
 @property (nonatomic , strong) NSMutableArray * drawLineValue;
 
-// 用来遮挡住scrollview 非显示区域
-@property (nonatomic , strong) CAShapeLayer *contentMaskLayer;
-
 @end
 
 @implementation JHRowChart
