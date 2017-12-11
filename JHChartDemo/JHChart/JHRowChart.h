@@ -71,11 +71,6 @@
 @property (nonatomic, strong) UIColor *dashColor;
 
 /**
- *  The starting point, can be understood as the origin of the left and top margins
- */
-@property (nonatomic, assign) CGPoint originSize;
-
-/**
  *  Whether this chart show Y line or not .Default is Yes
  */
 @property (nonatomic,assign) BOOL isShowYLine;

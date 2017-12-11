@@ -541,9 +541,9 @@
                             @[[UIColor redColor],[UIColor blueColor]],
                             @[[UIColor redColor],[UIColor greenColor]]];//如果为复合型柱状图 即每个柱状图分段 需要传入如上颜色数组 达到同时指定复合型柱状图分段颜色的效果
     /*       This point represents the distance from the lower left corner of the origin.         */
-    column.originSize = CGPointMake(30, 20);
+    column.chartOrigin = CGPointMake(30, 20);
     /*    The first column of the distance from the starting point     */
-    column.backgroundColor = [UIColor yellowColor];
+    column.backgroundColor = [UIColor grayColor];
     column.rowSpacing = 10;
     column.isShowYLine = YES;
     column.contentInsets = UIEdgeInsetsMake(5, 0, 0, 0);
