@@ -22,9 +22,9 @@
 @property (nonatomic , strong)JHIndexPath * indexPath;
 @property (nonatomic , assign)id<JHRowItemActionDelegate> delegate;
 
--(instancetype)initWithFrame:(CGRect)frame
-                    perWidth:(CGFloat)perWidth
-                  valueArray:(id)values
-                      colors:(id)colors;
+- (instancetype)initWithFrame:(CGRect)frame
+                     perWidth:(CGFloat)perWidth
+                   valueArray:(id)values
+                       colors:(id)colors;
 
 @end

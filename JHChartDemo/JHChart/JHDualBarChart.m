@@ -512,6 +512,6 @@
     textLayer.string = text;
     textLayer.foregroundColor = textColor.CGColor;
     return textLayer;
-};
+}
 
 @end

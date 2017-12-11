@@ -147,8 +147,8 @@
     [self clear];
     
     _rowHeight = (_rowHeight<=0?30:_rowHeight);
-    _typeSpace = (_typeSpace<=0?15:_typeSpace);
-    _maxHeight = _originSize.y + _valueArr.count * _rowHeight + (_valueArr.count +1) * _typeSpace + 10;
+    _rowSpacing = (_rowSpacing<=0?15:_rowSpacing);
+    _maxHeight = _originSize.y + _valueArr.count * _rowHeight + (_valueArr.count +1) * _rowSpacing + 10;
     self.BGScrollView.contentSize = CGSizeMake(_maxWidth, _maxHeight);
     self.BGScrollView.backgroundColor = _bgVewBackgoundColor;
     
@@ -245,7 +245,7 @@
                                                               options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingTruncatesLastVisibleLine
                                                            attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:self.xDescTextFontSize]}
                                                               context:nil];
-            textLayer.position = P_M(_originSize.x - textLayer.frame.size.width/2.0 -5, _originSize.y + (i +1) * (_rowHeight + _typeSpace) - _typeSpace - 0.5 * _rowHeight);
+            textLayer.position = P_M(_originSize.x - textLayer.frame.size.width/2.0 -5, _originSize.y + (i + 1) * (_rowHeight + _rowSpacing) - 0.5 * _rowHeight);
             textLayer.string = _xShowInfoText[i];
             textLayer.contentsScale = [UIScreen mainScreen].scale;
             UIFont *font = [UIFont systemFontOfSize:self.xDescTextFontSize];
@@ -276,14 +276,14 @@
             colors = _rowBGcolorsArr[j];
         }
 
-        JHRowItem *itemsView = [[JHRowItem alloc] initWithFrame:CGRectMake(_originSize.x+1, _originSize.y + (_typeSpace + _rowHeight) *j, width * _perWidth, _rowHeight)
+        JHRowItem *itemsView = [[JHRowItem alloc] initWithFrame:CGRectMake(_originSize.x+1, _originSize.y + (_rowSpacing + _rowHeight) *j, width * _perWidth, _rowHeight)
                                                        perWidth:_perWidth
                                                      valueArray:arr
                                                          colors:colors];
         itemsView.clipsToBounds = YES;
         itemsView.delegate = self;
         [self.showViewArr addObject:itemsView];
-        itemsView.frame = CGRectMake(_originSize.x+1, _originSize.y + (_typeSpace + _rowHeight) *j, 0, _rowHeight);
+        itemsView.frame = CGRectMake(_originSize.x+1, _originSize.y + _rowSpacing + (_rowSpacing + _rowHeight) *j, 0, _rowHeight);
         
         if (_isShowLineChart) {
             NSString *value = [NSString stringWithFormat:@"%@",_lineValueArray[j]];
@@ -293,7 +293,7 @@
         [self.BGScrollView addSubview:itemsView];
         
         [UIView animateWithDuration:1 animations:^{
-            itemsView.frame = CGRectMake(_originSize.x+1, _originSize.y + (_typeSpace + _rowHeight) *j, width * _perWidth, _rowHeight);
+            itemsView.frame = CGRectMake(_originSize.x+1, _originSize.y + _rowSpacing + (_rowSpacing + _rowHeight) * j, width * _perWidth, _rowHeight);
         } completion:^(BOOL finished) {
             /*        动画结束后添加提示文字         */
             if (finished) {
