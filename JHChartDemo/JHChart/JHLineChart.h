@@ -172,7 +172,10 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
  */
 @property (nonatomic,assign) BOOL showYLine ;
 
-
+/**
+ * whether this chart level lines is dottedLine or not.Default is YES
+ */
+@property (nonatomic, assign) BOOL leavelLineIsDotted;
 /**
  *  whether this chart shows the Y level lines or not.Default is NO
  */

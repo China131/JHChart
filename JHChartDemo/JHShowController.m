@@ -12,6 +12,8 @@
 #define k_MainBoundsHeight [UIScreen mainScreen].bounds.size.height
 @interface JHShowController ()<JHColumnChartDelegate,JHTableChartDelegate>
 
+@property (nonatomic, strong)JHLineChart * lineChart;
+
 @end
 
 @implementation JHShowController
@@ -23,7 +25,9 @@
     switch (_index) {
         case 0:
         {
-            [self showFirstQuardrant];
+            [self addBtn];
+            [self showFirstWithIndex:0];
+            
         }
             break;
         case 1:
@@ -75,8 +79,127 @@
     
     
 }
-
-
+NSArray * xLineDatas() {
+    return @[
+             @[@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16"],
+             @[@"四月",@"五月",@"六月",@"七月",@"八月",@"九月",@"十月",@"十一月"]
+             ];
+}
+NSArray * valueDatas() {
+    
+    return @[
+             @[@[@"10",@"22",@"1",@6,@4,@9,@6,@7]],
+             @[@[@"20",@"12",@"30",@6,@14,@9,@3,@30]]
+             ];
+}
+- (void)addBtn {
+    
+    NSArray * titles = @[@"周",@"月"];
+    CGFloat width = (CGRectGetWidth(self.view.frame) - 20)/2 ;
+    
+    for (NSInteger i = 0; i < titles.count; i++) {
+        
+        UIButton * btn = [UIButton buttonWithType:UIButtonTypeSystem];
+        [btn setTitle:titles[i] forState:UIControlStateNormal];
+        btn.frame = CGRectMake(10 + i * width, 500, width, 30);
+        btn.tag = i + 1;
+        [btn addTarget:self action:@selector(changeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btn];
+    }
+}
+- (void)changeBtnClick:(UIButton *)btn {
+    
+    
+    [self showFirstWithIndex:btn.tag - 1];
+    
+}
+- (JHLineChart *)lineChart {
+    
+    if (!_lineChart) {
+        _lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 60, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
+        [self.view addSubview:_lineChart];
+    }
+    return _lineChart;
+}
+- (void)showFirstWithIndex:(NSInteger)index {
+    /*     Create object        */
+//    JHLineChart *lineChart = [[JHLineChart alloc] initWithFrame:CGRectMake(10, 60, k_MainBoundsWidth-20, 300) andLineChartType:JHChartLineValueNotForEveryX];
+    
+    /* The scale value of the X axis can be passed into the NSString or NSNumber type and the data structure changes with the change of the line chart type. The details look at the document or other quadrant X axis data source sample.*/
+    
+    JHLineChart * lineChart = self.lineChart;
+    
+    [lineChart clear];
+    
+    // x 轴坐标显示 yLineDataArr
+    lineChart.xLineDataArr = xLineDatas()[index];
+    // 偏移量
+    lineChart.contentInsets = UIEdgeInsetsMake(50, 25, 35, 25);
+    /* The different types of the broken line chart, according to the quadrant division, different quadrant correspond to different X axis scale data source and different value data source. */
+    // 分布象限
+    lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;
+    
+    // 需要绘制的数据（对应每个 x 点坐标的 y 值）
+    lineChart.valueArr = valueDatas()[index];
+    //    lineChart.valueBaseRightYLineArray = @[@[@"3",@"1",@"2",@1,@2,@3,@2,@5]];
+    
+    // 绘制线条宽度
+    lineChart.animationPathWidth = 1;
+    // 是否显示绘制点
+    lineChart.hasPoint = YES;
+    // 显示 y轴水平线
+    lineChart.showYLevelLine = YES;
+    // 是否显示 Y 轴，默认为 YES
+    lineChart.showYLine = YES;
+    
+    // 是否显示 双 Y 轴
+    lineChart.showDoubleYLevelLine = NO;
+    
+    // Y 轴显示对应的坐标值 单 y 轴时，无需填写
+    //    lineChart.yLineDataArr = @[@[@5,@10,@15,@20,@25,@30],@[@1,@2,@3,@4,@5,@6]];
+    
+    //    lineChart.yLineDataArr = @[@5,@10,@15,@20,@25,@30];
+    //    lineChart.drawPathFromXIndex = 1;
+    
+    // 动画绘制时间
+    lineChart.animationDuration = 2.0;
+    // 是否显示标尺线
+    lineChart.showValueLeadingLine = NO;
+    // 标尺线是否为 虚线
+    lineChart.leavelLineIsDotted = NO;
+    // 点值字号大小
+    lineChart.valueFontSize = 9.0;
+    lineChart.backgroundColor = [UIColor colorWithRed:26 / 255.0 green:49 / 255.0 blue:100 / 255.0 alpha:1.0];
+    
+    // 显示点值 描述
+    lineChart.showPointDescription = YES;
+    
+    // 垂直显示 X轴 坐标（此时布局为 UILabel）
+    lineChart.showXDescVertical = NO;
+    // 垂直显示是的最大宽度
+    lineChart.xDescMaxWidth = 15;
+    
+    /* 折线颜色 */
+    lineChart.valueLineColorArr =@[ [UIColor colorWithWhite:0.8 alpha:0.5]];
+    /* 描点颜色*/
+    lineChart.pointColorArr = @[[UIColor redColor]];
+    /* XY 轴线颜色 */
+    lineChart.xAndYLineColor = [UIColor grayColor];
+    /* XY 轴线坐标颜色 */
+    lineChart.xAndYNumberColor = [UIColor whiteColor];
+//    /* Dotted line color of the coordinate point */
+//    lineChart.positionLineColorArr = @[[UIColor whiteColor]];
+    /* 是否需要颜色填充 */
+    lineChart.contentFill = YES;
+    /* 是否为曲线 */
+    lineChart.pathCurve = YES;
+    /* 填充色 */
+    lineChart.contentFillColorArr = @[[UIColor colorWithRed:55/255.0 green:90/255.0 blue:150/255.0 alpha:0.5]];
+//    [self.view addSubview:lineChart];
+    /*       Start animation        */
+    [lineChart showAnimation];
+    
+}
 //第一象限折线图
 - (void)showFirstQuardrant{
     /*     Create object        */
