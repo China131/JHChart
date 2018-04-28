@@ -53,7 +53,7 @@
             break;
         case 5:
         {
-            [self showRingChartView];
+            [self showRingChart];
         }
             break;
         case 6:
@@ -371,7 +371,7 @@ NSArray * valueDatas() {
     [self.view addSubview:pie];
     /*    When touching a pie chart, the animation offset value     */
     pie.positionChangeLengthWhenClick = 15;
-    pie.showDescripotion = NO;
+    pie.showDescripotion = YES;
     pie.animationType = JHPieChartAnimationByOrder;
 //    pie.colorArr = @[[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor redColor],[UIColor yellowColor]];
     /*        Start animation         */
@@ -379,7 +379,27 @@ NSArray * valueDatas() {
     
 }
 
+//环状图
+- (void)showRingChart{
+    JHRingChart *ring = [[JHRingChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth, k_MainBoundsWidth)];
+    /*        background color         */
+    ring.backgroundColor = [UIColor colorWithRed:26 / 255.0 green:49 / 255.0 blue:100 / 255.0 alpha:1.0];
+    /*        Data source array, only the incoming value, the corresponding ratio will be automatically calculated         */
+    ring.ringItemsSpace = 0;
+    ring.ringShowType = RingChartType_Default;
+    // 顺时针排序
+    ring.valueDataArr = @[@"27",@"20",@"53"];
 
+    ring.descArr = @[@"浅眠",@"中度",@"深度"];
+    /*         Width of ring graph        */
+    ring.ringWidth = 35.0;
+    /*        Fill color for each section of the ring diagram         */
+    ring.fillColorArray = @[[UIColor colorWithRed:25/255.0 green:203/255.0 blue:168/255.0 alpha:1.0], [UIColor colorWithRed:4/255.0 green:145/255.0 blue:240/255.0 alpha:1.0],[UIColor colorWithRed:175/255.0 green:161/255.0 blue:110/255.0 alpha:1.0]];
+    /*        Start animation             */
+    [ring showAnimation];
+    [self.view addSubview:ring];
+    
+}
 //环状图
 - (void)showRingChartView{
     JHRingChart *ring = [[JHRingChart alloc] initWithFrame:CGRectMake(0, 100, k_MainBoundsWidth, k_MainBoundsWidth)];

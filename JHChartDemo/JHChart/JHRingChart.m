@@ -19,6 +19,14 @@
 
 @property (nonatomic,assign) CGFloat redius;
 
+
+@property (assign , nonatomic) NSInteger  allValueCount ;
+// 下方小标签 宽度
+@property (assign , nonatomic) CGFloat  chartArcLength ;
+
+
+
+
 @end
 
 
@@ -32,6 +40,8 @@
         self.chartOrigin = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame)/2);
         _redius = (CGRectGetHeight(self.frame) -60*k_Width_Scale)/4;
         _ringWidth = 40;
+        _ringItemsSpace = 10;
+        _chartArcLength = 8.0;
     }
     return self;
 }
@@ -46,11 +56,14 @@
     [self configBaseData];
     
 }
-
+- (void)setRingItemsSpace:(CGFloat)ringItemsSpace {
+    _ringItemsSpace = ringItemsSpace;
+    [self configBaseData];
+}
 - (void)configBaseData{
     
     _totolCount = 0;
-    _itemsSpace =  (M_PI * 2.0 * 10 / 360)/_valueDataArr.count ;
+    _itemsSpace = (M_PI * 2.0 * _ringItemsSpace / 360)/_valueDataArr.count ;
     for (id obj in _valueDataArr) {
         
         _totolCount += [obj floatValue];
@@ -69,6 +82,9 @@
         [layer removeFromSuperlayer];
     }
     
+    if (_ringShowType == RingChartType_BottomTips) {
+        self.chartOrigin = CGPointMake(self.chartOrigin.x, self.chartOrigin.y * 2 / 3 );
+    }
     
     CGFloat lastBegin = -M_PI/2;
     
@@ -109,11 +125,63 @@
 
 }
 
-
+- (void)countAllValue{
+    _allValueCount = 0;
+    for (NSString *obj in _valueDataArr) {
+        
+        _allValueCount += obj.integerValue;
+        
+    }
+}
+- (void)drawText:(NSString *)text andContext:(CGContextRef )context atPoint:(CGPoint )rect WithColor:(UIColor *)color andTextFontSize:(CGFloat )fontSize{
+    
+    
+    [[NSString stringWithFormat:@"%@",text] drawAtPoint:rect withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"CourierNewPSMT" size:fontSize],NSForegroundColorAttributeName:color}];
+    
+    
+    [color setFill];
+    CGContextDrawPath(context, kCGPathFill);
+    
+}
 -(void)drawRect:(CGRect)rect{
     
     
     CGContextRef contex = UIGraphicsGetCurrentContext();
+
+    if (!_descArr) {
+        NSMutableArray * arr = [NSMutableArray arrayWithCapacity:_valueDataArr.count];
+        [_valueDataArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [arr addObject:@""];
+        }];
+        _descArr = arr;
+    }
+    
+    // 绘制底部标签
+    if (_valueDataArr.count>0 && _ringShowType == RingChartType_BottomTips) {
+        
+        NSArray *colors = nil;
+        
+        if (_fillColorArray.count==_valueDataArr.count) {
+            colors = _fillColorArray;
+        }else{
+            colors = k_COLOR_STOCK;
+        }
+        
+//        if (!self.showDescripotion) {
+//            return;
+//        }
+        
+        for (NSInteger i = 0; i<_descArr.count; i++) {
+            
+            [self drawQuartWithColor:colors[i%colors.count] andBeginPoint:P_M(15+self.frame.size.width/3*(i%3), 20*(i/3  )+ self.chartOrigin.y * 2 + 25+_chartArcLength*2) andContext:contex];
+
+            CGFloat present = [_valueDataArr[i] floatValue] / _totolCount * 100;
+            [self drawText:[NSString stringWithFormat:@"%@ 占比:%.1f%c",_descArr[i],present,'%'] andContext:contex atPoint:P_M(30+self.frame.size.width/3*(i%3), 20*(i/3)+ self.chartOrigin.y * 2 + 25+_chartArcLength*2) WithColor:[UIColor whiteColor] andTextFontSize:8*k_Width_Scale];
+        }
+        
+        
+    }
+    
     
     CGFloat lastBegin = 0;
     CGFloat longLen = _redius +30*k_Width_Scale;
@@ -122,44 +190,48 @@
         CGFloat currentSpace = [obj floatValue] / _totolCount * (M_PI * 2 - _itemsSpace * _valueDataArr.count);;
         NSLog(@"%f",currentSpace);
         CGFloat midSpace = lastBegin + currentSpace / 2;
-        
+
         CGPoint begin = CGPointMake(self.chartOrigin.x + sin(midSpace) * _redius, self.chartOrigin.y - cos(midSpace)*_redius);
         CGPoint endx = CGPointMake(self.chartOrigin.x + sin(midSpace) * longLen, self.chartOrigin.y - cos(midSpace)*longLen);
-        
+
         NSLog(@"%@%@",NSStringFromCGPoint(begin),NSStringFromCGPoint(endx));
         lastBegin += _itemsSpace + currentSpace;
-        
+
         UIColor *color;
-        
+
         if (_fillColorArray.count<_valueDataArr.count) {
             color = k_COLOR_STOCK[i%k_COLOR_STOCK.count];
         }else{
             color = _fillColorArray[i];
         }
-        
-        [self drawLineWithContext:contex andStarPoint:begin andEndPoint:endx andIsDottedLine:NO andColor:color];
-        
-        
-        CGPoint secondP = CGPointZero;
-        
-        CGSize size = [[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] boundingRectWithSize:CGSizeMake(200, 100) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10*k_Width_Scale]} context:nil].size;
-        
-        if (midSpace<M_PI) {
-            secondP =CGPointMake(endx.x + 20*k_Width_Scale, endx.y);
-          [self drawText:[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] andContext:contex atPoint:CGPointMake(secondP.x + 3, secondP.y - size.height / 2) WithColor:color andFontSize:10*k_Width_Scale];
+
+        if (_ringShowType == RingChartType_Default) {
+
+            // 绘制指示线
+            [self drawLineWithContext:contex andStarPoint:begin andEndPoint:endx andIsDottedLine:NO andColor:color];
+
+            // 绘制百分比
+            CGPoint secondP = CGPointZero;
+            CGFloat present = [_valueDataArr[i] floatValue] / _totolCount * 100;
+            NSString * txt = [NSString stringWithFormat:@"%@:\n%.1f%c",_descArr[i],present,'%'];
+            
+            CGSize size = [txt boundingRectWithSize:CGSizeMake(200, 100) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10*k_Width_Scale]} context:nil].size;
+
+            if (midSpace<M_PI) {
+                secondP =CGPointMake(endx.x + 20*k_Width_Scale, endx.y);
+                [self drawText:txt andContext:contex atPoint:CGPointMake(secondP.x + 3, secondP.y - size.height / 2) WithColor:color andFontSize:8*k_Width_Scale];
+
+            }else{
+                secondP =CGPointMake(endx.x - 20*k_Width_Scale, endx.y);
+                [self drawText:txt andContext:contex atPoint:CGPointMake(secondP.x - size.width - 3, secondP.y - size.height/2) WithColor:color andFontSize:8*k_Width_Scale];
+            }
+            [self drawLineWithContext:contex andStarPoint:endx andEndPoint:secondP andIsDottedLine:NO andColor:color];
+            [self drawPointWithRedius:3*k_Width_Scale andColor:color andPoint:secondP andContext:contex];
 
         }else{
-             secondP =CGPointMake(endx.x - 20*k_Width_Scale, endx.y);
-            [self drawText:[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] andContext:contex atPoint:CGPointMake(secondP.x - size.width - 3, secondP.y - size.height/2) WithColor:color andFontSize:10*k_Width_Scale];
+
         }
-          [self drawLineWithContext:contex andStarPoint:endx andEndPoint:secondP andIsDottedLine:NO andColor:color];
-        [self drawPointWithRedius:3*k_Width_Scale andColor:color andPoint:secondP andContext:contex];
-       
     }
-    
-    
-    
-    
 }
 
 
