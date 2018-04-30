@@ -386,7 +386,8 @@ NSArray * valueDatas() {
     ring.backgroundColor = [UIColor colorWithRed:26 / 255.0 green:49 / 255.0 blue:100 / 255.0 alpha:1.0];
     /*        Data source array, only the incoming value, the corresponding ratio will be automatically calculated         */
     ring.ringItemsSpace = 0;
-    ring.ringShowType = RingChartType_Default;
+    ring.ringShowType = RingChartType_BottomTips;
+    ring.ringScore = @"100分";
     // 顺时针排序
     ring.valueDataArr = @[@"27",@"20",@"53"];
 

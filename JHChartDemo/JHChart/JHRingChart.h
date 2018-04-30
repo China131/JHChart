@@ -56,4 +56,10 @@ typedef NS_ENUM(NSUInteger, RingChartType) {
  *  Ring Chart width
  */
 @property (nonatomic, assign) CGFloat ringWidth;
+
+/**
+ *  中心评分 (0 - 100分)
+ */
+@property (nonatomic, strong) NSString * ringScore;
+
 @end

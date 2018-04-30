@@ -10,7 +10,10 @@
 #define k_COLOR_STOCK @[[UIColor colorWithRed:1.000 green:0.783 blue:0.371 alpha:1.000], [UIColor colorWithRed:1.000 green:0.562 blue:0.968 alpha:1.000],[UIColor colorWithRed:0.313 green:1.000 blue:0.983 alpha:1.000],[UIColor colorWithRed:0.560 green:1.000 blue:0.276 alpha:1.000],[UIColor colorWithRed:0.239 green:0.651 blue:0.170 alpha:1.000]]
 
 @interface JHRingChart ()
-
+{
+    // 中心评分控件
+    UILabel *_percentLabel;
+}
 //环图间隔 单位为π
 @property (nonatomic,assign)CGFloat itemsSpace;
 
@@ -42,11 +45,25 @@
         _ringWidth = 40;
         _ringItemsSpace = 10;
         _chartArcLength = 8.0;
+        [self initUI];
     }
     return self;
 }
 
-
+-(void)initUI
+{
+    _percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, _redius, _redius)];
+    _percentLabel.textColor = [UIColor whiteColor];
+    _percentLabel.textAlignment = NSTextAlignmentCenter;
+    _percentLabel.font = [UIFont boldSystemFontOfSize:50];
+    _percentLabel.text = @"95分";
+    _percentLabel.backgroundColor = [UIColor redColor];
+    [self addSubview:_percentLabel];
+//    [self bringSubviewToFront:_percentLabel];
+//    [self.layer addSublayer:_percentLabel.layer];
+    
+    
+}
 
 -(void)setValueDataArr:(NSArray *)valueDataArr{
     
@@ -136,7 +153,7 @@
 - (void)drawText:(NSString *)text andContext:(CGContextRef )context atPoint:(CGPoint )rect WithColor:(UIColor *)color andTextFontSize:(CGFloat )fontSize{
     
     
-    [[NSString stringWithFormat:@"%@",text] drawAtPoint:rect withAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"CourierNewPSMT" size:fontSize],NSForegroundColorAttributeName:color}];
+    [[NSString stringWithFormat:@"%@",text] drawAtPoint:rect withAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize],NSForegroundColorAttributeName:color}];
     
     
     [color setFill];
@@ -148,6 +165,14 @@
     
     CGContextRef contex = UIGraphicsGetCurrentContext();
 
+    // 绘制中心评分
+    if (self.ringScore.length > 0) {
+        
+        CGSize txtSize = [self getTextWithWhenDrawWithText:self.ringScore fontSize:30*k_Width_Scale maxSize:CGSizeMake(_redius, _redius)];
+        [self drawText:self.ringScore andContext:contex atPoint:P_M(self.chartOrigin.x - txtSize.width/2,self.chartOrigin.y - txtSize.height/2) WithColor:[UIColor whiteColor] andTextFontSize:30*k_Width_Scale];
+    }
+
+    
     if (!_descArr) {
         NSMutableArray * arr = [NSMutableArray arrayWithCapacity:_valueDataArr.count];
         [_valueDataArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -167,16 +192,12 @@
             colors = k_COLOR_STOCK;
         }
         
-//        if (!self.showDescripotion) {
-//            return;
-//        }
-        
         for (NSInteger i = 0; i<_descArr.count; i++) {
             
-            [self drawQuartWithColor:colors[i%colors.count] andBeginPoint:P_M(15+self.frame.size.width/3*(i%3), 20*(i/3  )+ self.chartOrigin.y * 2 + 25+_chartArcLength*2) andContext:contex];
+            [self drawQuartWithColor:colors[i%colors.count] andBeginPoint:P_M(20+15+self.frame.size.width/3*(i%3), 20*(i/3  )+ self.chartOrigin.y * 2 + 25+_chartArcLength*2) andContext:contex];
 
             CGFloat present = [_valueDataArr[i] floatValue] / _totolCount * 100;
-            [self drawText:[NSString stringWithFormat:@"%@ 占比:%.1f%c",_descArr[i],present,'%'] andContext:contex atPoint:P_M(30+self.frame.size.width/3*(i%3), 20*(i/3)+ self.chartOrigin.y * 2 + 25+_chartArcLength*2) WithColor:[UIColor whiteColor] andTextFontSize:8*k_Width_Scale];
+            [self drawText:[NSString stringWithFormat:@"%@ 占比:%.1f%c",_descArr[i],present,'%'] andContext:contex atPoint:P_M(30+self.frame.size.width/3*(i%3)+20, 20*(i/3)+ self.chartOrigin.y * 2 + 25+_chartArcLength*2) WithColor:[UIColor whiteColor] andTextFontSize:10*k_Width_Scale];
         }
         
         
@@ -223,15 +244,26 @@
 
             }else{
                 secondP =CGPointMake(endx.x - 20*k_Width_Scale, endx.y);
-                [self drawText:txt andContext:contex atPoint:CGPointMake(secondP.x - size.width - 3, secondP.y - size.height/2) WithColor:color andFontSize:8*k_Width_Scale];
+                [self drawText:txt andContext:contex atPoint:CGPointMake(secondP.x - size.width - 3, secondP.y - size.height/2) WithColor:color andFontSize:10*k_Width_Scale];
             }
             [self drawLineWithContext:contex andStarPoint:endx andEndPoint:secondP andIsDottedLine:NO andColor:color];
             [self drawPointWithRedius:3*k_Width_Scale andColor:color andPoint:secondP andContext:contex];
 
-        }else{
-
         }
     }
+}
+/**
+ *  判断文本宽度
+ *
+ *  @param text 文本内容
+ *
+ *  @return 文本宽度
+ */
+- (CGSize)getTextWithWhenDrawWithText:(NSString *)text fontSize:(CGFloat)fsize maxSize:(CGSize)maxSize{
+    
+    CGSize size = [[NSString stringWithFormat:@"%@",text] boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fsize]} context:nil].size;
+    
+    return size;
 }
 
 
