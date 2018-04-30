@@ -1077,7 +1077,10 @@
         return;
     }
     
-    
+    if (self.topDesc && self.contentInsets.top > 0) {
+        
+        [self drawText:self.topDesc andContext:context atPoint:P_M(self.contentInsets.left,self.contentInsets.top/2) WithColor:[UIColor whiteColor] andFontSize:self.valueFontSize + 5.f];
+    }
     
     for (NSInteger m = 0;m<_valueArr.count;m++) {
         NSArray *arr = _drawDataArr[m];

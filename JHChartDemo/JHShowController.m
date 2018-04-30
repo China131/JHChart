@@ -135,6 +135,7 @@ NSArray * valueDatas() {
     lineChart.xLineDataArr = xLineDatas()[index];
     // 偏移量
     lineChart.contentInsets = UIEdgeInsetsMake(50, 25, 35, 25);
+    lineChart.topDesc = @"平均心率 65次，心脏骤停0次";
     /* The different types of the broken line chart, according to the quadrant division, different quadrant correspond to different X axis scale data source and different value data source. */
     // 分布象限
     lineChart.lineChartQuadrantType = JHLineChartQuadrantTypeFirstQuardrant;
