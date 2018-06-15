@@ -94,7 +94,11 @@
     switch (_lineChartQuadrantType) {
         case JHLineChartQuadrantTypeFirstQuardrant:
         {
-            _perXLen = (_xLength-kXandYSpaceForSuperView)/(_xLineDataArr.count-1);
+            if (_xLineDataArr.count <= 1) {
+                _perXLen =(_xLength-kXandYSpaceForSuperView)/ 5.0;
+            }else{
+                _perXLen = (_xLength-kXandYSpaceForSuperView)/(_xLineDataArr.count-1);
+            }
             _perYlen = (_yLength-kXandYSpaceForSuperView)/_yLineDataArr.count;
             if (_showDoubleYLevelLine) {
                 _perYlen = (_yLength-kXandYSpaceForSuperView)/[_yLineDataArr[0] count];
@@ -109,7 +113,11 @@
             break;
         case JHLineChartQuadrantTypeFirstAndFouthQuardrant:
         {
-            _perXLen = (_xLength-kXandYSpaceForSuperView)/(_xLineDataArr.count-1);
+            if (_xLineDataArr.count <= 1) {
+                _perXLen =(_xLength-kXandYSpaceForSuperView)/ 5.0;
+            }else{
+                _perXLen = (_xLength-kXandYSpaceForSuperView)/(_xLineDataArr.count-1);
+            }
             _perYlen = (_yLength/2-kXandYSpaceForSuperView)/[_yLineDataArr[0] count];
         }
             break;
