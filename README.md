@@ -93,8 +93,8 @@ pod 'JHChart','~>1.2.2'
 
 ![some nice chart](https://raw.githubusercontent.com/China131/JHChart/master/JHChartDemo/GIFResource/雷达图demo1.png) 
 
-### 联系方式（可接外包，日结或按整体项目付费）
-* 邮箱：JHSilktree@foxmail.com
+### 联系方式
+* 邮箱：JHSilktree@icloud.com
 * 简书：[不睡觉的鸟](http://www.jianshu.com/users/f9333c379b76/latest_articles)
 * 博客：[Silktree](http://www.cnblogs.com/ToBeTheOne/)
 
