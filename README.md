@@ -1,4 +1,4 @@
-# JHChart(最新版本1.2.2)（最近实在太忙，没有及时回复大家的邮件，望见谅见谅！有任何需求添加至Issues即可，谢谢！）
+# JHChart(最新版本1.2.3)（cocopods 拉取资源包异常已经处理。最近实在太忙，没有及时回复大家的邮件，望见谅见谅！有任何需求添加至Issues即可，谢谢！）
 
 [![CI Status](http://img.shields.io/travis/简豪/JHChart.svg?style=flat)](https://travis-ci.org/简豪/JHChart)
 [![Version](https://img.shields.io/cocoapods/v/JHChart.svg?style=flat)](http://cocoapods.org/pods/JHChart)
@@ -32,7 +32,7 @@ There are two ways to use the JHChart library.
 Download the current Demo directly, and then add the JHChart folder to your project
 * 
 Use CocoaPod import, only need to add the following statement in your Podfile:
-pod 'JHChart','~>1.2.2'
+pod 'JHChart','~>1.2.3'
 
 **(If you don't know about [cocoapods](https://guides.cocoapods.org/), [click here](https://guides.cocoapods.org/) to go to the official website.)**
 ## Detailed usage
