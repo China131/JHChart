@@ -22,6 +22,10 @@
 - (UIView *)tableChart:(JHTableChart *)chart viewForContentAtRow:(NSInteger)row column:(NSInteger)column subRow:(NSInteger)subRow contentSize:(CGSize)contentSize;
 - (UIView *)tableChart:(JHTableChart *)chart viewForPropertyAtColumn:(NSInteger)column contentSize:(CGSize)contentSize;
 - (UIView *)tableChart:(JHTableChart *)chart viewForTableHeaderWithContentSize:(CGSize)contentSize;
+
+///单击事件
+- (void)didClickedTableChart:(JHTableChart *)chart content:(NSString *)content indexString:(NSString *)indexString;
+
 @end
 @interface JHTableChart : JHChart
 /**

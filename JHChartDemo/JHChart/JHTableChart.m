@@ -10,11 +10,18 @@
 #import "JHTableDataRowModel.h"
 @interface JHTableChart ()
 
-@property (nonatomic,assign)CGFloat tableWidth;
+@property (nonatomic,assign) CGFloat tableWidth;
 @property (nonatomic,assign) CGFloat tableHeight;
 @property (nonatomic,assign) CGFloat lastY;
 @property (nonatomic,assign) CGFloat bodyHeight;
-@property (nonatomic,strong)NSMutableArray * dataModelArr;
+@property (nonatomic,strong) NSMutableArray * dataModelArr;
+
+//用于保存每个field的frame
+//表头和属性头
+@property (nonatomic,strong) NSMutableArray<NSString *> * titleFieldFrameArr;
+//数据内容
+@property (nonatomic,strong) NSMutableArray * dataFieldFrameArr;
+
 @end
 
 @implementation JHTableChart
@@ -81,6 +88,9 @@
  *  @param rect
  */
 -(void)drawRect:(CGRect)rect{
+    //绘制前初始化数组
+    _dataFieldFrameArr = [NSMutableArray array];
+    _titleFieldFrameArr = [NSMutableArray array];
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     /*        表格四周线条         */
@@ -114,11 +124,15 @@
                 [self addSubview:header];
             }
         }
-        CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(_tableWidth, _tableChartTitleItemsHeight) textFont:_tableTitleFont.pointSize aimString:_tableTitleString];
+        
         if (drawText) {
+            //需要绘制文字时再计算宽度
+            CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(_tableWidth, _tableChartTitleItemsHeight) textFont:_tableTitleFont.pointSize aimString:_tableTitleString];
             [self drawText:_tableTitleString context:context atPoint:CGRectMake(CGRectGetWidth(self.frame)/2.0 - size.width / 2, _beginSpace + _tableChartTitleItemsHeight/2 - size.height / 2.0, _tableWidth, _tableChartTitleItemsHeight) WithColor:_tableTitleColor font:_tableTitleFont];
         }
         
+        // 将表头frame添加进去
+        [_titleFieldFrameArr addObject:NSStringFromCGRect(CGRectMake(_beginSpace+1, _beginSpace+1, _tableWidth-2, _tableChartTitleItemsHeight-2))];
         _lastY = _beginSpace + _tableChartTitleItemsHeight;
     }
     
@@ -139,17 +153,14 @@
         CGFloat lastX = _beginSpace;
         //属性头绘制
         for (NSInteger i = 0; i<_colTitleArr.count; i++) {
-            
-            
-            
             CGFloat wid = (hasSetColWidth?[_colWidthArr[i] floatValue]:_tableWidth / _colTitleArr.count);
             
             NSLog(@"第%ld列 宽度 为 %f\n",i,wid);
             
-            CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, self.colTitleHeight) textFont:self.colTitleFont.pointSize aimString:_colTitleArr[i]];
-            
+            //将属性头frame添加进去
+            [_titleFieldFrameArr addObject:NSStringFromCGRect(CGRectMake(lastX+1, _lastY+1, wid-2, self.colTitleHeight-2))];
             BOOL drawText = true;
-            
+            // 上层调用代理传进自定义的view
             if ([_delegate respondsToSelector:@selector(tableChart:viewForPropertyAtColumn:contentSize:)]) {
                 UIView *proView = [_delegate tableChart:self viewForPropertyAtColumn:i contentSize:CGSizeMake(wid-2, self.colTitleHeight-2)];
                 if (proView) {
@@ -167,10 +178,13 @@
                     //绘制列分割线
                     [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY) andEndPoint:P_M(lastX, _lastY + _bodyHeight) andIsDottedLine:NO andColor:_lineColor];
                 }
+                //跳出本次循环，下面绘制文字代码不执行
                 continue;
             }
-            if (i==0) {
-                
+            
+            CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, self.colTitleHeight) textFont:self.colTitleFont.pointSize aimString:_colTitleArr[i]];
+            
+            if (i == 0) {
                 NSArray *firArr = [_colTitleArr[0] componentsSeparatedByString:@"|"];
                 if (firArr.count>=2) {
                     [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY) andEndPoint:P_M(lastX + wid, _lastY + self.colTitleHeight) andIsDottedLine:NO andColor:_lineColor];
@@ -191,7 +205,7 @@
                 [self drawText:_colTitleArr[i] context:context atPoint:CGRectMake(lastX + wid / 2.0 - size.width / 2, _lastY + self.colTitleHeight / 2.0 -size.height / 2.0, wid, self.colTitleHeight) WithColor:[self colorForColTitle:i] font:self.colTitleFont];
             }
             lastX += wid;
-            if (i==_colTitleArr.count - 1) {
+            if (i == _colTitleArr.count - 1) {
                 
             }else{
                 [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY) andEndPoint:P_M(lastX, _lastY + _bodyHeight) andIsDottedLine:NO andColor:_lineColor];
@@ -228,6 +242,8 @@
         
         CGFloat lastX = _beginSpace;
         
+        // 新建data中每行数组
+        NSMutableArray *rowFrameArr = [NSMutableArray array];
         for (NSInteger j = 0; j< model.dataArr.count; j++) {
             id rowItems = model.dataArr[j];
             CGFloat wid = (hasSetColWidth?[_colWidthArr[j] floatValue]:_tableWidth / _colTitleArr.count);
@@ -235,17 +251,17 @@
             //绘制列数组元素
             if ([rowItems isKindOfClass:[NSArray class]]) {//列元素为数组时
                 
+                // 一行中某个有多个分行，用于存储该行所有分行frame
+                NSMutableArray *rowItemsFrameArr = [NSMutableArray array];
+                
                 CGFloat perItemsHeightByMaxCount = model.maxCount * _minHeightItems / [rowItems count];
                 /*       具体某一列有多个元素时       */
                 for (NSInteger n = 0; n<[rowItems count]; n++) {
                     
                     [self drawLineWithContext:context andStarPoint:P_M(lastX, _lastY + (n+1) * perItemsHeightByMaxCount) andEndPoint:P_M(lastX + wid, _lastY + (n+1) * perItemsHeightByMaxCount) andIsDottedLine:NO andColor:_lineColor];
-
-                    CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, perItemsHeightByMaxCount) textFont:_bodyTextFont.pointSize aimString:rowItems[n]];
+                    CGSize contentSize = CGSizeMake(wid - 2, _minHeightItems*model.maxCount/[rowItems count] - 2);
                     BOOL drawText = true;
                     if ([_delegate respondsToSelector:@selector(tableChart:viewForContentAtRow:column:subRow:contentSize:)]) {
-                        CGSize contentSize = CGSizeMake(wid - 2, _minHeightItems*model.maxCount/[rowItems count] - 2);
-
                         UIView *cacheView = [_delegate tableChart:self  viewForContentAtRow:i column:j subRow:n contentSize:contentSize];
                         if (cacheView) {
                             cacheView.frame = CGRectMake(lastX+1, _lastY+2 + n * _minHeightItems*model.maxCount/[rowItems count] , contentSize.width, contentSize.height);
@@ -255,18 +271,20 @@
                     }
                     
                     if (drawText) {
+                        CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, perItemsHeightByMaxCount) textFont:_bodyTextFont.pointSize aimString:rowItems[n]];
                         [self drawText:rowItems[n] context:context atPoint:CGRectMake(lastX + wid / 2 - size.width / 2.0, _lastY + (n+1) * perItemsHeightByMaxCount - perItemsHeightByMaxCount / 2.0 - size.height / 2.0, size.width, size.height) WithColor:_bodyTextColor font:_bodyTextFont];
                     }
-                    
+                    //将一行中某个多分行frame添加进去
+                    [rowItemsFrameArr addObject:NSStringFromCGRect(CGRectMake(lastX+1, _lastY+2 + n * _minHeightItems*model.maxCount/[rowItems count] , contentSize.width, contentSize.height))];
                 }
-                
+                [rowFrameArr addObject:rowItemsFrameArr];
             }else{//绘制列元素 非数组
                 
                 CGSize size = [self sizeOfStringWithMaxSize:CGSizeMake(wid, model.maxCount * _minHeightItems) textFont:_bodyTextFont.pointSize aimString:rowItems];
-
+                CGSize contentSize = CGSizeMake(wid - 2, _minHeightItems * model.maxCount - 2);
                 BOOL drawText = true;
                 if ([_delegate respondsToSelector:@selector(tableChart:viewForContentAtRow:column:subRow:contentSize:)]) {
-                    CGSize contentSize = CGSizeMake(wid - 2, _minHeightItems * model.maxCount - 2);
+                    
                     UIView *cacheView = [_delegate tableChart:self  viewForContentAtRow:i column:j subRow:0 contentSize:contentSize];
                     if (cacheView) {
                         cacheView.frame = CGRectMake(lastX+1, _lastY+1, contentSize.width, contentSize.height);
@@ -278,9 +296,14 @@
                 if (drawText) {
                     [self drawText:rowItems context:context atPoint:CGRectMake(lastX + wid / 2 - size.width / 2.0,  _lastY + model.maxCount * _minHeightItems - model.maxCount * _minHeightItems / 2.0 - size.height / 2.0, size.width, size.height) WithColor:_bodyTextColor font:_bodyTextFont];
                 }
+                //将一行中没有分行的frame添加进去
+                [rowFrameArr addObject:NSStringFromCGRect(CGRectMake(lastX+1, _lastY+1, contentSize.width, contentSize.height))];
             }
             lastX += wid;
         }
+        
+        //将每行中的所有frame添加进去
+        [_dataFieldFrameArr addObject:rowFrameArr];
         _lastY += model.maxCount * _minHeightItems;
 
         
@@ -289,6 +312,77 @@
     
 }
 
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    UITouch *touch = touches.anyObject;
+    CGPoint p = [touch locationInView:self];
+    BOOL contained = false;
+    //int x = -1, y = -1, z = -1;
+    NSLog(@"point %@",NSStringFromCGPoint(p));
+    for (int i = 0; i < _titleFieldFrameArr.count; i++) {
+        CGRect rect = CGRectFromString(_titleFieldFrameArr[i]);
+        //NSLog(@"rect %@",_titleFieldFrameArr[i]);
+        if (CGRectContainsPoint(rect, p)) {
+            NSLog(@"title contained %d",i);
+            contained = true;
+            if ([_delegate respondsToSelector:@selector(didClickedTableChart:content:indexString:)]) {
+                [_delegate didClickedTableChart:self content:(i == 0? _tableTitleString: _colTitleArr[i - 1]) indexString:(i == 0? nil: [NSString stringWithFormat:@"{%d}",i - 1])];
+            }
+            return;
+        }
+    }
+    
+    if (!contained) {
+        for (int i = 0; i < _dataFieldFrameArr.count; i++) {
+            id item = _dataFieldFrameArr[i];
+            if ([item isKindOfClass:[NSString class]]) {
+                CGRect rect = CGRectFromString(item);
+                if (CGRectContainsPoint(rect, p)) {
+                    NSLog(@"data contained %d",i);
+                    contained = true;
+                    if ([_delegate respondsToSelector:@selector(didClickedTableChart:content:indexString:)]) {
+                        [_delegate didClickedTableChart:self content:_dataArr[i] indexString:[NSString stringWithFormat:@"{%d}",i]];
+                    }
+                    return;
+                }
+            } else if ([item isKindOfClass:[NSArray class]]) {
+                NSArray *items = (NSArray *)item;
+                for (int j = 0; j < items.count; j++) {
+                    id subItem = items[j];
+                    if ([subItem isKindOfClass:[NSString class]]) {
+                        CGRect rect = CGRectFromString(items[j]);
+                        if (CGRectContainsPoint(rect, p)) {
+                            NSLog(@" data contained %d %d",i,j);
+                            contained = true;
+                            if ([_delegate respondsToSelector:@selector(didClickedTableChart:content:indexString:)]) {
+                                [_delegate didClickedTableChart:self content:_dataArr[i][j] indexString:[NSString stringWithFormat:@"{%d,%d}",i,j]];
+                            }
+                            return;
+                        }
+                    } else if ([subItem isKindOfClass:[NSArray class]]) {
+                        NSArray *subItems = (NSArray *)subItem;
+                        for (int k = 0; k < subItems.count; k++) {
+                            CGRect rect = CGRectFromString(subItems[k]);
+                            if (CGRectContainsPoint(rect, p)) {
+                                NSLog(@" data contained %d %d %d",i,j,k);
+                                contained = true;
+                                if ([_delegate respondsToSelector:@selector(didClickedTableChart:content:indexString:)]) {
+                                    [_delegate didClickedTableChart:self content:_dataArr[i][j][k] indexString:[NSString stringWithFormat:@"{%d,%d,%d}",i,j,k]];
+                                }
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    if (!contained) {
+        NSLog(@"not contained");
+    }
+    
+}
 
 /**
  *  绘图前数据构建

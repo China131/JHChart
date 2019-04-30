@@ -375,8 +375,19 @@
     table.backgroundColor = [UIColor whiteColor];
     /*       Data source array, in accordance with the data from top to bottom that each line of data, if one of the rows of a column in a number of cells, can be stored in an array of         */
     table.dataArr = @[
-                      @[@"2.4L优越版",@"2016皓白标准漆蓝棕",@[@"鸽子白",@"鹅黄",@"炫彩绿"],@[@"4"],@"价格十分优惠，相信市场会非常好"],
-                      @[@"2.4专业版",@[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],@[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],@[@"4",@"5",@"3"],@"性价比还不错，内部配置较为不错，值得入手"]                      ];
+                      @[
+                          @"2.4L优越版",
+                          @"2016皓白标准漆蓝棕",
+                          @[@"鸽子白",@"鹅黄",@"炫彩绿"],
+                          @[@"4"],
+                          @"价格十分优惠，相信市场会非常好"],
+                      @[
+                          @"2.4专业版",
+                          @[@"2016皓白标准漆蓝棕",@"2016晶黑珠光漆黑",@"2016流沙金珠光漆蓝棕"],
+                          @[@"鸽子白",@"鹅黄",@"炫彩绿",@"彩虹多样色"],
+                          @[@"4",@"5",@"3"],
+                          @"性价比还不错，内部配置较为不错，值得入手"
+                        ]                      ];
     table.delegate = self;
     /*        show                            */
     [table showAnimation];
@@ -523,34 +534,36 @@
     NSLog(@"%@",indexPath);
 }
 
--(UIView *)tableChart:(JHTableChart*)chart viewForContentAtRow:(NSInteger)row column:(NSInteger)column subRow:(NSInteger)subRow contentSize:(CGSize)contentSize{
-    
-    if (1) {
-        UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
-        vi.backgroundColor = [UIColor greenColor];
-        return vi;
-    }
-    return nil;
-}
-
--(UIView *)tableChart:(JHTableChart*)chart viewForPropertyAtColumn:(NSInteger)column contentSize:(CGSize)contentSize{
-    if (1) {
-        UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
-        vi.backgroundColor = [UIColor greenColor];
-        return vi;
-    }
-    return nil;
-}
-
--(UIView *)tableChart:(JHTableChart*)chart viewForTableHeaderWithContentSize:(CGSize)contentSize{
-    
+//-(UIView *)tableChart:(JHTableChart*)chart viewForContentAtRow:(NSInteger)row column:(NSInteger)column subRow:(NSInteger)subRow contentSize:(CGSize)contentSize{
+//    
+//    if (1) {
+//        UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
+//        vi.backgroundColor = [UIColor greenColor];
+//        return vi;
+//    }
 //    return nil;
-    UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
-    vi.backgroundColor = [UIColor greenColor];
-    return vi;
+//}
+//
+//-(UIView *)tableChart:(JHTableChart*)chart viewForPropertyAtColumn:(NSInteger)column contentSize:(CGSize)contentSize{
+//    if (1) {
+//        UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
+//        vi.backgroundColor = [UIColor greenColor];
+//        return vi;
+//    }
+//    return nil;
+//}
+//
+//-(UIView *)tableChart:(JHTableChart*)chart viewForTableHeaderWithContentSize:(CGSize)contentSize{
+//    
+////    return nil;
+//    UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height)];
+//    vi.backgroundColor = [UIColor greenColor];
+//    return vi;
+//}
+
+- (void)didClickedTableChart:(JHTableChart *)chart content:(NSString *)content indexString:(NSString *)indexString{
+    NSLog(@"content: %@ index:%@",content,indexString);
 }
-
-
 
 
 
