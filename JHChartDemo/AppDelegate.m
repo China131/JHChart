@@ -17,6 +17,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+#if DEBUG
+    id overlayClass = NSClassFromString(@"UIDebuggingInformationOverlay");
+    [overlayClass performSelector:NSSelectorFromString(@"prepareDebuggingOverlay")];
+#endif
     return YES;
 }
 

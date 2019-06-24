@@ -17,7 +17,6 @@
 
 @interface JHColumnChart : JHChart
 
-
 /**
  *  Each histogram of the background color, if you do not set the default value for green. Setup must ensure that the number and type of the data source array are the same, otherwise the default is not set.
  */
@@ -36,15 +35,13 @@
  */
 @property (nonatomic, strong) NSArray * xShowInfoText;
 
-
 /**
  *  The background color of the content view
  */
 @property (nonatomic, strong) UIColor  * bgVewBackgoundColor;
 
-
 /**
- *  Column spacing, non continuous, default is 5
+ *  Column spacing, non continuous, default is 15
  */
 @property (nonatomic, assign) CGFloat typeSpace;
 
@@ -93,12 +90,10 @@
  */
 @property (nonatomic,assign) BOOL isShowLineChart;
 
-
 /**
  *  If isShowLineChart proprety is YES,we need this value array to draw chart
  */
 @property (nonatomic,strong)NSArray * lineValueArray;
-
 
 /**
  *  If isShowLineChart proprety is Yes,we will draw path of this linechart with this color
@@ -111,8 +106,5 @@
  *  Default is yellow
  */
 @property (nonatomic,strong)UIColor * lineChartValuePointColor;
-
-
-
 
 @end

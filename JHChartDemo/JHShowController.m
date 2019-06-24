@@ -68,12 +68,17 @@
         {
             [self showScatterChart];
         }break;
+        case 10:
+        {
+            [self showRowChart];
+        }break;
+        case 11: {
+            [self showDualBarChart];
+        }
+            break;
         default:
             break;
     }
-    
-    
-    
 }
 
 
@@ -116,9 +121,9 @@
     /* Dotted line color of the coordinate point */
     lineChart.positionLineColorArr = @[[UIColor blueColor],[UIColor greenColor]];
     /*        Set whether to fill the content, the default is False         */
-    lineChart.contentFill = NO;
+    lineChart.contentFill = YES;
     /*        Set whether the curve path         */
-    lineChart.pathCurve = YES;
+    lineChart.pathCurve = NO;
     /*        Set fill color array         */
     lineChart.contentFillColorArr = @[[UIColor colorWithRed:0 green:1 blue:0 alpha:0.468],[UIColor colorWithRed:1 green:0 blue:0 alpha:0.468]];
     [self.view addSubview:lineChart];
@@ -279,19 +284,19 @@
     JHColumnChart *column = [[JHColumnChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
     /*        Create an array of data sources, each array is a module data. For example, the first array can represent the average score of a class of different subjects, the next array represents the average score of different subjects in another class        */
     column.valueArr = @[
-                        @[@[@15,@10]],//第一组元素 如果有多个元素，往该组添加，每一组只有一个元素，表示是单列柱状图| | | | |
-                        @[@[@15,@20]],//第二组元素
-                        @[@[@10,@5]],//第三组元素
-                        @[@[@21,@12]],
-                        @[@19],
-                        @[@12],
-                        @[@15],
-                        @[@9],
-                        @[@8],
-                        @[@6],
-                        @[@9],
-                        @[@18],
-                        @[@11],
+                        @[@[@15,@10], @[@5]],//第一组元素 如果有多个元素，往该组添加，每一组只有一个元素，表示是单列柱状图| | | | |
+                        @[@[@15,@20], @[@5]],//第二组元素
+                        @[@[@10,@5], @[@5]],//第三组元素
+                        @[@[@21,@12], @[@5]],
+                        @[@[@19], @[@5]],
+                        @[@[@19], @[@5]],
+                        @[@[@19], @[@5]],
+                        @[@[@19], @[@5]],
+                        @[@[@19], @[@5]],
+                        @[@[@19], @[@5]],
+                        @[@[@19], @[@5]],
+                        @[@[@19], @[@5]],
+                        @[@[@19], @[@5]],
                         ];
     /*       This point represents the distance from the lower left corner of the origin.         */
     column.originSize = CGPointMake(30, 20);
@@ -310,7 +315,7 @@
     /*        X, Y axis line color         */
     column.colorForXYLine = [UIColor darkGrayColor];
     /*    Each module of the color array, such as the A class of the language performance of the color is red, the color of the math achievement is green     */
-    column.columnBGcolorsArr = @[@[[UIColor redColor],[UIColor greenColor]],@[[UIColor redColor],[UIColor greenColor]],@[[UIColor redColor],[UIColor greenColor]]];//如果为复合型柱状图 即每个柱状图分段 需要传入如上颜色数组 达到同时指定复合型柱状图分段颜色的效果
+    column.columnBGcolorsArr = @[@[[UIColor redColor],[UIColor greenColor],[UIColor redColor], [UIColor blueColor]],@[[UIColor redColor],[UIColor blueColor]],@[[UIColor redColor],[UIColor greenColor]]];//如果为复合型柱状图 即每个柱状图分段 需要传入如上颜色数组 达到同时指定复合型柱状图分段颜色的效果
     /*        Module prompt         */
     column.xShowInfoText = @[@"A班级",@"B班级",@"C班级",@"D班级",@"E班级",@"F班级",@"G班级",@"H班级",@"i班级",@"J班级",@"L班级",@"M班级",@"N班级"];
     column.isShowLineChart = YES;
@@ -514,6 +519,93 @@
     [self.view addSubview:scatterChart];
 }
 
+- (void)showRowChart {
+    JHRowChart *column = [[JHRowChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
+    /*        Create an array of data sources, each array is a module data. For example, the first array can represent the average score of a class of different subjects, the next array represents the average score of different subjects in another class        */
+    column.valueArr = @[
+                        @[@15,@10,@8,@7],//第一组元素 如果有多个元素，往该组添加，每一组只有一个元素，表示是单列柱状图| | | | |
+                        @[@15,@20],//第二组元素
+                        @[@10,@5],//第三组元素
+                        @[@21,@12],
+                        @[@19],
+                        @[@12],
+                        @[@15],
+                        @[@9],
+                        @[@8],
+                        @[@6],
+                        @[@9],
+                        @[@18],
+                        @[@11],
+                        ];
+    column.rowBGcolorsArr=@[@[[UIColor redColor],[UIColor greenColor],[UIColor redColor], [UIColor blueColor]],
+                            @[[UIColor redColor],[UIColor blueColor]],
+                            @[[UIColor redColor],[UIColor greenColor]]];//如果为复合型柱状图 即每个柱状图分段 需要传入如上颜色数组 达到同时指定复合型柱状图分段颜色的效果
+    /*       This point represents the distance from the lower left corner of the origin.         */
+    column.chartOrigin = CGPointMake(30, 20);
+    /*    The first column of the distance from the starting point     */
+    column.backgroundColor = [UIColor grayColor];
+    column.rowSpacing = 10;
+    column.isShowYLine = YES;
+    column.contentInsets = UIEdgeInsetsMake(5, 0, 0, 0);
+    /*        Column width         */
+    column.rowHeight = 30;
+    /*        Column backgroundColor         */
+    column.bgVewBackgoundColor = [UIColor grayColor];
+    /*        X, Y axis font color         */
+    column.drawTextColorForX_Y = [UIColor blackColor];
+    /*        X, Y axis line color         */
+    column.colorForXYLine = [UIColor darkGrayColor];
+    /*    Each module of the color array, such as the A class of the language performance of the color is red, the color of the math achievement is green     */
+    /*        Module prompt         */
+    column.xShowInfoText = @[@"A班级",@"B班级",@"C班级",@"D班级",@"E班级",@"F班级",@"G班级",@"H班级",@"i班级",@"J班级",@"L班级",@"M班级",@"N班级"];
+    column.isShowLineChart = YES;
+    column.lineValueArray =  @[
+                               @6,
+                               @12,
+                               @10,
+                               @1,
+                               @9,
+                               @5,
+                               @9,
+                               @9,
+                               @5,
+                               @6,
+                               @4,
+                               @8,
+                               @11
+                               ];
+    
+    column.delegate = self;
+    /*       Start animation        */
+    [column showAnimation];
+    [self.view addSubview:column];
+}
+
+- (void)showDualBarChart {
+    JHDualBarChart *chart      = [[JHDualBarChart alloc] initWithFrame:CGRectMake(0, 64, k_MainBoundsWidth, 320)];
+    chart.yLeftRadix           = 25;
+    chart.yRightRadix          = 50;
+    chart.levelLineNum         = 6;
+    chart.leftBarValues        = @[@(20),@(30),@(89),@(45),@(57)];
+    chart.rightBarValues       = @[@(100),@(200),@(287),@(34),@(30)];
+    chart.leftLineValues       = @[@(20),@(30),@(89),@(45),@(57)];
+    chart.rightBarValues       = @[@(100),@(200),@(287),@(34),@(30)];
+    chart.rightLineValues      = @[@(100),@(200),@(287),@(34),@(30)];
+    chart.xTexts               = @[@"first",@"second",@"third", @"fourth", @"fiveth"];
+    chart.leftBarBGColors      = @[[UIColor colorWithRed:23/255.0 green:93.0/255.0 blue:180.0/255.0 alpha:1]];
+    chart.rightBarBGColors     = @[[UIColor colorWithRed:191/255.0 green:215.0/255.0 blue:242.0/255.0 alpha:1]];
+    chart.leftLinePathColor    = [UIColor redColor];
+    chart.rightLinePathColor   = [UIColor yellowColor];
+    chart.backgroundColor      = [UIColor grayColor];
+    chart.chartBackgroundColor = [UIColor grayColor];
+    chart.showLineChart        = true;
+    chart.rotateForXAxisText   = YES;
+    chart.yLeftDetailText      = @"Number of photos";
+    chart.yRightDetailText     = @"Engagement per photo";
+
+    [self.view addSubview:chart];
+    [chart showAnimation];
+}
 
 -(void)columnChart:(JHColumnChart*)chart columnItem:(UIView *)item didClickAtIndexRow:(NSIndexPath *)indexPath{
     NSLog(@"%@",indexPath);
@@ -549,15 +641,6 @@
     vi.backgroundColor = [UIColor greenColor];
     return vi;
 }
-
-
-
-
-
-
-
-
-
 
 
 @end
