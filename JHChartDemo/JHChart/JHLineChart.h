@@ -56,6 +56,11 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
 
 @interface JHLineChart :JHChart
 
+
+/**
+ 折线图上部描述文字（设置顶部偏移量之后才可显示）
+ */
+@property (nonatomic, strong)NSString * topDesc;
 /**
  *  X axis scale data of a broken line graph, the proposed use of NSNumber or the number of strings
  */
@@ -172,7 +177,10 @@ typedef NS_ENUM(NSInteger,JHLineChartQuadrantType){
  */
 @property (nonatomic,assign) BOOL showYLine ;
 
-
+/**
+ * whether this chart level lines is dottedLine or not.Default is YES
+ */
+@property (nonatomic, assign) BOOL leavelLineIsDotted;
 /**
  *  whether this chart shows the Y level lines or not.Default is NO
  */

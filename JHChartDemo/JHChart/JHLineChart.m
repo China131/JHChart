@@ -54,6 +54,7 @@
         _layerArr = [NSMutableArray array];
         _showYLine = YES;
         _showYLevelLine = NO;
+        _leavelLineIsDotted = YES;
         _showValueLeadingLine = YES;
         _valueFontSize = 8.0;
         _showPointDescription = YES;
@@ -452,6 +453,7 @@
                         label.text = [NSString stringWithFormat:@"%@",_xLineDataArr[i]];
                         label.font = [UIFont systemFontOfSize:self.xDescTextFontSize];
                         label.numberOfLines = 0;
+                        label.textColor = _xAndYNumberColor;
                         label.transform = CGAffineTransformRotate(label.transform, _xDescriptionAngle);
                         [self addSubview:label];
             
@@ -483,7 +485,7 @@
                         CGFloat len = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.yDescTextFontSize aimString:leftArray[i]].width;
                         CGFloat hei = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.yDescTextFontSize aimString:leftArray[i]].height;
                         if (_showYLevelLine) {
-                            [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:YES andColor:self.xAndYLineColor];
+                            [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:self.leavelLineIsDotted andColor:self.xAndYLineColor];
                             
                         }else{
                             [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x+3, p.y) andIsDottedLine:NO andColor:self.xAndYLineColor];
@@ -510,7 +512,7 @@
                         CGFloat len = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.yDescTextFontSize aimString:_yLineDataArr[i]].width;
                         CGFloat hei = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.yDescTextFontSize aimString:_yLineDataArr[i]].height;
                         if (_showYLevelLine) {
-                            [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:YES andColor:self.xAndYLineColor];
+                            [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:self.leavelLineIsDotted andColor:self.xAndYLineColor];
                             
                         }else{
                             [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x+3, p.y) andIsDottedLine:NO andColor:self.xAndYLineColor];
@@ -527,7 +529,7 @@
             [self drawLineWithContext:context andStarPoint:P_M(self.contentInsets.left, self.chartOrigin.y) andEndPoint:P_M(self.contentInsets.left+_xLength, self.chartOrigin.y) andIsDottedLine:NO andColor:self.xAndYLineColor];
             
             if (_showYLine) {
-                 [self drawLineWithContext:context andStarPoint:self.chartOrigin andEndPoint:P_M(self.chartOrigin.x,self.chartOrigin.y-_yLength) andIsDottedLine:NO andColor:self.xAndYLineColor];
+                 [self drawLineWithContext:context andStarPoint:self.chartOrigin andEndPoint:P_M(self.chartOrigin.x,self.chartOrigin.y-_yLength) andIsDottedLine:self.leavelLineIsDotted andColor:self.xAndYLineColor];
             }
 
             if (_xLineDataArr.count == 2) {
@@ -580,7 +582,7 @@
                     CGFloat len = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.yDescTextFontSize aimString:_yLineDataArr[i]].width;
                     CGFloat hei = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.yDescTextFontSize aimString:_yLineDataArr[i]].height;
                     if (_showYLevelLine) {
-                         [self drawLineWithContext:context andStarPoint:P_M(self.contentInsets.left, p.y) andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:YES andColor:self.xAndYLineColor];
+                         [self drawLineWithContext:context andStarPoint:P_M(self.contentInsets.left, p.y) andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:self.leavelLineIsDotted andColor:self.xAndYLineColor];
                     }else
                         [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x+3, p.y) andIsDottedLine:NO andColor:self.xAndYLineColor];
                     [self drawText:[NSString stringWithFormat:@"%@",_yLineDataArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-hei / 2) WithColor:_xAndYNumberColor andFontSize:self.yDescTextFontSize];
@@ -592,7 +594,7 @@
             [self drawLineWithContext:context andStarPoint:self.chartOrigin andEndPoint:P_M(self.contentInsets.left+_xLength, self.chartOrigin.y) andIsDottedLine:NO andColor:self.xAndYLineColor];
             
             if (_showYLine) {
-                [self drawLineWithContext:context andStarPoint:P_M(self.contentInsets.left,CGRectGetHeight(self.frame)-self.contentInsets.bottom) andEndPoint:P_M(self.contentInsets.left,self.contentInsets.top) andIsDottedLine:NO andColor:self.xAndYLineColor];
+                [self drawLineWithContext:context andStarPoint:P_M(self.contentInsets.left,CGRectGetHeight(self.frame)-self.contentInsets.bottom) andEndPoint:P_M(self.contentInsets.left,self.contentInsets.top) andIsDottedLine:self.leavelLineIsDotted andColor:self.xAndYLineColor];
             }
             
             if (_xLineDataArr.count>0) {
@@ -632,7 +634,7 @@
                     CGFloat len = [self sizeOfStringWithMaxSize:XORYLINEMAXSIZE textFont:self.yDescTextFontSize aimString:topArr[i]].width;
                     CGFloat hei = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.yDescTextFontSize aimString:topArr[i]].height;
                     if (_showYLevelLine) {
-                         [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:YES andColor:self.xAndYLineColor];
+                         [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:self.leavelLineIsDotted andColor:self.xAndYLineColor];
                     }else
                         [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x+3, p.y) andIsDottedLine:NO andColor:self.xAndYLineColor];
                     [self drawText:[NSString stringWithFormat:@"%@",topArr[i]] andContext:context atPoint:P_M(p.x-len-3, p.y-hei / 2) WithColor:_xAndYNumberColor andFontSize:self.yDescTextFontSize];
@@ -646,7 +648,7 @@
                     CGFloat hei = [self sizeOfStringWithMaxSize:CGSizeMake(CGFLOAT_MAX, 30) textFont:self.yDescTextFontSize aimString:bottomArr[i]].height;
 
                     if (_showYLevelLine) {
-                         [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:YES andColor:self.xAndYLineColor];
+                         [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(self.contentInsets.left+_xLength, p.y) andIsDottedLine:self.leavelLineIsDotted andColor:self.xAndYLineColor];
                     }else{
                     
                         [self drawLineWithContext:context andStarPoint:p andEndPoint:P_M(p.x+3, p.y) andIsDottedLine:NO andColor:self.xAndYLineColor];
@@ -1075,7 +1077,10 @@
         return;
     }
     
-    
+    if (self.topDesc && self.contentInsets.top > 0) {
+        
+        [self drawText:self.topDesc andContext:context atPoint:P_M(self.contentInsets.left,self.contentInsets.top/2) WithColor:[UIColor whiteColor] andFontSize:self.valueFontSize + 5.f];
+    }
     
     for (NSInteger m = 0;m<_valueArr.count;m++) {
         NSArray *arr = _drawDataArr[m];
@@ -1091,8 +1096,8 @@
 
             
             if (_showValueLeadingLine) {
-                [self drawLineWithContext:context andStarPoint:P_M(self.chartOrigin.x, p.y) andEndPoint:p andIsDottedLine:YES andColor:positionLineColor];
-                [self drawLineWithContext:context andStarPoint:P_M(p.x, self.chartOrigin.y) andEndPoint:p andIsDottedLine:YES andColor:positionLineColor];
+                [self drawLineWithContext:context andStarPoint:P_M(self.chartOrigin.x, p.y) andEndPoint:p andIsDottedLine:self.leavelLineIsDotted andColor:positionLineColor];
+                [self drawLineWithContext:context andStarPoint:P_M(p.x, self.chartOrigin.y) andEndPoint:p andIsDottedLine:self.leavelLineIsDotted andColor:positionLineColor];
             }
           
             if (!_showPointDescription) {
@@ -1179,6 +1184,11 @@
  *  绘制值的点
  */
 - (void)drawPoint{
+    
+    // 实现不显示点时的逻辑
+    if (self.hasPoint == NO) {
+        return;
+    }
     
     for (NSInteger m = 0;m<_drawDataArr.count;m++) {
         
